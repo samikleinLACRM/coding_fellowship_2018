@@ -3,7 +3,7 @@
 		<title> This is post #2</title>
 		<link rel='stylesheet' href='style.css'/>
 	</head>
-	<body class = 'bg'>
+	<body class='bg'>
 		<?php include 'navigationBar.php'; ?>
 		<h1>Post #2 </h1>
 
