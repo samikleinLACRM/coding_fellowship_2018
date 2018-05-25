@@ -4,7 +4,6 @@ h1 {
 	padding: 10px;
 	margin: 10px;
 	background-color: white;
-
 }
 
 h2 {
@@ -22,9 +21,8 @@ h2 {
 	padding:10px;
 }
 
-
 a:hover{
-	 background-color: #e6e2ff;
+	background-color: #e6e2ff;
 }
 
 .textStyle {
@@ -34,7 +32,6 @@ a:hover{
 	border-radius: 15px;
 	padding:10px;
 }
-
 
 .centerImage {
 	display: block;
@@ -58,16 +55,16 @@ a:hover{
 /* this holds the image and text*/
 .container {
 	position: relative;
-    text-align: center;
-    color: white;
+	text-align: center;
+	color: white;
 }
 
 /* This centers the words in the pic*/
 .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	color:#051138;
 	font-size: 30;
 	font-weight: 300;

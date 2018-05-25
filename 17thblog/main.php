@@ -1,13 +1,10 @@
+<?php
+include('config/config.php');
+include('config/init.php');
+?>
 
 
 <html>
-	<head>
-		<title> Sami's page</title>
-
-		<link rel='stylesheet' href='style.css'/>
-
-	</head>
-
 	<body class='bg'>
 
 		<div class='container'>
@@ -15,8 +12,11 @@
 			<div class='centered'>Welcome to Sami Klein's website!</div>
 		</div>
 
+		<p><br></p>
+
+		<?php echoNavAndHead("Sami's Page"); ?>
+
 		<div class='textStyle'>
-			<?php include 'navigationBar.php'; ?>
 			<h2>About me</h2>
 				<p>I'm Sami and I'm doing a coding fellowship with LACRM this summer. Woo!</p>
 				<p>Next: put a picture of me in here, also make columns of writing! </p>
