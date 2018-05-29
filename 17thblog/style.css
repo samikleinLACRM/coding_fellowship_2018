@@ -17,11 +17,14 @@ h2 {
 	text-align: center;
 	background-color: white;
 	font-size: 25px;
-	border-radius: 25px;
+	/* border-radius: 25px; */
 	padding:10px;
+	margin-left:20px;
+	margin-right:20px;
 }
 
 a:hover{
+	text-decoration: underline;
 	background-color: #e6e2ff;
 }
 
@@ -29,16 +32,8 @@ a:hover{
 	background-color: white;
 	margin:50px;
 	margin-bottom:50px;
-	border-radius: 15px;
+	/* border-radius: 15px; */
 	padding:10px;
-}
-
-.centerImage {
-	display: block;
-	margin: auto;
-	width: 100%;
-	z-index: -1;
-	position: relative;
 }
 
 /*background */
@@ -59,15 +54,72 @@ a:hover{
 	color: white;
 }
 
+.centerImage {
+	display: block;
+	width: 100%;
+	z-index: -1;  /* this should place the image behind the words*/
+}
+
 /* This centers the words in the pic*/
 .centered {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	color:#051138;
+	position: absolute; /* This is very necessary*/
+	top: 50%; /* This puts it in the middle of the pic*/
+	left: 50%;	/* Ditto*/
+	transform: translate(-50%, -50%); /* again, not sure what this does, but need it */
+	color:#051138; /* Makes the words purple-y*/
 	font-size: 30;
-	font-weight: 300;
 	background-color:white;
 	padding: 25px;
 }
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+.left {
+	float: left;
+	padding: 10px;
+	width: 75%;
+}
+
+.right {
+	float: left;
+    padding: 10px;
+	width: 25%;
+}
+.bloghead {
+	text-align: center;
+	background-color: white;
+	font-size: 25px;
+	border-radius: 25px;
+	/* padding:5px; */  /* why is padding so messed up!?!?!*/
+	font-weight: 600;
+	margin-left:300px;
+	margin-right:300px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.card {
+	background-color: white;
+	padding: 20px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+//this isn't doing anything. cool idea tho
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+	.left, .right {
+		width: 100%;
+		padding: 0;
+	    }
+	}

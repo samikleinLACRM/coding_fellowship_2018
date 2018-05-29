@@ -4,12 +4,17 @@ include('config/init.php');
 
 echoNavAndHead("Projects");
 
-	echo "
+echo "
 	<body class='bg'>
-		<h1>Summer Projects</h1>
+		<div class='bloghead'>
+			<p>Summer Projects</p>
+		</div>
 		<div class='textStyle'>
-			<p>This is where all of the projects that I've done this summer will go.</p>
-			<p>for ex) here's the calculator I built!</p>
+			<p>Here is a list of some projects that I've worked on this summer!</p>
+			<ul>
+				<li> <a href='/practice/calculator.php'>4 function Calculator</li>
+				<li> <a href='/practice/colorCalc.php'>Color Calculator</li>
+			</ul>
 		</div>
 	</body>
 	";
