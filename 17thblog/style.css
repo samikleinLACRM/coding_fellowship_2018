@@ -13,6 +13,11 @@ h2 {
 	color: #061643;
 }
 
+/* this does nothing. literally 100-500 is normal, and 600-900 is bold. that's annoying */
+boldHelp{
+	font-weight: 600;
+}
+
 .navbarStyle {
 	text-align: center;
 	background-color: white;

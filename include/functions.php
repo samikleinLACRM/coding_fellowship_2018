@@ -49,8 +49,6 @@ function getOneBlogPost($newBlogPostID) {
 	return $result;
 }
 
-// $practice=getOneBlogPost(2);
-// printNicely($practice);
 
 //don't use this ever, probably. just use a foreach function
 function getNumPosts(){
@@ -69,8 +67,6 @@ function insertBlogPost($title, $body, $dateCreated, $authorOfPost) {
 	")->fetch();
 }
 
-// insertBlogPost('Post #4', 'This is my fourth blog post. I hope this works getting into mySQL!', '2018-05-24', 'SK, reporting for duty');
-
 //deletes blog post by ID number, not any other factor
 function deleteBlogPost($newBlogPostID) {
 	$result = dbQuery("
@@ -81,20 +77,20 @@ function deleteBlogPost($newBlogPostID) {
 		))->fetch();
 }
 
+
+
+//comment functions
 function getPostComments($thisBlogPostID){
 	$result = dbQuery("
 		SELECT *
 		FROM comments
 		WHERE blogPostID = :blogPostID
 		", array(
-		'blogPostID'=>$thisBlogPostID
-		))->fetch();
+			'blogPostID'=>$thisBlogPostID
+	))->fetchAll();
 	return $result;
 }
 
-
-// $practice=getPostComments(2);
-// printNicely($practice);
 
 
 ?>

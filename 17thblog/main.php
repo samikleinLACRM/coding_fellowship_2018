@@ -2,6 +2,10 @@
 include('config/config.php');
 include('config/init.php');
 
+// $practice=getOneBlogPost(2);
+// printNicely($practice);
+// die("test");
+
 
 echo "
 	<body class='bg'>
