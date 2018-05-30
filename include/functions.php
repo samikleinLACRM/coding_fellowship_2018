@@ -37,14 +37,6 @@ function getAllBlogPosts() {
 	return $result;
 }
 
-// $interm= getAllBlogPosts();
-
-// echo "<pre>";
-// var_dump($interm);
-// echo "<pre>";
-
-
-
 function getOneBlogPost($newBlogPostID) {
 	$result = dbQuery("
 		SELECT *
@@ -57,6 +49,9 @@ function getOneBlogPost($newBlogPostID) {
 	return $result;
 }
 
+// $practice=getOneBlogPost(2);
+// printNicely($practice);
+
 //don't use this ever, probably. just use a foreach function
 function getNumPosts(){
 	$result = dbQuery("
@@ -65,13 +60,6 @@ function getNumPosts(){
 	")->fetch();
 	return $result;
 }
-
-
-// $interm= getOneBlogPost(2);
-//
-// echo "<pre>";
-// var_dump($interm);
-// echo "<pre>";
 
 //primary key will auto increment itself, don't need to add
 function insertBlogPost($title, $body, $dateCreated, $authorOfPost) {
@@ -93,8 +81,20 @@ function deleteBlogPost($newBlogPostID) {
 		))->fetch();
 }
 
-// deleteBlogPost('2');
+function getPostComments($thisBlogPostID){
+	$result = dbQuery("
+		SELECT *
+		FROM comments
+		WHERE blogPostID = :blogPostID
+		", array(
+		'blogPostID'=>$thisBlogPostID
+		))->fetch();
+	return $result;
+}
 
+
+// $practice=getPostComments(2);
+// printNicely($practice);
 
 
 ?>

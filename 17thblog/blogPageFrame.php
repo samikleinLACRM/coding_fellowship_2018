@@ -8,19 +8,25 @@ echoNavAndHead("Blog Page");
 echo "<body class='bg'>";
 	echo "<br>";
 	echo "<div class='bloghead'>";
-		$posts = getAllBlogPosts();
-		echo $posts[$_REQUEST['postId']]['title'];
+		$post=getOneBlogPost($_REQUEST['blogPostID']);
+		echo $post['title'];
 	echo "</div>";
 
 	echo "<div class='textStyle'>";
 		echo "Author: ";
-		echo $posts[$_REQUEST['postId']]['authorOfPost'];
+		echo $post['authorOfPost'];
 		echo "<br>";
 		echo "Date Post Created: ";
-		echo $posts[$_REQUEST['postId']]['dateCreated'];
+		echo $post['dateCreated'];
+		if ($post['tags'] != null){
+			echo "<br>";
+			echo "Tags: <mark style='background-color:#D3D3D3'>";
+			echo $post['tags'];
+			echo "</mark>";
+		}
 		echo "<br>";
 		echo "<br>";
-		echo $posts[$_REQUEST['postId']]['body'];
+		echo $post['body'];
 	echo "</div>";
 
 echo "</body>";

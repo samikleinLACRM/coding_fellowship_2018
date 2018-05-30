@@ -1,7 +1,7 @@
 <?php
 
 include('config/config.php');
-include('include/db_query.php');
+include('config/init.php');
 
 //primary key will auto increment itself, don't need to add /**
 function insertInventoryItem($name, $description, $category) {

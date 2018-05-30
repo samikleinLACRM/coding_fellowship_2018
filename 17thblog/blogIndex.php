@@ -19,10 +19,10 @@ echo "
 	<div class='textStyle'>
 		<p>WELCOME TO MY BLOG! IT'S GREAT! READ ABOUT MY LIFE</p>";
 
-		$posts = getAllBlogPosts();
+		$posts=getAllBlogPosts();
 			foreach($posts as $post){
 				echo "
-				<p><a href='blogPageFrame.php?postId=$post[blogPostID]'>Blog $post[title], $post[dateCreated]</p>";
+				<p><a href='blogPageFrame.php?blogPostID=$post[blogPostID]'>Blog $post[title], $post[dateCreated]</p>";
 			}
 
 echo "
