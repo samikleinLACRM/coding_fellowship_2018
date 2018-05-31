@@ -3,8 +3,12 @@
 include('config/config.php');
 include('config/init.php');
 
-$practice=getPostComments(5);
-printNicely($practice);
+// $practice=getTagsWithThisName();
+// printNicely($practice);
+
+
+// $practice=getPostComments(5);
+// printNicely($practice);
 
 // $practice=getOneBlogPost(2);
 // printNicely($practice);

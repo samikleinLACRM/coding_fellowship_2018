@@ -16,19 +16,28 @@ echo "
 		<p>My blog</p>
 	</div>
 
-	<div class='textStyle'>
-		<p>WELCOME TO MY BLOG! IT'S GREAT! READ ABOUT MY LIFE</p>";
-
-		$posts=getAllBlogPosts();
-			foreach($posts as $post){
-				echo "
-				<p><a href='blogPageFrame.php?blogPostID=$post[blogPostID]'>Blog $post[title], $post[dateCreated]</p>";
-			}
-
-echo "
-	</div>
-</body>
-";
-
+		<div class='row'>
+			<div class='left'>
+				<div class='card'>";
+					echo "<p><strong>WELCOME!</strong> Here is a list of all of my blog posts:</p>";
+					$posts=getAllBlogPosts();
+					foreach($posts as $post){
+						echo "
+						<p><a href='singleBlogPageFrame.php?blogPostID=$post[blogPostID]'>Blog $post[title], $post[dateCreated]</a></p>";
+					}
+				echo "</div>
+			</div>
+			<div class='right'>
+				<div class='card'>
+					Filter by tags:";
+					$tags=getAllTagNames();
+					foreach($tags as $tag){
+						echo "
+						<p><a href='blogByTagsFrame.php?tag=$tag[tag]'>$tag[tag]</a></p>";;
+					}
+				echo "</div>
+			</div>
+		</div>
+</body>";
 
  ?>
