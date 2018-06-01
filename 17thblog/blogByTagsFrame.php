@@ -3,7 +3,10 @@
 include('config/config.php');
 include('config/init.php');
 
-echoNavAndHead("Tag: $_REQUEST[tag]");
+$wantToWrite="Tag: $_REQUEST[tag]";
+
+echoNavAndHead($wantToWrite);
+printPageName($wantToWrite);
 
 // foreach post within this tag, print it
 
@@ -14,5 +17,5 @@ echoNavAndHead("Tag: $_REQUEST[tag]");
 		$toPrint = printBlogPost($var);
 		echo $toPrint;
 	}
-	
+
 ?>

@@ -5,10 +5,6 @@ include('config/init.php');
 
 echoNavAndHead("Blog Home");
 
-// $posts = getAllBlogPosts();
-// printNicely($posts);
-// die("test");
-
 echo "
 <body class='bg'>
 
@@ -19,7 +15,7 @@ echo "
 		<div class='row'>
 			<div class='left'>
 				<div class='card'>";
-					echo "<p><strong>WELCOME!</strong> Here is a list of all of my blog posts:</p>";
+					echo "<h2><strong>WELCOME!</strong> Here is a list of all of my blog posts:</h2>";
 					$posts=getAllBlogPosts();
 					foreach($posts as $post){
 						echo "
@@ -29,14 +25,23 @@ echo "
 			</div>
 			<div class='right'>
 				<div class='card'>
-					Filter by tags:";
+					<h2>Filter by tags: </h2>";
 					$tags=getAllTagNames();
 					foreach($tags as $tag){
 						echo "
 						<p><a href='blogByTagsFrame.php?tag=$tag[tag]'>$tag[tag]</a></p>";;
 					}
-				echo "</div>
-			</div>
+				echo "</div>";
+				echo "<div class='card'>
+					<h2>Filter by post Author: </h2>";
+					$authors=getAllAuthorNames();
+					foreach($authors as $author){
+						echo "
+						<p><a href='blogByAuthor.php?authorOfPost=$author[authorOfPost]'>$author[authorOfPost]</a></p>";
+					}
+				echo "</div>";
+
+			echo "</div>
 		</div>
 </body>";
 
