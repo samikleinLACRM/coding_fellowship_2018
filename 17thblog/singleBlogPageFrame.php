@@ -3,16 +3,14 @@
 include('config/config.php');
 include('config/init.php');
 
-echoNavAndHead("Blog Page");
+if($_REQUEST==null){
+	wrongPage();
+}
 
-echo "<body class='bg'>";
-	echo "<br>";
-	echo "<div class='bloghead'>";
-		$post=getOneBlogPost($_REQUEST['blogPostID']);
-		echo $post['title'];
-	echo "</div>";
-echo "</body>";
+$post=getOneBlogPost($_REQUEST['blogPostID']);
+echoHeader("Blog Page", $post['title']);
 
-printBlogPost($_REQUEST['blogPostID']);
+echoBlogPost($_REQUEST['blogPostID']);
 
+echoFooter();
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-function echoNavAndHead($Title) {
+function echoHeader($Title, $PageName) {
 	echo "
 		<head>
 			<title>$Title</title>
@@ -8,189 +8,87 @@ function echoNavAndHead($Title) {
 
 		</head>
 
-		<body>
+		<body class='bg'>
 			<div class='navbarStyle'>
 				<a href='main.php'>Home |</a>
 				<a href='blogIndex.php'>Blog |</a>
 				<a href='projects.php'>Projects</a>
-			</div>
+			</div>";
+			if ($PageName!=null) {
+				echo "
+				<br>
+				<div class='bloghead'>
+					$PageName
+				</div>
+				";
+			}
+}
+
+function wrongPage(){
+	header("Location: blogIndex.php"); /* Redirect browser */
+	exit();
+
+	//not sure which is better
+	// echoHeader("Wrong Page!", "Wrong Page!");
+	// sleep(2);
+	// echo "<p class='textStyle' style='text-align:center'>Oops! Use the Navigation Bar to go to another page. <p>";
+	// echoFooter();
+	// die("");
+}
+
+function echoFooter(){
+	echo "
+	<div class='right' style='color:black'>
+		(FOOTER. make this look nice later)
+		<br>
+		Contact:
+		<br>
+		email: sami.klein@wustl.edu
+	</div>
 	</body>
-";
+	";
 }
 
 
-function printNicely($interm) {
+function echoNicely($interm) {
 	echo "<pre>";
 	var_dump($interm);
 	echo "<pre>";
 }
 
+function echoBlogPost($blogPostID){
 
-//Blog functions!!
+	$post=getOneBlogPost($blogPostID);
 
-function getAllBlogPosts() {
-	$result = dbQuery("
-		SELECT *
-		FROM blogPost
-	")->fetchAll();
+	echo "<div class='textStyle'>
+		<strong>Author: </strong>
+		$post[authorOfPost]
+		<br>
+		<strong>Date Post Created: </strong>
+		$post[dateCreated]
+	";
 
-	return $result;
-}
+	$tags=getThisPostsTags($blogPostID);
 
-function getOneBlogPost($newBlogPostID) {
-	$result = dbQuery("
-		SELECT *
-		FROM blogPost
-		WHERE blogPostID = :blogPostID
-	", array(
-		'blogPostID'=>$newBlogPostID
-		))->fetch();
+	if($tags!= null){
+		echo "<br>
+		<strong>Tags: </strong><mark style='background-color:#D3D3D3'>";
 
-	return $result;
-}
-
-
-//don't use this ever, probably. just use a foreach function
-function getNumPosts(){
-	$result = dbQuery("
-		SELECT COUNT(blogPostID) AS NumRows
-		FROM blogPost
-	")->fetch();
-	return $result;
-}
-
-//primary key will auto increment itself, don't need to add
-function insertBlogPost($title, $body, $dateCreated, $authorOfPost) {
-	$result = dbQuery("
-		INSERT INTO blogPost(title, body, dateCreated, authorOfPost)
-		VALUES('$title', '$body', '$dateCreated', '$authorOfPost')
-	")->fetch();
-}
-
-//deletes blog post by ID number, not any other factor
-function deleteBlogPost($newBlogPostID) {
-	$result = dbQuery("
-		DELETE FROM blogPost
-		WHERE blogPostID = :blogPostID
-		", array(
-			'blogPostID'=>$newBlogPostID
-		))->fetch();
-}
-
-
-
-//comment functions
-function getPostComments($thisBlogPostID){
-	$result = dbQuery("
-		SELECT *
-		FROM comments
-		WHERE blogPostID = :blogPostID
-		ORDER BY datePosted DESC
-		", array(
-			'blogPostID'=>$thisBlogPostID
-	))->fetchAll();
-	return $result;
-}
-
-
-function getAllTags(){
-	$result = dbQuery("
-		SELECT *
-		FROM tags
-		"
-	)->fetchAll();
-	return $result;
-}
-
-function getAllTagNames(){
-	$result = dbQuery("
-		SELECT DISTINCT tag
-		FROM tags
-		"
-	)->fetchAll();
-	return $result;
-}
-
-function getTagsWithThisName($oneTagName){
-	$result = dbQuery("
-		SELECT *
-		FROM tags
-		WHERE tag = :tag
-	", array(
-		'tag'=>$oneTagName
-	))->fetchAll();
-
-	return $result;
-}
-
-function getTagNamesWithThisNumber($oneTagNumber){
-	$result = dbQuery("
-		SELECT tag
-		FROM tags
-		WHERE blogPostID = :blogPostID
-	", array(
-		'blogPostID'=>$oneTagNumber
-	))->fetchAll();
-	return $result;
-}
-
-
-function getPostsWithThisAuthor($Author){
-	$result = dbQuery("
-		SELECT blogPostID
-		FROM blogPost
-		WHERE authorOfPost = :authorOfPost
-	", array(
-		'authorOfPost'=>$Author
-	))->fetchAll();
-	return $result;
-}
-
-function getAllAuthorNames(){
-	$result = dbQuery("
-		SELECT DISTINCT authorOfPost
-		FROM blogPost
-		"
-	)->fetchAll();
-	return $result;
-
-}
-
-
-
-function printBlogPost($var){
-
-echo "<body class='bg'>";
-	$post=getOneBlogPost($var);
-
-	echo "<div class='textStyle'>";
-		echo "<strong>Author: </strong>";
-		echo $post['authorOfPost'];
-		echo "<br>";
-		echo "<strong>Date Post Created: </strong>";
-		echo $post['dateCreated'];
-
-		$tagNames=getTagNamesWithThisNumber($post['blogPostID']);
-
-		if ($tagNames!= null){
-			echo "<br>";
-			echo "<strong>Tags: </strong><mark style='background-color:#D3D3D3'>";
-
-			foreach($tagNames as $tagName){
-				echo $tagName['tag'];
-				echo "     ";
-			}
-			echo "</mark>";
+		foreach($tags as $tag){
+			echo $tag['name']; //this isn't correct. fix it after fix all calls
+			echo "     ";
 		}
-		echo "<br>";
-		echo "<br>";
-		echo $post['body'];
+		echo "</mark>";
+	}
+	echo "
+		<br><br>
+		$post[body]
+	";
 
-	if(getPostComments($post['blogPostID'])!= null) {
-		$comments = getPostComments($post['blogPostID']);
-		echo "<br>";
-		echo "<br>";
-			echo "<h2 style='font-size:20px'>Comments: </h2>";
+	$comments=getPostComments($post['blogPostID']);
+	if($comments!=null) {
+		echo "<br><br>
+			<h2 style='font-size:20px'>Comments: </h2>";
 			foreach($comments as $comment){
 				echo "
 					<p><strong>Comment posted: </strong>$comment[datePosted]</p>
@@ -199,22 +97,10 @@ echo "<body class='bg'>";
 					<br>
 					";
 				}
-			echo "<br>";
-			echo "<br>";
-			echo "Add your own comments: Coming soon!";
+		echo "<br><br>Add your own comments: Coming soon!";
  	}
-echo "</div>";
-echo "</body>";
+	echo "</div>";
 }
 
-
-function printPageName($wantToWrite){
-	echo "<body class='bg'>";
-		echo "<br>";
-		echo "<div class='bloghead'>";
-			echo $wantToWrite;
-		echo "</div>";
-	echo "</body>";
-}
 
 ?>

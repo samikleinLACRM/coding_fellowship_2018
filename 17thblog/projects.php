@@ -2,13 +2,10 @@
 include('config/config.php');
 include('config/init.php');
 
-echoNavAndHead("Projects");
+echoHeader("Projects", "Summer Projects");
 
 echo "
 	<body class='bg'>
-		<div class='bloghead'>
-			<p>Summer Projects</p>
-		</div>
 		<div class='textStyle'>
 			<p>Here is a list of some projects that I've worked on this summer!</p>
 			<ul>
@@ -17,6 +14,7 @@ echo "
 			</ul>
 		</div>
 	</body>
-	";
+";
 
+echoFooter();
 ?>

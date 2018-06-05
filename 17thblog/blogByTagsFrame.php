@@ -3,19 +3,22 @@
 include('config/config.php');
 include('config/init.php');
 
-$wantToWrite="Tag: $_REQUEST[tag]";
+if($_REQUEST==null){
+	wrongPage();
+}
 
-echoNavAndHead($wantToWrite);
-printPageName($wantToWrite);
+$posts=getAllPostsWithThisTagID($_REQUEST['tagID']);
 
-// foreach post within this tag, print it
+// $tagName=getNameForThisID($_REQUEST['tagID']);
+// $wantToWrite="Tag: $posts[0]['name']";
+// echoNicely($posts);
+echoHeader("blah","blah");
 
-	$tags=getTagsWithThisName($_REQUEST['tag']);
 
-	foreach($tags as $tag){
-		$var = $tag['blogPostID'];
-		$toPrint = printBlogPost($var);
-		echo $toPrint;
-	}
+// foreach post within this tag, echo it
+foreach($posts as $post){
+	echo echoBlogPost($post['blogPostID']);
+}
 
+echoFooter();
 ?>

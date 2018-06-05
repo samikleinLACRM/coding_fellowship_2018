@@ -3,22 +3,32 @@
 include('config/config.php');
 include('config/init.php');
 
+$x = getNameForThisID(0);
+echoNicely($x);
+
+// $what = getAllTagNames();
+// echoNicely($what);
+
+// $p=getThisPostsTags(9);
+// echoNicely($p);
+
+
 // $whatever= getOneBlogPost(3);
-// printNicely($whatever);
+// echoNicely($whatever);
 
 
 // $pract=getTagNamesWithThisNumber(9);
-// printNicely($pract);
+// echoNicely($pract);
 
 // $practice=getTagsWithThisName();
-// printNicely($practice);
+// echoNicely($practice);
 
 
 // $practice=getPostComments(5);
-// printNicely($practice);
+// echoNicely($practice);
 
 // $practice=getOneBlogPost(2);
-// printNicely($practice);
+// echoNicely($practice);
 
 
 // insertBlogPost('Post #11', 'This is a test', '2018-05-24', 'SK, reporting for duty');

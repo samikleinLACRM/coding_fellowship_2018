@@ -3,19 +3,19 @@
 include('config/config.php');
 include('config/init.php');
 
+if($_REQUEST==null){
+	wrongPage();
+}
+
 $wantToWrite="Author: $_REQUEST[authorOfPost]";
+echoHeader($wantToWrite,$wantToWrite);
 
-echoNavAndHead($wantToWrite);
-printPageName($wantToWrite);
+$posts=getPostsWithThisAuthor($_REQUEST['authorOfPost']);
 
-// foreach post within this author, print it
+// foreach post within this author, echo it
+foreach($posts as $post){
+	echo echoBlogPost($post['blogPostID']);
+}
 
-	$posts=getPostsWithThisAuthor($_REQUEST['authorOfPost']);
-
-	foreach($posts as $post){
-		$var = $post['blogPostID'];
-		$toPrint = printBlogPost($var);
-		echo $toPrint;
-	}
-
+echoFooter();
 ?>
