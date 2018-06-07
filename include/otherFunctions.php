@@ -1,0 +1,56 @@
+<?php
+
+
+function echoHeader($Title, $PageName) {
+	echo "
+		<head>
+			<title>$Title</title>
+			<link rel='stylesheet' href='style.css'/>
+
+		</head>
+
+		<body class='bg'>
+			<div class='navbarStyle'>
+				<a href='main.php'>Home |</a>
+				<a href='blogIndex.php'>Blog |</a>
+				<a href='projects.php'>Projects</a>
+			</div>";
+			if ($PageName!=null) {
+				echo "
+				<br>
+				<div class='bloghead'>
+					$PageName
+				</div>
+				";
+			}
+}
+
+function wrongPage(){
+	// header("Location: blogIndex.php"); // this is how you redirect the browser directly.
+	// exit();
+
+	echoHeader("Wrong Page!", "Wrong Page!");
+	echo "<p class='textStyle' style='text-align:center'>Oops! 404 Error. You've reached the wrong page. Use the Navigation Bar to go to another page. <p>";
+	echoFooter();
+	die("");
+}
+
+function echoFooter(){
+	echo "
+		<div class='row right footer'>
+			Sami Klein <br>
+			email: sami.klein@wustl.edu <br>
+		</div>
+</body>
+	";
+}
+
+
+function echoNicely($interm) {
+	echo "<pre>";
+	var_dump($interm);
+	echo "<pre>";
+}
+
+
+?>

@@ -7,10 +7,10 @@ if($_REQUEST==null){
 	wrongPage();
 }
 
-$wantToWrite="Author: $_REQUEST[authorOfPost]";
+$wantToWrite="Author: $_REQUEST[author]";
 echoHeader($wantToWrite,$wantToWrite);
 
-$posts=getPostsWithThisAuthor($_REQUEST['authorOfPost']);
+$posts=getPostsWithThisAuthor($_REQUEST['author']);
 
 // foreach post within this author, echo it
 foreach($posts as $post){

@@ -13,7 +13,7 @@ echo "
 				$posts=getAllBlogPosts();
 				foreach($posts as $post){
 					echo "
-					<p><a href='singleBlogPageFrame.php?blogPostID=$post[blogPostID]'>Blog $post[title], $post[dateCreated]</a></p>";
+					<p><a href='singleBlogPageFrame.php?blogPostID=$post[blogPostID]'>Blog $post[title], $post[date]</a></p>";
 				}
 			echo "</div>
 		</div>
@@ -31,7 +31,7 @@ echo "
 				$authors=getAllAuthorNames();
 				foreach($authors as $author){
 					echo "
-					<p><a href='blogByAuthor.php?authorOfPost=$author[authorOfPost]'>$author[authorOfPost]</a></p>";
+					<p><a href='blogByAuthor.php?author=$author[author]'>$author[author]</a></p>";
 				}
 			echo "</div>";
 

@@ -9,10 +9,14 @@ if($_REQUEST==null){
 
 $posts=getAllPostsWithThisTagID($_REQUEST['tagID']);
 
-// $tagName=getNameForThisID($_REQUEST['tagID']);
-// $wantToWrite="Tag: $posts[0]['name']";
-// echoNicely($posts);
-echoHeader("blah","blah");
+
+
+$tag=getTag($_REQUEST['tagID']);
+// echoNicely($tag);
+// die("test");
+$wantToWrite="Tag: $tag[name]";
+
+echoHeader($wantToWrite,$wantToWrite);
 
 
 // foreach post within this tag, echo it

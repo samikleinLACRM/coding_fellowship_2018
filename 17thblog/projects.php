@@ -9,8 +9,8 @@ echo "
 		<div class='textStyle'>
 			<p>Here is a list of some projects that I've worked on this summer!</p>
 			<ul>
-				<li> <a href='/practice/calculator.php'>4 function Calculator</li>
-				<li> <a href='/practice/colorCalc.php'>Color Calculator</li>
+				<li> <a href='/practice/calculator.php'>4 function Calculator</a></li>
+				<li> <a href='/practice/colorCalc.php'>Color Calculator</a></li>
 			</ul>
 		</div>
 	</body>

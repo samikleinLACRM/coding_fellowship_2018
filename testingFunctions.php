@@ -3,8 +3,20 @@
 include('config/config.php');
 include('config/init.php');
 
-$x = getNameForThisID(0);
-echoNicely($x);
+
+
+// insertComment(3, "sami", "please work");
+
+// insertBlogPost("PostTitle", "author", "body");
+
+
+
+// fakeInsert('Post #12', 'SK', 'I hope this post works! doing it from a function');
+
+// deleteBlogPost(16);
+
+// $x = getNameForThisID(0);
+// echoNicely($x);
 
 // $what = getAllTagNames();
 // echoNicely($what);
