@@ -5,3 +5,5 @@ include('include/db_query.php'); //this should happen right after config so othe
 include('include/blogPostsAndCommentsFunctions.php');
 include('include/tagsFunctions.php');
 include('include/otherFunctions.php');
+
+session_start();

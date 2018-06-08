@@ -41,6 +41,8 @@ a:hover{
 
 /*background */
 .bg {
+	/* background-color: #fff1d1; */
+	/* #baf3ff a little lighter blue */
 	background: linear-gradient(to bottom, #b2f7ff 0%, #b8b1ef 100%);
 	/*
 	font-family: "Verdana", Verdana, sans-serif;
@@ -127,6 +129,14 @@ a:hover{
 	margin-top: 20px;
 	margin-left: 20px;
 	margin-right: 20px;
+}
+
+
+
+.commentForm{
+	text-align: center;
+	margin-left: 30%;
+	margin-right: 30%;
 }
 
 /* this isn't doing anything. fix later!!!! ~~~~ :) */

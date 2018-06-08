@@ -8,37 +8,33 @@ function SubmitApplication($Name, $Phone, $Position){ //these can be called anyt
 }
 
 //if there is nothing in the field, add an error called (the field name), consisting of the word "required"
-function validateFormField($Name){
-	if(trim($_REQUEST['Name'] == '')){
-		$Errors['Name'] = "required";
+function validateFormField($formField){
+	global $Errors;
+
+	if(!$_REQUEST[$formField]){
+		$Errors[$formField] = 'required';
 	}
+	// echoNicely($Errors);
 	// return $Errors;
 }
 
 
-echoNicely($_REQUEST);
+// echoNicely($_REQUEST);
 //you want this in this file, and above the form.
 
 $Errors = array();
 if(isset($_REQUEST['JobApplication'])){ //is job application in request? if so, form has been submitted
 
-	$Name = $_REQUEST['Name'];
-	validateFormField($Name);
-	$Phone = $_REQUEST['Phone'];
-	validateFormField($Phone);
 
-	// if there is nothing in the name field, add an error called name, consisting of the word "required"
-	// if(trim($_REQUEST['Name'] == '')){  //or could put a ! in front of request, and don't need an ==
-	// 	$Errors['Name'] = "required";
+	validateFormField('Name');
+	validateFormField('Phone');
+
+	// if(!$_REQUEST['Name']){
+	// 	$Errors['Name']='required';
 	// }
-	//
-	// //if there is nothing in the phone field, add an error called phone, consisting of the word "required"
-	// if(trim($_REQUEST['Phone'] == '')){
-	// 	$Errors['Phone'] = "required";
+	// if(!$_REQUEST['Phone']){
+	// 	$Errors['Phone']='required';
 	// }
-
-	// ValidateEmail('Email')
-
 
 	if(sizeof($Errors) == 0){
 		SubmitApplication(
@@ -50,10 +46,14 @@ if(isset($_REQUEST['JobApplication'])){ //is job application in request? if so, 
 }
 
 
-// var_dump($Errors);
-
 if(sizeof($Errors) > 0){
-	echo "THERE WERE ERRORS";
+	foreach($Errors as $Index=>$Error){
+		echo "
+		<div>
+			Error in the $Index field: $Error.
+		</div>
+		";
+	}
 }
 
 
@@ -67,7 +67,6 @@ if(sizeof($Errors) > 0){
 function echoFormField($name, $type, $value){
 	echo "$name:
 	<input type='$type' name='$name' value='".@$_REQUEST[$value]."'/><br />";
-
 }
 
 

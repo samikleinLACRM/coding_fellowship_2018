@@ -13,13 +13,13 @@ echo "
 				$posts=getAllBlogPosts();
 				foreach($posts as $post){
 					echo "
-					<p><a href='singleBlogPageFrame.php?blogPostID=$post[blogPostID]'>Blog $post[title], $post[date]</a></p>";
+					<p><a href='singleBlogPageFrame.php?blogPostID=$post[blogPostID]'>$post[title]</a></p>";
 				}
 			echo "</div>
 		</div>
 		<div class='right'>
 			<div class='card'>
-				<h2>Filter by tags: </h2>";
+				<h2>Filter By Tags: </h2>";
 				$tags=getAllTags();
 				foreach($tags as $tag){
 					echo "
@@ -27,7 +27,7 @@ echo "
 				}
 			echo "</div>";
 			echo "<div class='card'>
-				<h2>Filter by post Author: </h2>";
+				<h2>Filter By Post Author: </h2>";
 				$authors=getAllAuthorNames();
 				foreach($authors as $author){
 					echo "

@@ -12,10 +12,16 @@ echoHeader($wantToWrite,$wantToWrite);
 
 $posts=getPostsWithThisAuthor($_REQUEST['author']);
 
+echo "<div class='textStyle'>";
+
 // foreach post within this author, echo it
 foreach($posts as $post){
-	echo echoBlogPost($post['blogPostID']);
+	$thisEntirePost=getOneBlogPost($post['blogPostID']);
+	echo "<p> <a href='singleBlogPageFrame.php?blogPostID=$thisEntirePost[blogPostID]'>$thisEntirePost[title]</a></p>";
 }
+
+echo "</div>";
+
 
 echoFooter();
 ?>

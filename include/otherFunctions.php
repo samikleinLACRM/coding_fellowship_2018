@@ -53,4 +53,13 @@ function echoNicely($interm) {
 }
 
 
+function echoJustDate($date){
+	$timestamp = strtotime($date);
+	$realDate = date('d-m-Y', $timestamp);
+	return $realDate;
+}
+
+
+
+
 ?>

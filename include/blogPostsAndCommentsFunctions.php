@@ -8,15 +8,16 @@ function echoBlogPost($blogPostID){
 	$post=getOneBlogPost($blogPostID);
 
 	//these are to fix the date so it doesn't display the time too!
-	$timestamp = strtotime($post['date']);
-	$date = date('d-m-Y', $timestamp);
 
 	echo "<div class='textStyle'>
-		<strong>Author: </strong>
-		$post[author]
-		<br>
-		<strong>Date: </strong>
-		$date
+			<strong>Title: </strong>
+			$post[title]
+			<br>
+			<strong>Author: </strong>
+			$post[author]
+			<br>
+			<strong>Date: </strong>
+			".echoJustDate($post['date'])."
 	";
 
 	$tags=getThisPostsTags($blogPostID);
@@ -34,28 +35,35 @@ function echoBlogPost($blogPostID){
 		$post[body]
 	";
 
+
+
 	$comments=getPostComments($post['blogPostID']);
 	if($comments!=null) {
-		echo "<br><br>
+		echo "
+		</div> <div class='textStyle'>
 			<h2 style='font-size:20px'>Comments: </h2>";
 			foreach($comments as $comment){
-
-				$timestamp2 = strtotime($comment['date']);
-				$date2 = date('d-m-Y', $timestamp2);
-
-				echo "
-					<p><strong>Comment posted: </strong>$date2</p>
-					<p><strong>Author: </strong>$comment[author]</p>
-					<p><strong>Comment: </strong>$comment[comment]</p>
-					<br>
-					";
-				}
-		echo "<br><br>Add your own comments: Coming soon!";
+				$date = echoJustDate($comment['date']);
+				echoComment($date, $comment['author'], $comment['comment']);
+			}
  	}
 	echo "</div>";
 }
 
 
+function echoComment($date, $author, $comment){
+	echo "
+		<strong>Comment posted: </strong>$date
+		<br>
+		<strong>Author: </strong>$author
+		<br>
+		$comment
+		<br><br><br>
+		";
+	// if($comment.next!=null){
+	// 	echo "<br><br>";
+	// }
+}
 
 
 
@@ -65,7 +73,6 @@ function getAllBlogPosts() {
 		SELECT *
 		FROM blogPost
 	")->fetchAll();
-
 	return $result;
 }
 
@@ -166,5 +173,27 @@ function getAllAuthorNames(){
 	return $result;
 
 }
+
+function submitComment($blogPostID, $author, $comment){
+	insertComment($blogPostID, $author, $comment);
+
+	header("Location: commentAdded.php?blogPostID=$blogPostID"); // this is how you redirect the browser directly.
+	exit();
+}
+
+
+
+function getRecentPosts(){
+	$result = dbQuery("
+		SELECT *
+		FROM blogPost
+		ORDER BY date DESC
+		LIMIT 5
+	")->fetchAll();
+	return $result;
+}
+
+
+
 
  ?>
