@@ -16,14 +16,13 @@ $post = getOneBlogPost($blogPostID);
 
 echo "
 	<div class='textStyle' style='text-align: center'>
-		Thank you for helping to contribute to this blog!Your comment was added to the blog post entitled:
-		<br>
-		<strong>$post[title]</strong>.
+		Thank you for helping to contribute to this blog! Your comment was added to the blog post entitled:
 		<br>
 		<br>
-		Go to this link to view your new comment:
+		<a href='singleBlogPageFrame.php?blogPostID=$post[blogPostID]'>$post[title]</a></p>
 		<br>
-		<a href='singleBlogPageFrame.php?blogPostID=$post[blogPostID]'>$post[title], $post[date]</a></p>
+		Click on the link above to view your new comment.
+		<br
 	</div>
 ";
 

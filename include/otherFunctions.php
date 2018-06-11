@@ -13,7 +13,8 @@ function echoHeader($Title, $PageName) {
 			<div class='navbarStyle'>
 				<a href='main.php'>Home |</a>
 				<a href='blogIndex.php'>Blog |</a>
-				<a href='projects.php'>Projects</a>
+				<a href='projects.php'>Projects |</a>
+				<a href='logInMenu.php'>Log In</a>
 			</div>";
 			if ($PageName!=null) {
 				echo "
@@ -26,9 +27,6 @@ function echoHeader($Title, $PageName) {
 }
 
 function wrongPage(){
-	// header("Location: blogIndex.php"); // this is how you redirect the browser directly.
-	// exit();
-
 	echoHeader("Wrong Page!", "Wrong Page!");
 	echo "<p class='textStyle' style='text-align:center'>Oops! 404 Error. You've reached the wrong page. Use the Navigation Bar to go to another page. <p>";
 	echoFooter();
@@ -58,8 +56,6 @@ function echoJustDate($date){
 	$realDate = date('d-m-Y', $timestamp);
 	return $realDate;
 }
-
-
 
 
 ?>

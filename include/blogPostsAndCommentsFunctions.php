@@ -176,7 +176,6 @@ function getAllAuthorNames(){
 
 function submitComment($blogPostID, $author, $comment){
 	insertComment($blogPostID, $author, $comment);
-
 	header("Location: commentAdded.php?blogPostID=$blogPostID"); // this is how you redirect the browser directly.
 	exit();
 }

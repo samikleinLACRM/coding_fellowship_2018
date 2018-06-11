@@ -13,18 +13,9 @@ echoHeader("Blog Page", $post['title']);
 echoBlogPost($_REQUEST['blogPostID']);
 
 
-//echo's comment form
 
+//comment form
 $Errors = array();
-
-function validateFormField($formField){
-	global $Errors;
-
-	if(!$_REQUEST[$formField]){
-		$Errors[$formField] = 'required';
-	}
-	// return $Errors;
-}
 
 if(isset($_REQUEST['commentForm'])){ //
 
@@ -40,10 +31,8 @@ if(isset($_REQUEST['commentForm'])){ //
 	}
 }
 
-
-
 echo "
-<div class='textStyle commentForm'>
+<div class='textStyle form'>
 
 	<div style='color:red'>";
 	if(sizeof($Errors) > 0){

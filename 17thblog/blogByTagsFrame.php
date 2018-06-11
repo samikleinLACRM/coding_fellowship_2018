@@ -9,15 +9,11 @@ if($_REQUEST==null){
 
 $posts=getAllPostsWithThisTagID($_REQUEST['tagID']);
 
-// echoNicely($posts);
-
 $tag=getTag($_REQUEST['tagID']);
-// echoNicely($tag);
-// die("test");
+
 $wantToWrite="Tag: $tag[name]";
 
 echoHeader($wantToWrite,$wantToWrite);
-
 
 echo "<div class='textStyle'>";
 // foreach post within this tag, echo it
