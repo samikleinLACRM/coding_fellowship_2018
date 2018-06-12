@@ -1,4 +1,22 @@
+
+<script src="/include/jquery.js"></script>
+<script type='text/javascript'>
+
+function togglePasswordVisibility(){
+	var x = document.getElementById("myInput");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+
+</script>
+
+
 <?php
+
+
 
 function validateFormField($formField){
 	global $Errors;

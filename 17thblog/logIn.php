@@ -36,12 +36,16 @@ if(isset($_REQUEST['logIn'])){ //
 
 		}
 		else {
-			echo "*Username & Password not found.";
+			echo "
+			<br>
+			<div class='textStyle' style='color:red'>
+				*Username & Password not found.
+			</div>
+			";
 
 		}
 	}
 }
-
 
 //echo's form
 echo "
@@ -58,9 +62,9 @@ echo "
 	<p style='font-size:18px'>Log In:</p>
 	<form action='' method='post'>
 
-	Username: <input type='text' name='Username' value='".@$_REQUEST['Username']."'/><br />
-	Password: <input type='text' name='Password' value='".@$_REQUEST['Password']."'/><br />
-
+	Username: <input type='text' name='Username' value='".@$_REQUEST['Username']."' placeholder='username'/><br />
+	Password: <input type='password' name='Password' value='".@$_REQUEST['Password']."' placeholder='password' id='myInput'/><br />
+	<input type='checkbox' onclick='togglePasswordVisibility()'>Show Password
 	<br>
 	<input type='submit' name='logIn' value='Sign In' />
 	</form>

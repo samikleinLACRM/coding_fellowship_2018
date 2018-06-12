@@ -21,7 +21,6 @@ if(isset($_REQUEST['createAccount'])){ //
 	}
 }
 
-
 //echo's form
 echo "
 <div class='textStyle form'>
@@ -37,9 +36,9 @@ echo "
 	<p style='font-size:18px'>Create Account:</p>
 	<form action='' method='post'>
 
-	Username: <input type='text' name='Username' value='".@$_REQUEST['Username']."'/><br />
-	Password: <input type='text' name='Password' value='".@$_REQUEST['Password']."'/><br />
-
+	Username: <input type='text' name='Username' value='".@$_REQUEST['Username']."' placeholder='username'/><br />
+	Password: <input type='password' name='Password' value='".@$_REQUEST['Password']."' placeholder='password' id='myInput'/><br />
+	<input type='checkbox' onclick='togglePasswordVisibility()'>Show Password
 	<br>
 	<input type='submit' name='createAccount' value='Sign Up' />
 	</form>
