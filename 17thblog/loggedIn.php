@@ -8,7 +8,7 @@ echoHeader("Logged In", "Logged In");
 echo "<div class='textStyle form'>";
 
 //make a functino called verify user as lgoged in. so any page, u can call that function at top
-if(($_SESSION['Username'] && $_SESSION['Password'])==null){
+if(!isset($_SESSION['Username'])){
 	die("You're not logged in. <a href='logIn.php'>
 	Go to the login page</a>");
 }
