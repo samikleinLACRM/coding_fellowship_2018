@@ -1,0 +1,19 @@
+h1 {
+	background-color:#23edc1;
+	text-align: center;
+	padding:10px;
+	margin: 10px;
+}
+h2 {
+	border-bottom: dashed 5px gray;
+	color:#4377e8;
+}
+.quote{
+	padding-left:20px;
+	border-left:3px solid #666;
+	background-color: #ddd;
+}
+#introParagraph{
+		color:blue;
+		font-size: 20px;
+}
