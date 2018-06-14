@@ -5,7 +5,7 @@ include('config/init.php');
 
 //make these links into buttons later
 
-echoHeader("Log In Or Create Account", "Log In Or Create Account");
+echoHeader("Log In Menu", "Log In Menu");
 
 echo "
 <div class='textStyle form'>

@@ -5,10 +5,12 @@ include('config/init.php');
 
 echoHeader("Log In", "Log In");
 
-if(isset($_SESSION['Username']) && !empty($_SESSION['Username'])) {
+if(isset($_SESSION['userID'])) {  //&& !empty($_SESSION['userID']) <-- had this before. not sure if necessary
+	$row=getUserByUserID($_SESSION['userID']);
+	$username=$row['username'];
 	echo "
 	<div class='textStyle form'>
-		**You are already logged in as $_SESSION[Username]!**
+		*You are already logged in as $username*
 		<br>
 		Click here to Log Out:
 		<a href='loggedOut.php'>Log Out</a>
@@ -20,29 +22,33 @@ $Errors = array();
 
 if(isset($_REQUEST['logIn'])){ //
 
-	validateFormField('Username');
-	validateFormField('Password');
+	//if tries to log in while already logged in
+	if(isset($_SESSION['userID'])){
+		$Errors['Cannot log in:'] = 'because you are already logged in. Please log out before you log in again.';
+	}
+
+	if(!isset($_SESSION['userID'])){
+		areWordsInField('Username');
+		areWordsInField('Password');
+	}
 
 	if(sizeof($Errors) == 0){
 
-		if(verifyUser($_REQUEST['Username'], $_REQUEST['Password']) == true) {
-
-			//set the session username = to that req and set the pass = to that
-			$_SESSION['Username'] = $_REQUEST['Username'];
-			$_SESSION['Password'] = $_REQUEST['Password'];
-
-			header("Location: loggedIn.php"); // this is how you redirect the browser directly.
+		if(verifyUser($_REQUEST['Username'], $_REQUEST['Password'])) {
+			$row=getUserByUsername($_REQUEST['Username']);
+			$userID=$row['userID'];
+			$_SESSION['userID'] = $userID;
+			header("Location: loggedIn.php");
 			exit();
 
 		}
 		else {
 			echo "
 			<br>
-			<div class='textStyle' style='color:red'>
+			<div class='textStyle form' style='color:red'>
 				*Username & Password not found.
 			</div>
 			";
-
 		}
 	}
 }
@@ -50,11 +56,10 @@ if(isset($_REQUEST['logIn'])){ //
 //echo's form
 echo "
 <div class='textStyle form'>
-
 	<div style='color:red'>";
 	if(sizeof($Errors) > 0){
 		foreach($Errors as $Index=>$Error){
-			echo "*$Index is $Error<br>";
+			echo "*$Index $Error<br>";
 		}
 	}
 echo "

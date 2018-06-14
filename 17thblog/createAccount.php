@@ -10,14 +10,21 @@ $Errors = array();
 
 if(isset($_REQUEST['createAccount'])){ //
 
-	validateFormField('Username');
-	validateFormField('Password');
+	areWordsInField('Username');
+	areWordsInField('Password');
+
+	//if username already exists, print out the words "already exists, choose a new username", and then die.
+	if(getUserByUsername($_REQUEST['Username'])) {
+		$Errors['Problem:'] = 'This Username already exists. Please choose a new username.';
+	}
 
 	if(sizeof($Errors) == 0){
-		createUser(
+		insertUser(
 			$_REQUEST['Username'],
 			$_REQUEST['Password']
 		);
+		header("Location: accountCreated.php"); // this is how you redirect the browser directly.
+		exit();
 	}
 }
 
@@ -28,7 +35,7 @@ echo "
 	<div style='color:red'>";
 	if(sizeof($Errors) > 0){
 		foreach($Errors as $Index=>$Error){
-			echo "*$Index is $Error<br>";
+			echo "*$Index $Error<br>";
 		}
 	}
 echo "

@@ -3,8 +3,7 @@
 include('config/config.php');
 include('config/init.php');
 
-unset($_SESSION['Username']);
-unset($_SESSION['Password']);
+unset($_SESSION['userID']);
 
 echoHeader("Log Out", "Log Out");
 

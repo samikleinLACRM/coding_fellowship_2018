@@ -72,6 +72,7 @@ function getAllBlogPosts() {
 	$result = dbQuery("
 		SELECT *
 		FROM blogPost
+		ORDER BY date
 	")->fetchAll();
 	return $result;
 }
@@ -98,12 +99,14 @@ function getNumPosts(){
 }
 
 //primary key will auto increment itself, don't need to add
-function insertBlogPost($title, $author, $body) {
+function insertBlogPost($blogPostID, $title, $date, $author, $body) {
 	$result = dbQuery("
-		INSERT INTO blogPost(title, author, body)
-		VALUES(:title, :author, :body)
+		INSERT INTO blogPost(blogPostID, title, date, author, body)
+		VALUES(:blogPostID, :title, :date, :author, :body)
 	", array(
+		'blogPostID'=>$blogPostID,
 		'title'=>$title,
+		'date'=>$date,
 		'author'=>$author,
 		'body'=>$body
 	))->fetchAll(); //All
@@ -173,14 +176,6 @@ function getAllAuthorNames(){
 	return $result;
 
 }
-
-function submitComment($blogPostID, $author, $comment){
-	insertComment($blogPostID, $author, $comment);
-	header("Location: commentAdded.php?blogPostID=$blogPostID"); // this is how you redirect the browser directly.
-	exit();
-}
-
-
 
 function getRecentPosts(){
 	$result = dbQuery("

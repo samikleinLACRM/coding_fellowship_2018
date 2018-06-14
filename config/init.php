@@ -6,6 +6,7 @@ include('include/blogPostsAndCommentsFunctions.php');
 include('include/tagsFunctions.php');
 include('include/otherFunctions.php');
 include('include/logInFunctions.php');
+include('include/editPostFunctions.php');
 
 
 session_start();
