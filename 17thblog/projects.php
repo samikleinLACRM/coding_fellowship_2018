@@ -1,14 +1,20 @@
-<html>
-	<head>
-		<title>This is the page of projects</title>
-	</head>
-	<body class = 'bg'>
-		<?php include 'navigationBar.php'; ?>
-		<h1>Summer Projects</h1>
+<?php
+include('config/config.php');
+include('config/init.php');
 
+echoHeader("Projects", "Summer Projects");
+
+echo "
+	<body class='bg'>
 		<div class='textStyle'>
-			<p>This is where all of the projects that I've done this summer will go.</p>
-			<p> for ex) here's the calculator I built! </p>
+			<p>Here is a list of some projects that I've worked on this summer!</p>
+			<ul>
+				<li> <a href='/practice/calculator.php'>4 function Calculator</a></li>
+				<li> <a href='/practice/colorCalc.php'>Color Calculator</a></li>
+			</ul>
 		</div>
 	</body>
-</html>
+";
+
+echoFooter();
+?>

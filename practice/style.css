@@ -1,11 +1,24 @@
 h1 {
 	text-align: center;
 	background-color: #91ffda;
-	margin: 50px;
+	margin:30px;
+	padding:50px;
 }
 
 .welcomeMessage{
 	text-align: center;
 	background-color: #91edff ;
-	margin: 50px;
+	margin:30px;
+	padding:20px;
+	font-size:20;
+}
+
+.calc {
+	border-radius: 25px;
+    background-color: #f2f2f2;
+    padding: 20px;
+	margin-top:50px;
+	margin-right: 125px;
+	margin-left: 125px;
+	margin-bottom:50px;
 }
