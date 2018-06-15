@@ -3,6 +3,11 @@
 include('config/config.php');
 include('config/init.php');
 
+if(!@$_SESSION['userID']=='1'){
+	wrongPage();
+}
+
+
 echoHeader("Post Edited", "Post Edited");
 
 $post=getOneBlogPost($_REQUEST['blogPostID']);
