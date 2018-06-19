@@ -128,12 +128,37 @@ h1{
 	padding: 25px;
 } */
 
+
+.bloghead {
+	text-align: center;
+	border-style: solid;
+	border-color: black;
+	font-size: 25px;
+	background-color: white;
+	padding:10px;
+	font-weight: 500;
+	margin-left:10%;
+	margin-right:10%;
+}
+
+
+
 .card {
 	background-color: white;
 	padding: 20px;
 	margin-top: 20px;
 	margin-left: 20px;
 	margin-right: 20px;
+}
+
+.eventCard{
+	background-color: white;
+	padding: 20px;
+	float:left;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	width:20%;
 }
 
 /* This centers the words in the pic*/
@@ -146,4 +171,63 @@ h1{
 	font-size: 30;
 	background-color:white;
 	padding: 25px;
+}
+
+
+.verticalLine{
+      width: 1px; /* Line width */
+      background-color: black; /* Line color */
+      height: 100%; /* Override in-line if you want specific height. */
+	  display:inline-block;
+	  height: 45px;
+	  margin:3px;
+      /* Causes the line to float to left of content.*
+	  position:absolute;
+        You can instead use position:absolute or display:inline-block
+        if this fits better with your design */
+
+}
+
+
+
+
+/* .testGrid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 50px 1fr;
+}
+
+.areaA {
+  background-color: lime;
+}
+
+.areaB {
+  background-color: yellow;
+} */
+
+
+
+.trendingColumn {
+    float: left;
+	text-align: center;
+    width: 30%;
+    padding: 10px;
+ 	/* height: 300px; */
+	background-color: white;
+	display: grid;
+
+    grid-template-columns: 50px 1fr;
+}
+
+
+.voteColumn{
+	text-align: center;
+	background-color: lime;
+}
+
+
+.nextToVote{
+	background-color: yellow;
+
+
 }

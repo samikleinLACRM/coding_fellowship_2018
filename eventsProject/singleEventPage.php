@@ -6,6 +6,8 @@ $event=getOneEvent(3); //should be $_REQUEST
 $categories=getCatsForThisEvent(3);
 $usersGoing=getUsersGoingToThisEvent(3);
 
+$creator=getWhoCreatedEvent(3);
+
 echoHeader($event['name'], null);
 
 
@@ -30,8 +32,8 @@ echo "
 
 
 	<div class='container'>
-		<img class='centerImage' src='$event[pic]' alt='Obama' height=500>
-		<div class='centeredPictureText'>$event[votes] $event[name]</div>
+		<img class='centerImage' src='$event[pic]' alt='$event[name]' height=500>
+		<div class='centeredPictureText' style='border: 5px solid #521f66;'>$event[votes] || $event[name]</div>
 	</div>
 
 
@@ -82,11 +84,7 @@ echo "
 			</div>
 		</div>
 
+		<p> Event Created By: $creator[username]</p>
+		<p> Contact: $creator[email]</p>
 	</div>
-
-
-
-
-
-
 ";

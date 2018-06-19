@@ -2,7 +2,6 @@
 
 
 function getAllEvents(){
-	echo "hey";
 	$result = dbQuery("
 		SELECT *
 		FROM events
@@ -41,4 +40,40 @@ function getUsersGoingToThisEvent($eventID){
 		WHERE usersGoing2events.eventID = $eventID
 	")->fetchAll();
 	return $result;
+}
+
+
+function getWhoCreatedEvent($eventID){
+	$result = dbQuery("
+		SELECT *
+		FROM usersCreated2events
+		INNER JOIN users ON users.userID = usersCreated2events.userID
+		WHERE usersCreated2events.eventID = $eventID
+	")->fetch();
+	return $result;
+
+}
+
+
+function getAllEventsButTopThree(){
+	$result = dbQuery("
+		SELECT *
+		FROM events
+		ORDER BY votes
+		DESC limit 3,100000
+	")->fetchAll();
+	return $result;
+
+}
+
+
+function getTopThreeEvents(){
+	$result = dbQuery("
+		SELECT *
+		FROM events
+		ORDER BY votes DESC
+		LIMIT 3
+	")->fetchAll();
+	return $result;
+
 }
