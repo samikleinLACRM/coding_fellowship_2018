@@ -1,5 +1,10 @@
 <?php
 
+
+//NOTES:
+// THIS IS FROM MY BLOG, BUT PROB GONNA USE SOMETHING SIMILAIR LATER. 
+// HAVENT GONE OVER IT
+
 function verifyUserIsLoggedIn($sessionUserID){
 	if(!isset($sessionUserID)){
 		die("You're not logged in. <a href='logIn.php'>

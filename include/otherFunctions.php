@@ -18,7 +18,7 @@ function echoHeader($Title, $PageName) {
 			if ($PageName!=null) {
 				echo "
 				<br>
-				<div>
+				<div class='bloghead'>
 					$PageName
 				</div>
 				";
@@ -27,6 +27,12 @@ function echoHeader($Title, $PageName) {
 
 
 
+function wrongPage(){
+	echoHeader("Wrong Page!", "Wrong Page!");
+	echo "<p class='textStyle' style='text-align:center'>Oops! 404 Error. You've reached the wrong page. Go back. or use a nav bar once I build it<p>";
+	// echoFooter();
+	die("");
+}
 
 
 

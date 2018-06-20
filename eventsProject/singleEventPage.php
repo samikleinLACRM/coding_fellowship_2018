@@ -2,11 +2,16 @@
 include('config/config.php');
 include('config/init.php');
 
-$event=getOneEvent(3); //should be $_REQUEST
-$categories=getCatsForThisEvent(3);
-$usersGoing=getUsersGoingToThisEvent(3);
 
-$creator=getWhoCreatedEvent(3);
+if(!@$_REQUEST['eventID']){
+	wrongPage();
+}
+
+$event=getOneEvent($_REQUEST['eventID']); //should be $_REQUEST
+$categories=getCatsForThisEvent($_REQUEST['eventID']);
+$usersGoing=getUsersGoingToThisEvent($_REQUEST['eventID']);
+
+$creator=getWhoCreatedEvent($_REQUEST['eventID']);
 
 echoHeader($event['name'], null);
 
@@ -33,7 +38,22 @@ echo "
 
 	<div class='container'>
 		<img class='centerImage' src='$event[pic]' alt='$event[name]' height=500>
-		<div class='centeredPictureText' style='border: 5px solid #521f66;'>$event[votes] || $event[name]</div>
+
+		<div class='centeredPictureText' style='border: 5px solid #521f66;'>
+			<div class='titleWithVotes'>
+				<div class='voteColumn' style='font-size:20px'>
+					<p> <img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px></p>
+					$event[votes]
+					<p> <img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px></p>
+				</div>
+				<div class='bodyColumn'>
+					<div style='margin-top: 15%'>
+						$event[name]
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 
