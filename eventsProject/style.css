@@ -1,0 +1,247 @@
+* {
+    box-sizing: border-box;
+}
+
+hr{
+	border-color:#7a289a;
+
+}
+
+
+h1{
+	text-align: center;
+}
+
+a{
+	color:black;
+	text-decoration: none;
+}
+
+a:hover{
+	/* background-color: white; */
+	color:purple;
+	text-decoration: underline;
+}
+
+
+.background{
+	/* background: linear-gradient(to bottom, #b2f7ff 0%, #b8b1ef 100%); */
+	background: linear-gradient(45deg, #7a289a, #ff821c);
+	/* font-family: "Verdana", Verdana, sans-serif; */
+	/* font-family: 'Quicksand', sans-serif; */
+	/* font-family: "Source Sans Pro", Helvetica, sans-serif; */
+	font-family: 'Oxygen', sans-serif;
+	/* font-weight: 300; */
+}
+
+
+.whiteBox{
+	max-width:75%;
+	margin:auto;
+	background-color:white;
+	padding:10px;
+ 	/* box-shadow: 0px 0px 0px 10px rgba(0,0,0,0.2); */
+}
+
+.heading{
+	font-size:22px;
+}
+
+/* .paleBox{
+	max-width:85%;
+	margin:auto;
+	background-color:white;
+	padding:10px;
+	opacity: 0.5;
+	z-index: -1;
+} */
+
+
+/* .card {
+	background-color: white;
+	padding: 20px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+} */
+
+
+.column {
+    float: left;
+	text-align: center;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+.left {
+	float: left;
+	padding: 10px;
+	/* left: 30%; */
+	/* width: 25%; */
+}
+
+.right {
+	float: left;
+    padding: 10px;
+	/* left: 30%; */
+	/* width: 75%; */
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.iconAligned{
+	width: 40px;
+	vertical-align: sub;
+}
+
+
+.coloredOutline{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 60px;
+	margin-right: 60px;
+ 	text-align: center;
+	font-size: 30px;
+	border: 5px solid #521f66;
+}
+
+
+.dateTime{
+	font-size: 20px;
+	margin: auto;
+    width: 35%;
+    padding: 10px;
+	/* margin-left: 35%; */
+}
+
+
+/* this holds the image and text*/
+.container{
+	position: relative;
+	/* text-align: center; */
+	color: white;
+}
+
+.centerImage{
+	display: block;
+	width: 100%;
+	z-index: -1;  /* this should place the image behind the words*/
+}
+
+
+.bloghead {
+	text-align: center;
+	border-style: solid;
+	border-color: black;
+	font-size: 30px;
+	background-color: white;
+	padding:10px;
+	font-weight: 500;
+	margin-left:10%;
+	margin-right:10%;
+}
+
+
+.card {
+	background-color: white;
+	padding: 20px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.eventCard{
+	background-color: white;
+	padding: 20px;
+	float:left;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	width:20%;
+}
+
+/* This centers the words in the pic*/
+.centeredPictureText{
+	position: absolute; /* This is very necessary*/
+	top: 50%; /* This puts it in the middle of the pic*/
+	left: 50%;	/* Ditto*/
+	transform: translate(-50%, -50%); /* again, not sure what this does, but need it */
+	color:#051138; /* Makes the words purple-y*/
+	font-size: 40;
+	background-color:white;
+	padding: 25px;
+}
+
+.topEvent {
+    float: left;
+
+	position: absolute;
+	left:50%;
+	transform: translate(-50%, 0);
+
+	text-align: center;
+    width: 50%;
+    padding: 10px;
+ 	height: 300px;
+	background-color: white;
+	font-size: 25px;
+	display: grid;
+    grid-template-columns: 25% 1fr;
+
+}
+
+.trendingColumn {
+    float: left;
+	text-align: center;
+    width: 30%;
+    padding: 10px;
+ 	height: 225px;
+	background-color: white;
+	display: grid;
+    grid-template-columns: 25% 1fr;
+}
+
+.secondTier{
+	float: left;
+	text-align: center;
+    width: 45%;
+    padding: 10px;
+	height: 275px;
+	font-size: 20px;
+	background-color: white;
+	display: grid;
+    grid-template-columns: 25% 1fr;
+}
+
+.eventThree {
+	float:right;
+}
+
+.titleWithVotes{
+	float: left;
+	text-align: center;
+    padding: 10px;
+ 	height: 225px;
+	background-color: white;
+	width: 400px;
+	/* transform: translate(-50%, 0%);  */
+	display: grid;
+	grid-template-columns: 25% 1fr;
+
+}
+
+.voteColumn{
+	text-align: center;
+	background-color: lime; //blue #1c99ff mint#1cff82
+}
+
+.bodyColumn{
+	background-color: yellow;
+	overflow: auto;
+
+}
