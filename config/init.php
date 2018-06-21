@@ -5,5 +5,6 @@ include('include/db_query.php'); //this should happen right after config so othe
 include('include/eventFunctions.php');
 include('include/userFunctions.php');
 include('include/otherFunctions.php');
+include('include/logInFunctions.php');
 
 session_start();

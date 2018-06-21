@@ -7,6 +7,7 @@ if(!@$_REQUEST['eventID']){
 	wrongPage();
 }
 
+
 $event=getOneEvent($_REQUEST['eventID']); //should be $_REQUEST
 $categories=getCatsForThisEvent($_REQUEST['eventID']);
 $usersGoing=getUsersGoingToThisEvent($_REQUEST['eventID']);
@@ -114,3 +115,14 @@ echo "
 		<p> Contact: $creator[email]</p>
 	</div>
 ";
+
+
+// echo"
+// <div id='topic' class='upvote'>
+//     <a class='upvote'>hi</a>
+//     <span class='count'>$event[votes]</span>
+//     <a class='downvote'>hey</a>
+// </div>
+// <br><br><br><br><br>
+//
+// ";

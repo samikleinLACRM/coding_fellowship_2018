@@ -245,3 +245,24 @@ a:hover{
 	overflow: auto;
 
 }
+
+
+
+
+.form{
+	text-align: center;
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+
+.textStyle {
+	background-color: white;
+	margin-top:5%;
+	margin-left:10%;
+	margin-right:10%;
+	margin-bottom:50px;
+	border-style: solid;
+	/* border-radius: 15px; */
+	padding:10px;
+}

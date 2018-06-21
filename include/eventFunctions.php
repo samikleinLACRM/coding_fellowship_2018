@@ -27,8 +27,10 @@ function getCatsForThisEvent($eventID){
 		SELECT *
 		FROM categories
 		INNER JOIN cat2events ON cat2events.catID = categories.catID
-		WHERE cat2events.eventID = $eventID
-	")->fetchAll();
+		WHERE cat2events.eventID = :eventID
+	", array(
+		'eventID'=>$eventID
+	))->fetchAll();
 	return $result;
 }
 
@@ -37,8 +39,10 @@ function getUsersGoingToThisEvent($eventID){
 		SELECT *
 		FROM users
 		INNER JOIN usersGoing2events ON users.userID = usersGoing2events.userID
-		WHERE usersGoing2events.eventID = $eventID
-	")->fetchAll();
+		WHERE usersGoing2events.eventID = :eventID
+	", array(
+		'eventID'=>$eventID
+	))->fetchAll();
 	return $result;
 }
 
@@ -48,8 +52,10 @@ function getWhoCreatedEvent($eventID){
 		SELECT *
 		FROM usersCreated2events
 		INNER JOIN users ON users.userID = usersCreated2events.userID
-		WHERE usersCreated2events.eventID = $eventID
-	")->fetch();
+		WHERE usersCreated2events.eventID = :eventID
+	", array(
+		'eventID'=>$eventID
+	))->fetch();
 	return $result;
 
 }
@@ -124,8 +130,10 @@ function upVote($eventID){
 	$result = dbQuery("
 		UPDATE events
 		SET votes = votes + 1
-		WHERE eventID = $eventID
-	")->fetchAll();
+		WHERE eventID = :eventID
+	", array(
+		'eventID'=>$eventID
+	))->fetchAll();
 	return $result;
 }
 
@@ -138,8 +146,10 @@ function downvote($eventID){
 	$result = dbQuery("
 		UPDATE events
 		SET votes = votes - 1
-		WHERE eventID = $eventID
-	")->fetchAll();
+		WHERE eventID = :eventID
+	", array(
+		'eventID'=>$eventID
+	))->fetchAll();
 	return $result;
 
 }

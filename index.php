@@ -1,7 +1,7 @@
 <?php
 
 
-echo "hey";
+echo "hey chrissy and jake";
 
 echo "
 <br> <br>
@@ -11,6 +11,11 @@ echo "
 <br> <br>
 
 <a href='eventsProject/singleEventPage.php'>Single Events Page</a>
+
+
+<br> <br>
+
+<a href='eventsProject/logInMenuEP.php'>logInMenuEP</a>
 ";
 
 
