@@ -120,7 +120,6 @@ function echoEvent($event){
 }
 
 
-//does this change anything!?! how do i make it change in the database
 function upVote($eventID){
 	$result = dbQuery("
 		UPDATE events

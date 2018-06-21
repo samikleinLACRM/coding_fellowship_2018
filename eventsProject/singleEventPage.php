@@ -70,13 +70,16 @@ echo "
 		</div>
 
 		<br>
+		<hr>
 
 		<div style='margin:20px'>
 			<p class='heading'> Description: </p>
 			<p style='font-size:18px'> $event[description] </p>
 		</div>
 
-		<br><br>
+		<br>
+		<hr>
+		<br>
 
 		<div class='row'>
 	  		<div class='column'>
@@ -103,6 +106,9 @@ echo "
 				echo"
 			</div>
 		</div>
+
+		<hr>
+		<br>
 
 		<p> Event Created By: $creator[username]</p>
 		<p> Contact: $creator[email]</p>

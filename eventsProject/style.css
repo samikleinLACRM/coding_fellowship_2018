@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+hr{
+	border-color:#7a289a;
+
+}
+
 
 h1{
 	text-align: center;
@@ -133,7 +138,7 @@ a:hover{
 	text-align: center;
 	border-style: solid;
 	border-color: black;
-	font-size: 25px;
+	font-size: 30px;
 	background-color: white;
 	padding:10px;
 	font-weight: 500;
