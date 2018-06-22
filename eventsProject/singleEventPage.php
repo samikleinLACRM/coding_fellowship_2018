@@ -16,24 +16,31 @@ $creator=getWhoCreatedEvent($_REQUEST['eventID']);
 
 echoHeader($event['name'], null);
 
+$myEventVotes=$event['votes'];
 
-// <div class='centeredPictureText'>
-// <div class='row'>
-// 	<div class='left'>
-// 		$event[votes]
-// 	</div>
-// 	<div class='right'>
-// 		$event[name]
-// 	</div>
-// </div>
+?>
+<script type='text/javascript'>
 
-//<div class='centeredPictureText'>$event[votes] $event[name]</div>
+function changeNumber(){
+
+	var plsWork = "<?php echo $myEventVotes ?>";
+
+	$.post('/ajax/changeNumber.php', {eventVotes:plsWork},).done(function(data) {
+		console.log(data);
+		document.getElementById("up").innerHTML = data;
+		// alert("Data Loaded: " + data);
+
+	}).fail(function(data) {
+		console.log('Error: ' + data);
+	});
+
+	}
+
+</script>
+
+<?php
 
 echo "
-
-	<h1>something will prob go here</h1>
-
-
 	<div class='whiteBox'>
 
 
@@ -43,8 +50,12 @@ echo "
 		<div class='centeredPictureText' style='border: 5px solid #521f66;'>
 			<div class='titleWithVotes'>
 				<div class='voteColumn' style='font-size:20px'>
-					<p> <img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px></p>
-					$event[votes]
+					<br>
+					<a href='#' onclick='changeNumber();'><img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px></a>
+					<br><br>
+					<div id='up'>
+						$event[votes]
+					</div>
 					<p> <img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px></p>
 				</div>
 				<div class='bodyColumn'>

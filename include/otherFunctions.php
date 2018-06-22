@@ -19,6 +19,7 @@ function echoHeader($Title, $PageName) {
 		<body class='background'>
 
 			";
+			echoNavBar();
 			if ($PageName!=null) {
 				echo "
 				<br>
@@ -46,6 +47,17 @@ function echoDate($dateFromMySQL){
 #output: 5:45pm on Saturday 24th March 2012
 
 
+}
+
+function echoNavBar(){
+	echo "
+	<div class='textStyle form'>
+		<a href='trendingEvents.php'>Trending Events</a> ||
+		<a href='logInEP.php'>Log In</a> ||
+		<a href='createAccountEP.php'>Create Account</a> ||
+		<a href='loggedOutEP.php'>Log Out</a>
+	</div>
+	";
 }
 
 
