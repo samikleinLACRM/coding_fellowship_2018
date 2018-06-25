@@ -19,9 +19,12 @@ echoHeader($event['name'], null);
 $myEventVotes=$event['votes'];
 
 ?>
+<script src="/include/jquery.js"></script>
+
+
 <script type='text/javascript'>
 
-function upVoteNumber(){
+function upVoteNumber($myEventVotes, $eventID){
 
 	var varEventVotes = "<?php echo $myEventVotes ?>";
 	var varEventID = "<?php echo $eventID ?>";
@@ -38,7 +41,7 @@ function upVoteNumber(){
 }
 
 
-function downVoteNumber(){
+function downVoteNumber($myEventVotes, $eventID){
 
 	var varEventVotes = "<?php echo $myEventVotes ?>";
 	var varEventID = "<?php echo $eventID ?>";
@@ -58,6 +61,7 @@ function downVoteNumber(){
 
 <?php
 
+
 echo "
 	<div class='whiteBox'>
 
@@ -69,13 +73,13 @@ echo "
 			<div class='titleWithVotes'>
 				<div class='voteColumn' style='font-size:20px'>
 					<br>
-					<a href='#' onclick='upVoteNumber();'><img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px></a>
+					<a href='#' onclick='upVoteNumber($myEventVotes, $eventID);'><img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px></a>
 					<br><br>
 					<div id='votes'>
 						$event[votes]
 					</div>
 					<br>
-					<a href='#' onclick='downVoteNumber();'><img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px></a>
+					<a href='#' onclick='downVoteNumber($myEventVotes, $eventID);'><img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px></a>
 				</div>
 				<div class='bodyColumn'>
 					<div style='margin-top: 15%'>
