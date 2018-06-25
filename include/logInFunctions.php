@@ -2,12 +2,12 @@
 
 
 //NOTES:
-// THIS IS FROM MY BLOG, BUT PROB GONNA USE SOMETHING SIMILAIR LATER. 
+// THIS IS FROM MY BLOG, BUT PROB GONNA USE SOMETHING SIMILAIR LATER.
 // HAVENT GONE OVER IT
 
 function verifyUserIsLoggedIn($sessionUserID){
 	if(!isset($sessionUserID)){
-		die("You're not logged in. <a href='logIn.php'>
+		die("You're not logged in. <a href='logInEP.php'>
 		Go to the login page</a>");
 	}
 	else {
@@ -16,7 +16,7 @@ function verifyUserIsLoggedIn($sessionUserID){
 		user: ".$row['username']."
 		<br><br>
 		Click on this link to log out:
-		<a href='loggedOut.php'>Log out</a>
+		<a href='loggedOutEP.php'>Log out</a>
 		</div>";
 	}
 }

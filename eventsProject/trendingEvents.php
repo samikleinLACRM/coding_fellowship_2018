@@ -13,19 +13,17 @@ echo "
 
 $allButTopThree=getAllEventsButTopThree();
 $topThree=getTopThreeEvents();
-$event1=getOneEvent($topThree[0]['eventID']);
-$event1ID=$event1['eventID'];
-$event2=getOneEvent($topThree[1]['eventID']);
-$event2ID=$event2['eventID'];
-$event3=getOneEvent($topThree[2]['eventID']);
-$event3ID=$event3['eventID'];
+
+$event1ID=getOneEvent($topThree[0]['eventID']);
+$event2ID=getOneEvent($topThree[1]['eventID']);
+$event3ID=getOneEvent($topThree[2]['eventID']);
 
 
 //print number1 event
 echo "
 <br><br><br>
 	<div class='topEvent'>";
-		echoEvent($event1);
+		echoEvent($event1ID);
 	echo"
 	</div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
@@ -35,11 +33,11 @@ echo "
 echo "
 <div class='row' style='margin-left:15%; margin-right:15%; '>
 	<div class='secondTier'>";
-		echoEvent($event2);
+		echoEvent($event2ID);
 	echo"
 	</div>
 	<div class='secondTier eventThree'>";
-		echoEvent($event3);
+		echoEvent($event3ID);
 	echo "
 	</div>
 </div>

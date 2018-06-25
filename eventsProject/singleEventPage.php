@@ -7,7 +7,8 @@ if(!@$_REQUEST['eventID']){
 	wrongPage();
 }
 
-$event=getOneEvent($_REQUEST['eventID']); //should be $_REQUEST
+$eventID=($_REQUEST['eventID']);
+$event=getOneEvent($eventID);
 $categories=getCatsForThisEvent($_REQUEST['eventID']);
 $usersGoing=getUsersGoingToThisEvent($_REQUEST['eventID']);
 
@@ -15,24 +16,53 @@ $creator=getWhoCreatedEvent($_REQUEST['eventID']);
 
 echoHeader($event['name'], null);
 
+$myEventVotes=$event['votes'];
 
-// <div class='centeredPictureText'>
-// <div class='row'>
-// 	<div class='left'>
-// 		$event[votes]
-// 	</div>
-// 	<div class='right'>
-// 		$event[name]
-// 	</div>
-// </div>
+?>
+<script src="/include/jquery.js"></script>
 
-//<div class='centeredPictureText'>$event[votes] $event[name]</div>
+
+<script type='text/javascript'>
+
+function upVoteNumber($myEventVotes, $eventID){
+
+	var varEventVotes = "<?php echo $myEventVotes ?>";
+	var varEventID = "<?php echo $eventID ?>";
+
+	$.post('/ajax/upVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID},).done(function(data) {
+		console.log(data);
+		document.getElementById("votes").innerHTML = data;
+		// alert("Data Loaded: " + data);
+
+	}).fail(function(data) {
+		console.log('Error: ' + data);
+	});
+
+}
+
+
+function downVoteNumber($myEventVotes, $eventID){
+
+	var varEventVotes = "<?php echo $myEventVotes ?>";
+	var varEventID = "<?php echo $eventID ?>";
+
+	$.post('/ajax/downVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID},).done(function(data) {
+		console.log(data);
+		document.getElementById("votes").innerHTML = data;
+		// alert("Data Loaded: " + data);
+
+	}).fail(function(data) {
+		console.log('Error: ' + data);
+	});
+
+}
+
+</script>
+
+<?php
+
 
 echo "
-
-	<h1>something will prob go here</h1>
-
-
 	<div class='whiteBox'>
 
 
@@ -42,9 +72,14 @@ echo "
 		<div class='centeredPictureText' style='border: 5px solid #521f66;'>
 			<div class='titleWithVotes'>
 				<div class='voteColumn' style='font-size:20px'>
-					<p> <img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px></p>
-					$event[votes]
-					<p> <img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px></p>
+					<br>
+					<a href='#' onclick='upVoteNumber($myEventVotes, $eventID);'><img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px></a>
+					<br><br>
+					<div id='votes'>
+						$event[votes]
+					</div>
+					<br>
+					<a href='#' onclick='downVoteNumber($myEventVotes, $eventID);'><img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px></a>
 				</div>
 				<div class='bodyColumn'>
 					<div style='margin-top: 15%'>

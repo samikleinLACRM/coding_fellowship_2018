@@ -27,8 +27,10 @@ function getCatsForThisEvent($eventID){
 		SELECT *
 		FROM categories
 		INNER JOIN cat2events ON cat2events.catID = categories.catID
-		WHERE cat2events.eventID = $eventID
-	")->fetchAll();
+		WHERE cat2events.eventID = :eventID
+	", array(
+		'eventID'=>$eventID
+	))->fetchAll();
 	return $result;
 }
 
@@ -37,8 +39,10 @@ function getUsersGoingToThisEvent($eventID){
 		SELECT *
 		FROM users
 		INNER JOIN usersGoing2events ON users.userID = usersGoing2events.userID
-		WHERE usersGoing2events.eventID = $eventID
-	")->fetchAll();
+		WHERE usersGoing2events.eventID = :eventID
+	", array(
+		'eventID'=>$eventID
+	))->fetchAll();
 	return $result;
 }
 
@@ -48,8 +52,10 @@ function getWhoCreatedEvent($eventID){
 		SELECT *
 		FROM usersCreated2events
 		INNER JOIN users ON users.userID = usersCreated2events.userID
-		WHERE usersCreated2events.eventID = $eventID
-	")->fetch();
+		WHERE usersCreated2events.eventID = :eventID
+	", array(
+		'eventID'=>$eventID
+	))->fetch();
 	return $result;
 
 }
@@ -103,9 +109,14 @@ function echoEvent($event){
 
 	echo"
 		<div class='voteColumn'>
-			<p> <img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px></p>
-			$event[votes]
-			<p> <img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px></p>
+			<br>
+			<a href='#' onclick='upVoteNumber();'><img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px></a>
+			<div id='votes'>
+				<br>
+				$event[votes]
+				<br><br>
+			</div>
+			<a href='#' onclick='downVoteNumber();'><img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px></a>
 		</div>
 
 		<div class='bodyColumn'>
@@ -124,13 +135,15 @@ function upVote($eventID){
 	$result = dbQuery("
 		UPDATE events
 		SET votes = votes + 1
-		WHERE eventID = $eventID
-	")->fetchAll();
+		WHERE eventID = :eventID
+	", array(
+		'eventID'=>$eventID
+	))->fetchAll();
 	return $result;
 }
 
 
-function downvote($eventID){
+function downVote($eventID){
 
 //do I want this to be an actual subtraction of votes,
 // or just a not upvote thing (like u press it if u upvoted and want to take it back)
@@ -138,8 +151,10 @@ function downvote($eventID){
 	$result = dbQuery("
 		UPDATE events
 		SET votes = votes - 1
-		WHERE eventID = $eventID
-	")->fetchAll();
+		WHERE eventID = :eventID
+	", array(
+		'eventID'=>$eventID
+	))->fetchAll();
 	return $result;
 
 }

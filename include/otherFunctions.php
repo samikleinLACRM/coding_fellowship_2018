@@ -3,6 +3,97 @@
 
 function echoHeader($Title, $PageName) {
 
+	?>
+	<script src="/include/jquery.js"></script>
+
+
+
+	<script type='text/javascript'>
+	//Wait for the page to load first
+		// window.onload = function() {
+		//
+		// 	//Get a reference to the link on the page
+		// 	// with an id of "mylink"
+		//
+		// 	var upVoting = document.getElementById("upVoting");
+		//
+        //      //Set code to run when the link is clicked
+        //      // by assigning a function to "onclick"
+        //      upVoting.onclick = function() {
+		//
+        //        // Your code here...
+		// 	   upVoteNumber($myEventVotes, $eventID);
+		//
+        //        //If you don't want the link to actually
+        //        // redirect the browser to another page,
+        //        // "google.com" in our example here, then
+        //        // return false at the end of this block.
+        //        // Note that this also prevents event bubbling,
+        //        // which is probably what we want here, but won't
+        //        // always be the case.
+        //        return false;
+        //      }
+		//
+		// 	 var downVoting = document.getElementById("downVoting");
+		//
+        //       //Set code to run when the link is clicked
+        //       // by assigning a function to "onclick"
+        //       upVoting.onclick = function() {
+		//
+        //         // Your code here...
+ 		// 	   doVoteNumber($myEventVotes, $eventID);
+		//
+        //         //If you don't want the link to actually
+        //         // redirect the browser to another page,
+        //         // "google.com" in our example here, then
+        //         // return false at the end of this block.
+        //         // Note that this also prevents event bubbling,
+        //         // which is probably what we want here, but won't
+        //         // always be the case.
+        //         return false;
+        //       }
+		//
+		//
+		//
+        //    }
+
+
+	function upVoteNumber($myEventVotes, $eventID){
+
+		var varEventVotes = "<?php echo $myEventVotes ?>";
+		var varEventID = "<?php echo $eventID ?>";
+
+		$.post('/ajax/upVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID},).done(function(data) {
+			console.log(data);
+			document.getElementById("votes").innerHTML = data;
+			// alert("Data Loaded: " + data);
+
+		}).fail(function(data) {
+			console.log('Error: ' + data);
+		});
+
+	}
+
+
+	function downVoteNumber($myEventVotes, $eventID){
+
+		var varEventVotes = "<?php echo $myEventVotes ?>";
+		var varEventID = "<?php echo $eventID ?>";
+
+		$.post('/ajax/downVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID},).done(function(data) {
+			console.log(data);
+			document.getElementById("votes").innerHTML = data;
+			// alert("Data Loaded: " + data);
+
+		}).fail(function(data) {
+			console.log('Error: ' + data);
+		});
+
+	}
+
+	</script>
+
+	<?php
 	echo "
 		<head>
 			<title>$Title</title>
@@ -15,6 +106,7 @@ function echoHeader($Title, $PageName) {
 		<body class='background'>
 
 			";
+			echoNavBar();
 			if ($PageName!=null) {
 				echo "
 				<br>
@@ -42,6 +134,17 @@ function echoDate($dateFromMySQL){
 #output: 5:45pm on Saturday 24th March 2012
 
 
+}
+
+function echoNavBar(){
+	echo "
+	<div class='textStyle form'>
+		<a href='trendingEvents.php'>Trending Events</a> ||
+		<a href='logInEP.php'>Log In</a> ||
+		<a href='createAccountEP.php'>Create Account</a> ||
+		<a href='loggedOutEP.php'>Log Out</a>
+	</div>
+	";
 }
 
 
