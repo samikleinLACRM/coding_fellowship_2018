@@ -6,5 +6,6 @@ include('include/eventFunctions.php');
 include('include/userFunctions.php');
 include('include/otherFunctions.php');
 include('include/logInFunctions.php');
+// include('include/jsFunctions.php');
 
 session_start();

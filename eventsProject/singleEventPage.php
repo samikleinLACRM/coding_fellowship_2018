@@ -7,7 +7,7 @@ if(!@$_REQUEST['eventID']){
 	wrongPage();
 }
 
-
+$eventID=($_REQUEST['eventID']);
 $event=getOneEvent($_REQUEST['eventID']); //should be $_REQUEST
 $categories=getCatsForThisEvent($_REQUEST['eventID']);
 $usersGoing=getUsersGoingToThisEvent($_REQUEST['eventID']);
@@ -21,20 +21,38 @@ $myEventVotes=$event['votes'];
 ?>
 <script type='text/javascript'>
 
-function changeNumber(){
+function upVoteNumber(){
 
-	var plsWork = "<?php echo $myEventVotes ?>";
+	var varEventVotes = "<?php echo $myEventVotes ?>";
+	var varEventID = "<?php echo $eventID ?>";
 
-	$.post('/ajax/changeNumber.php', {eventVotes:plsWork},).done(function(data) {
+	$.post('/ajax/upVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID},).done(function(data) {
 		console.log(data);
-		document.getElementById("up").innerHTML = data;
+		document.getElementById("votes").innerHTML = data;
 		// alert("Data Loaded: " + data);
 
 	}).fail(function(data) {
 		console.log('Error: ' + data);
 	});
 
-	}
+}
+
+
+function downVoteNumber(){
+
+	var varEventVotes = "<?php echo $myEventVotes ?>";
+	var varEventID = "<?php echo $eventID ?>";
+
+	$.post('/ajax/downVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID},).done(function(data) {
+		console.log(data);
+		document.getElementById("votes").innerHTML = data;
+		// alert("Data Loaded: " + data);
+
+	}).fail(function(data) {
+		console.log('Error: ' + data);
+	});
+
+}
 
 </script>
 
@@ -51,12 +69,13 @@ echo "
 			<div class='titleWithVotes'>
 				<div class='voteColumn' style='font-size:20px'>
 					<br>
-					<a href='#' onclick='changeNumber();'><img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px></a>
+					<a href='#' onclick='upVoteNumber();'><img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px></a>
 					<br><br>
-					<div id='up'>
+					<div id='votes'>
 						$event[votes]
 					</div>
-					<p> <img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px></p>
+					<br>
+					<a href='#' onclick='downVoteNumber();'><img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px></a>
 				</div>
 				<div class='bodyColumn'>
 					<div style='margin-top: 15%'>

@@ -104,6 +104,8 @@ function clickNumber(){
 
 // document.getElementById("demo").innerHTML = 5 + 6;
 
+
+//tyler would recommend post instead of get
 $.get('ajax/changeNumber.php').done(function(data) {
 	console.log(data);
 	document.getElementById("demo").innerHTML = data;
