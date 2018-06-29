@@ -1,7 +1,4 @@
-
 <?php
-
-include('config/config.php');
 include('config/init.php');
 
 echoHeader("Log Out", "Log Out");

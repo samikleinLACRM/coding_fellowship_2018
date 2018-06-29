@@ -1,7 +1,6 @@
 <?php
-
-include('config/config.php');
 include('config/init.php');
+
 
 echoHeader("Trending Events", null);
 
@@ -11,19 +10,28 @@ echo "
 </div>
 ";
 
-$allButTopThree=getAllEventsButTopThree();
-$topThree=getTopThreeEvents();
+$allEvents=getAllEvents();
 
-$event1ID=getOneEvent($topThree[0]['eventID']);
-$event2ID=getOneEvent($topThree[1]['eventID']);
-$event3ID=getOneEvent($topThree[2]['eventID']);
+$event1=$allEvents[0];
+$event2=$allEvents[1];
+$event3=$allEvents[2];
 
+for ($i = 3; $i <count($allEvents); $i++){ //get top 3 events
+	$allButTopThree[$i-3]=$allEvents[$i];
+}
+
+// $allButTopThree=getAllEventsButTopThree();
+// $topThree=getTopThreeEvents();
+//
+// $event1=$topThree[0];
+// $event2=$topThree[1];
+// $event3=$topThree[2];
 
 //print number1 event
 echo "
 <br><br><br>
 	<div class='topEvent'>";
-		echoEvent($event1ID);
+		echoEvent($event1);
 	echo"
 	</div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
@@ -33,11 +41,11 @@ echo "
 echo "
 <div class='row' style='margin-left:15%; margin-right:15%; '>
 	<div class='secondTier'>";
-		echoEvent($event2ID);
+		echoEvent($event2);
 	echo"
 	</div>
 	<div class='secondTier eventThree'>";
-		echoEvent($event3ID);
+		echoEvent($event3);
 	echo "
 	</div>
 </div>

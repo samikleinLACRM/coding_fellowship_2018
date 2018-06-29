@@ -5,10 +5,9 @@ function echoHeader($Title, $PageName) {
 
 	?>
 	<script src="/include/jquery.js"></script>
+	<!-- <script type='text/javascript'> -->
+	<?php
 
-
-
-	<script type='text/javascript'>
 	//Wait for the page to load first
 		// window.onload = function() {
 		//
@@ -58,42 +57,6 @@ function echoHeader($Title, $PageName) {
         //    }
 
 
-	function upVoteNumber($myEventVotes, $eventID){
-
-		var varEventVotes = "<?php echo $myEventVotes ?>";
-		var varEventID = "<?php echo $eventID ?>";
-
-		$.post('/ajax/upVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID},).done(function(data) {
-			console.log(data);
-			document.getElementById("votes").innerHTML = data;
-			// alert("Data Loaded: " + data);
-
-		}).fail(function(data) {
-			console.log('Error: ' + data);
-		});
-
-	}
-
-
-	function downVoteNumber($myEventVotes, $eventID){
-
-		var varEventVotes = "<?php echo $myEventVotes ?>";
-		var varEventID = "<?php echo $eventID ?>";
-
-		$.post('/ajax/downVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID},).done(function(data) {
-			console.log(data);
-			document.getElementById("votes").innerHTML = data;
-			// alert("Data Loaded: " + data);
-
-		}).fail(function(data) {
-			console.log('Error: ' + data);
-		});
-
-	}
-
-	</script>
-
-	<?php
 	echo "
 		<head>
 			<title>$Title</title>
@@ -140,22 +103,15 @@ function echoNavBar(){
 	echo "
 	<div class='textStyle form'>
 		<a href='trendingEvents.php'>Trending Events</a> ||
-		<a href='logInEP.php'>Log In</a> ||
-		<a href='createAccountEP.php'>Create Account</a> ||
-		<a href='loggedOutEP.php'>Log Out</a>
+		<a href='logInMenuEP.php'>Log In Menu</a> ||
+		<a href='accountPage.php'>Profile</a> ||
+		<a href='createEvent.php'>Create Event</a>
 	</div>
 	";
 }
 
 
 
-
-// function wrongPage(){
-// 	echoHeader("Wrong Page!", "Wrong Page!");
-// 	echo "<p class='textStyle' style='text-align:center'>Oops! 404 Error. You've reached the wrong page. Use the Navigation Bar to go to another page. <p>";
-// 	echoFooter();
-// 	die("");
-// }
 //
 // function echoFooter(){
 // 	echo "
@@ -168,11 +124,11 @@ function echoNavBar(){
 // }
 //
 //
-// function echoNicely($interm) {
-// 	echo "<pre>";
-// 	var_dump($interm);
-// 	echo "<pre>";
-// }
+function echoNicely($interm) {
+	echo "<pre>";
+	var_dump($interm);
+	echo "<pre>";
+}
 //
 //
 // function echoJustDate($date){

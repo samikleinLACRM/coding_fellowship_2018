@@ -1,31 +1,33 @@
-<?php
-include('config/config.php');
-include('config/init.php');
- ?>
- 
+
 <script type='text/javascript'>
 
-function upVoteNumber($myEventVotes, $eventID){
+function upVoteNumber(eventID){
 
-	var varEventVotes = "<?php echo $myEventVotes ?>";
-	var varEventID = "<?php echo $eventID ?>";
-
-	$.post('/ajax/upVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID},).done(function(data) {
-		console.log(data);
-		document.getElementById("votes").innerHTML = data;
-		// alert("Data Loaded: " + data);
-
-	}).fail(function(data) {
-		console.log('Error: ' + data);
-	});
+	console.log("hey we r in the function maybe?");
+	// var varEventID = eventID;
+	// <?php $event=getOneEvent(eventID);?>
+	//
+	// var varEventVotes = "<?php echo $event['votes'];?>";
+	//
+	// $.post('/ajax/upVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID}).(function(data) {
+	// 	console.log(data);
+	// 	document.getElementById("votes").innerHTML = data;
+	// 	// alert("Data Loaded: " + data);
+	// });
 
 }
 
+</script>
 
-function downVoteNumber($myEventVotes, $eventID){
 
-	var varEventVotes = "<?php echo $myEventVotes ?>";
-	var varEventID = "<?php echo $eventID ?>";
+<script type='text/javascript'>
+
+function downVoteNumber($eventID){
+
+	var varEventID = "<?php echo $eventID; ?>";
+	<?php $event=getOneEvent($eventID);?>
+
+	var varEventVotes = "<?php echo $event['votes'];?>";
 
 	$.post('/ajax/downVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID},).done(function(data) {
 		console.log(data);

@@ -1,10 +1,12 @@
 <?php
+include('config/config.php');
+
 date_default_timezone_set('America/Chicago');
-//include('config/config.php');
+
 include('include/db_query.php'); //this should happen right after config so other functions have access to the database
 include('include/eventFunctions.php');
 include('include/userFunctions.php');
-include('include/otherFunctions.php');
+include('include/echoFunctions.php');
 include('include/logInFunctions.php');
 // include('include/jsFunctions.php');
 

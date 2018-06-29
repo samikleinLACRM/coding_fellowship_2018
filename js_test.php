@@ -1,5 +1,5 @@
 <?php
-include('config/config.php');
+// include('config/config.php');
 include('config/init.php');
  ?>
 
@@ -161,31 +161,3 @@ echo $var;
 		This is the thing to fade
 
 </div>
-
-
-
-
-
-
-<!-- <div class='button1' style='background-color:#bbff96; '>
-	button1
-</div>
-
-<div class='button2' style='background-color:#fea3aa; '>
-	button2
-</div>
-<div class='button3' style='background-color:#f8b88b; '>
-	button3
-</div>
-
-
-<div class='panel1' style='background-color:#faf884; '>
-	panel1
-</div>
-
-<div class='panel2' style='background-color:#baed91; '>
-	panel2
-</div>
-<div class='panel3' style='background-color:#ADD8E6; '>
-	panel3,
-</div> -->

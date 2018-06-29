@@ -1,5 +1,4 @@
 <?php
-include('config/config.php');
 include('config/init.php');
 
 echoHeader("Account Created", "Account Created");

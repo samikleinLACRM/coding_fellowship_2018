@@ -1,22 +1,7 @@
 <?php
-include('config/config.php');
 include('config/init.php');
 
-echoHeader("Log In", "Log In");
-
-if(isset($_SESSION['userID'])) {  //&& !empty($_SESSION['userID']) <-- had this before. not sure if necessary
-	$row=getUserByUserID($_SESSION['userID']);
-	$username=$row['username'];
-	echo "
-	<div class='textStyle form'>
-		*You are already logged in as $username*
-		<br>
-		Click here to Log Out:
-		<a href='loggedOutEP.php'>Log Out</a>
-	</div>";
-}
-
-//form
+//process form
 $Errors = array();
 if(isset($_REQUEST['logIn'])){ //
 	//if tries to log in while already logged in
@@ -45,6 +30,26 @@ if(isset($_REQUEST['logIn'])){ //
 		}
 	}
 }
+
+
+echoHeader("Log In", "Log In");
+
+
+//if already logged in
+if(isset($_SESSION['userID'])) {  //&& !empty($_SESSION['userID']) <-- had this before. not sure if necessary
+	$row=getUserByUserID($_SESSION['userID']);
+	$username=$row['username'];
+	echo "
+	<div class='textStyle form'>
+		*You are already logged in as $username*
+		<br>
+		Click here to log out:
+		<a href='loggedOutEP.php'> <u>Log Out</u></a>
+	</div>";
+}
+
+
+
 //echo's form
 echo "
 <div class='textStyle form'>

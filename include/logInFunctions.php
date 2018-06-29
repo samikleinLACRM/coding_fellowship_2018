@@ -5,13 +5,13 @@
 // THIS IS FROM MY BLOG, BUT PROB GONNA USE SOMETHING SIMILAIR LATER.
 // HAVENT GONE OVER IT
 
-function verifyUserIsLoggedIn($sessionUserID){
-	if(!isset($sessionUserID)){
+function verifyUserIsLoggedIn($session){
+	if(!isset($session['userID'])){
 		die("You're not logged in. <a href='logInEP.php'>
 		Go to the login page</a>");
 	}
 	else {
-		$row = getUserByUserID($sessionUserID);
+		$row = getUserByUserID($session['userID']);
 		echo "You're logged in as
 		user: ".$row['username']."
 		<br><br>
@@ -29,13 +29,14 @@ function areWordsInField($formField){
 }
 
 
-function insertUser($username, $password){
+function insertUser($username, $password, $email){
 	$result = dbQuery("
-		INSERT INTO users(username, password)
-		VALUES(:username, :password)
+		INSERT INTO users(username, password, email)
+		VALUES(:username, :password, :email)
 	", array(
 		'username'=>$username,
-		'password'=>$password
+		'password'=>$password,
+		'email'=>$email
 	))->fetchAll(); //All
 }
 
@@ -60,6 +61,19 @@ function getUserByUserID($userID){
 	))->fetch(); //should this be All?? if having problems, check
 	return $result;
 }
+
+
+function getUserByUserEmail($userEmail){
+	$result = dbQuery("
+		SELECT *
+		FROM users
+		WHERE email = :email
+	", array(
+		'email'=>$userEmail
+	))->fetch(); //should this be All?? if having problems, check
+	return $result;
+}
+
 
 
 function verifyUser($username, $password){
