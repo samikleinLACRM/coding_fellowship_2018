@@ -5,11 +5,11 @@ include('config/init.php');
 //right now it can do it as many times as it wants
 downVoteInDB($_REQUEST['eventID']);
 
-$event=getOneEvent($_REQUEST['eventID']);
-
-$holder= $event['votes'];
-$holder--;
-echo $holder;
+// $event=getOneEvent($_REQUEST['eventID']);
+// 
+// $holder= $event['votes'];
+// $holder--;
+// echo $holder;
 
 //whatever u echo becomes data
 ?>

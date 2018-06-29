@@ -22,6 +22,19 @@ function getOneEvent($eventID){
 }
 
 
+function getAnEventByNameAndDate($name, $date){
+	$result = dbQuery("
+		SELECT *
+		FROM events
+		WHERE name = :name AND dateOfEvent= :date
+	", array(
+		'name'=>$name,
+		'date'=>$date
+		))->fetch();
+	return $result;
+}
+
+
 function getCatsForThisEvent($eventID){
 	$result = dbQuery("
 		SELECT *
@@ -104,7 +117,7 @@ function echoColumnTwoEvent($eventID){
 
 function echoUpVoteButton($eventID){
 	echo"
-	<a href='#' onclick='hey($eventID);'>
+	<a href='#' onclick='upVotePlsWork($eventID);'>
 		<img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px>
 	</a>";
 
@@ -112,25 +125,32 @@ function echoUpVoteButton($eventID){
 
 function echoDownVoteButton($eventID){ //sohuld there be a ; after the function?
 	echo"
-	<a href='#' onclick='hi($eventID);'>
+	<a href='#' onclick='downVotePlsWork($eventID);'>
 		<img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px>
 	</a>";
 }
 
 ?>
 <script type='text/javascript'>
-function hey(eventID){
+function upVotePlsWork(eventID){
 
-	var varEventIDblah = eventID;
-	console.log("hey");
-	console.log(eventID);
+	// var varEventIDblah = eventID;
+	// console.log("hey");
+	// console.log(eventID);
 
-	$.post('/ajax/upVoteAjax.php', {eventID:varEventIDblah}, function(data) {
-		console.log(data);
-		document.getElementById("up").innerHTML = data;
-	// }).fail(function(data) {
-	// 	console.log('Error: ' + data);
-	});
+	//update the freaking number
+	var s = $('votes').html();
+	var number = parseInt($('votes').html());
+
+	// var valuefhjsbdkjfhbsf = document.getElementById("votes");
+	console.log("s");
+	// var whatever = 12;
+	document.getElementById("votes").innerHTML = number+1; //somehow need to convert stuff inside votes id into an int
+	console.log(number);
+
+	//then send ajax
+	$.post('/ajax/upVoteAjax.php', {eventID});
+
 }
 </script>
 
@@ -226,4 +246,24 @@ function insertEvent($name, $location, $date, $startTime, $endTime, $comeBc, $de
 		'comeBc'=>$comeBc,
 		'description'=>$description
 	))->fetchAll(); //All
+}
+
+
+function getAllCategories(){
+
+	$result = dbQuery("
+		SELECT *
+		FROM categories
+	")->fetchAll();
+	return $result;
+
+}
+
+
+
+function insertCatCombo(){
+
+
+
+
 }

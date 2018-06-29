@@ -5,12 +5,6 @@ include('config/init.php');
 //right now it can do it as many times as it wants
 upVoteinDB($_REQUEST['eventID']);
 
-$event=getOneEvent($_REQUEST['eventID']);
-
-$holder= $event['votes'];
-$holder++;
-echo $holder;
-
 
 
 // what I had before

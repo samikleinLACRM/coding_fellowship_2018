@@ -45,8 +45,21 @@ if(isset($_REQUEST['CreateEvent'])){ //
 			$_REQUEST['ComeBC'],
 			$_REQUEST['Description']
 		);
-		header("Location: eventCreated.php");
-		exit();
+
+
+		//get the event ID of the new event from the database
+		//foreach category name, insert the unique combo
+		// into the cat2events database
+		$newEvent=getAnEventByNameAndDate($_REQUEST['Name'], $_REQUEST['Date']);
+
+		foreach ($_REQUEST['Categories'] as $category) {
+			console.log("hey this is one. $category");
+			// insertCatCombo(___, $newEvent['eventID']);
+		}
+
+		echo "ya did it!";
+		// header("Location: eventCreated.php");
+		// exit();
 	}
 }
 
@@ -62,6 +75,9 @@ echo "
 			echo "*$Index $Error<br>";
 		}
 	}
+
+$allCategories=getAllCategories();
+
 echo "
 	</div>
 	<p style='font-size:18px'>Create Event:</p>
@@ -82,7 +98,19 @@ echo "
 	Event Description:
 	<br>
 	<textarea cols='40' rows='8' name='Description'>".@$_REQUEST['Description']."</textarea>
-	<br>
+	<br><br>
+	Categories:<br><br>
+
+	<div style='margin-left:100px; margin-right:100px;'>";
+
+		foreach ($allCategories as $category) {
+			echo "
+			<input type='checkbox' name='Categories' value='category'>$category[name]";
+		}
+
+	echo"
+	</div>
+	<br><br>
 	<input type='submit' name='CreateEvent' value='Create Event' />
 
 

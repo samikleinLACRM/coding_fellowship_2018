@@ -6,7 +6,7 @@ function upVoteNumber(eventID){
 	console.log("hey we r in the function maybe?");
 	// var varEventID = eventID;
 	// <?php $event=getOneEvent(eventID);?>
-	//
+	//890-76t
 	// var varEventVotes = "<?php echo $event['votes'];?>";
 	//
 	// $.post('/ajax/upVoteAjax.php', {eventVotes:varEventVotes, eventID:varEventID}).(function(data) {
