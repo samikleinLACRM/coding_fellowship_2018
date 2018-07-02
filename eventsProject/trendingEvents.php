@@ -20,13 +20,6 @@ for ($i = 3; $i <count($allEvents); $i++){ //get top 3 events
 	$allButTopThree[$i-3]=$allEvents[$i];
 }
 
-// $allButTopThree=getAllEventsButTopThree();
-// $topThree=getTopThreeEvents();
-//
-// $event1=$topThree[0];
-// $event2=$topThree[1];
-// $event3=$topThree[2];
-
 //print number1 event
 echo "
 <br><br><br>

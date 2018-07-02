@@ -46,20 +46,24 @@ if(isset($_REQUEST['CreateEvent'])){ //
 			$_REQUEST['Description']
 		);
 
-
 		//get the event ID of the new event from the database
 		//foreach category name, insert the unique combo
 		// into the cat2events database
+
+		$allCategories=getAllCategories();
+
 		$newEvent=getAnEventByNameAndDate($_REQUEST['Name'], $_REQUEST['Date']);
 
-		foreach ($_REQUEST['Categories'] as $category) {
-			console.log("hey this is one. $category");
-			// insertCatCombo(___, $newEvent['eventID']);
+		foreach($allCategories as $category){
+			if (isset($_REQUEST[$category['name']] ))  {
+				// echo $category['name'];
+				// echo $category['catID'];
+				insertCatCombo($newEvent['eventID'], $category['catID']);
+			}
 		}
 
-		echo "ya did it!";
-		// header("Location: eventCreated.php");
-		// exit();
+		header("Location: eventCreated.php");
+		exit();
 	}
 }
 
@@ -105,14 +109,17 @@ echo "
 
 		foreach ($allCategories as $category) {
 			echo "
-			<input type='checkbox' name='Categories' value='category'>$category[name]";
+			<input type='checkbox' name=$category[name] value='category'>$category[name]";
 		}
 
 	echo"
 	</div>
-	<br><br>
+	<br>
+	<div style='color:blue'>
+		*<a href='createCategory.php'>Create your own category!</a>
+	</div>
+	<br><br><br>
 	<input type='submit' name='CreateEvent' value='Create Event' />
-
 
 	</form>
 </div>

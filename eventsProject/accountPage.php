@@ -28,7 +28,7 @@ echo "
 			<img src='/pics/smiley.jpg' alt='Smiley face' width='200' height='200'>
 		</div>
 		<div class='bioWords'>
-			<p style='font-size:25px'>$user[username]</p>
+			<p style='font-size:25px'>$user[displayName] [friend button]</p>
 			<p>$user[class]</p>
 			<p>$user[bio]</p>
 		</div>
@@ -47,7 +47,7 @@ echo "
 			foreach ($eventsGoingTo as $event) {
 				// var_dump($event);
 				echo "
-				<div class='row accountColumn'>";
+				<div class='row accountColumn' style='border:solid; margin:10px;'>";
 
 				echoEvent($event);
 				echo "
@@ -75,13 +75,14 @@ echo "
 				foreach ($eventsCreated as $event) {
 					// var_dump($event);
 					echo "
-					<div class='row accountColumn'>";
+					<div class='row accountColumn' style='border:solid; margin:10px;'>";
 
 					echoEvent($event);
 					echo "
 
 
 					</div>
+
 					";
 				}
 			}

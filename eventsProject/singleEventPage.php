@@ -25,9 +25,16 @@ echoHeader($event['name'], null);
 
 
 echo "
-	<div class='whiteBox'>
+	<div class='whiteBox'>";
 
-
+	if ($creator['userID'] == $_SESSION['userID']){
+		echo "<br>
+		<div style='font-size:20px; background-color:#42e2f4; text-align:center; margin-left:100px; margin-right:100px;'>
+			<a href='editEvent.php'>EDIT YOUR EVENT</a>
+		</div>
+		<br>";
+	}
+echo "
 	<div class='container'>
 		<img class='centerImage' src='$event[pic]' alt='$event[name]' height=500>
 
@@ -109,6 +116,9 @@ echo "
 		<br>
 
 		<p> Event Created By: $creator[username]</p>
-		<p> Contact: $creator[email]</p>
+		<p> Contact: $creator[email]</p>";
+
+
+		echo"
 	</div>
 ";

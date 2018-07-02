@@ -22,6 +22,17 @@ function getOneEvent($eventID){
 }
 
 
+function getCatByName($name){
+	$result = dbQuery("
+		SELECT *
+		FROM categories
+		WHERE name = :name
+	", array(
+		'name'=>$name
+		))->fetch();
+	return $result;
+}
+
 function getAnEventByNameAndDate($name, $date){
 	$result = dbQuery("
 		SELECT *
@@ -245,7 +256,6 @@ function insertEvent($name, $location, $date, $startTime, $endTime, $comeBc, $de
 
 
 function getAllCategories(){
-
 	$result = dbQuery("
 		SELECT *
 		FROM categories
@@ -256,9 +266,25 @@ function getAllCategories(){
 
 
 
-function insertCatCombo(){
+function insertCatCombo($eventID, $catID){
+	$result = dbQuery("
+		INSERT INTO cat2events(eventID, catID)
+		VALUES(:eventID, :catID)
+	", array(
+		'eventID'=>$eventID,
+		'catID'=>$catID
+	))->fetchAll(); //All
+}
 
 
 
 
+function insertCategory($name, $color){
+	$result = dbQuery("
+		INSERT INTO categories(name, color)
+		VALUES(:name, :color)
+	", array(
+		'name'=>$name,
+		'color'=>$color
+	))->fetchAll(); //All
 }

@@ -77,8 +77,8 @@ a:hover{
 	text-align: center;
     width: 50%;
     padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
 }
+
 .left {
 	float: left;
 	padding: 10px;
@@ -294,7 +294,7 @@ a:hover{
 }
 
 .accountColumn{
-	float: inherit;
+	/* float: inherit; */
 	text-align: center;
 	margin-left: 50px;
 	/* margin-right: 40px; */
