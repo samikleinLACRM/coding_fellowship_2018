@@ -31,9 +31,8 @@ for ($i = 3; $i <count($allEvents); $i++){ //get top 3 events
 echo "
 <br><br><br>
 	<div class='topEvent'>";
-		echoEvent($event1);
-	echo"
-	</div>
+			echoEvent($event1);
+		echo "</div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
 
 //print number2 & 3 event

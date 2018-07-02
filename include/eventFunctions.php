@@ -134,19 +134,13 @@ function echoDownVoteButton($eventID){ //sohuld there be a ; after the function?
 <script type='text/javascript'>
 function upVotePlsWork(eventID){
 
-	// var varEventIDblah = eventID;
-	// console.log("hey");
-	// console.log(eventID);
-
 	//update the freaking number
-	var s = $('votes').html();
-	var number = parseInt($('votes').html());
-
-	// var valuefhjsbdkjfhbsf = document.getElementById("votes");
-	console.log("s");
-	// var whatever = 12;
-	document.getElementById("votes").innerHTML = number+1; //somehow need to convert stuff inside votes id into an int
-	console.log(number);
+	var blah = $('#eventWrapper_'+eventID).html();
+	var number = parseInt(blah);
+	console.log("OLD number of votes: " + number);
+	number++;
+	console.log("NEW number of votes: " + number);
+	document.getElementById('eventWrapper_'+eventID).innerHTML = number;
 
 	//then send ajax
 	$.post('/ajax/upVoteAjax.php', {eventID});
@@ -155,18 +149,18 @@ function upVotePlsWork(eventID){
 </script>
 
 <script type='text/javascript'>
-function hi(eventID){
+function downVotePlsWork(eventID){
 
-	var varEventIDblah = eventID;
-	console.log("hi");
-	console.log(eventID);
+	//update the freaking number
+	var blah = $('#eventWrapper_'+eventID).html();
+	var number = parseInt(blah);
+	console.log("OLD number of votes: " + number);
+	number--;
+	console.log("NEW number of votes: " + number);
+	document.getElementById('eventWrapper_'+eventID).innerHTML = number;
 
-	$.post('/ajax/downVoteAjax.php', {eventID:varEventIDblah}, function(data) {
-		console.log(data);
-		document.getElementById("down").innerHTML = data;
-	// }).fail(function(data) {
-	// 	console.log('Error: ' + data);
-	});
+	//then send ajax
+	$.post('/ajax/downVoteAjax.php', {eventID});
 }
 </script>
 
@@ -176,16 +170,17 @@ function hi(eventID){
 
 function echoEvent($event){
 	$eventID=$event['eventID'];
-
 	echo"
 		<div class='voteColumn'>
 			<br>";
 			echoUpVoteButton($eventID);
-			echo "<div id='votes'>
-				<br>
+
+			echo "
+			<br><br>
+			<div id='eventWrapper_$eventID'>
 				$event[votes]
-				<br><br>
 			</div>
+			<br>
 			";
 			echoDownVoteButton($eventID);
 			echo "

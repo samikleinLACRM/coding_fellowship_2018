@@ -37,7 +37,7 @@ echo "
 					<br>";
 					echoUpVoteButton($eventID);
 					echo "<br><br>
-					<div id='votes'>
+					<div id='eventWrapper_$eventID'>
 						$event[votes]
 					</div>
 					<br>";
