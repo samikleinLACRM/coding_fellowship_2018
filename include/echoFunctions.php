@@ -13,47 +13,7 @@ function echoHeader($Title, $PageName) {
 			<title>$Title</title>
 			<link rel='stylesheet' href='style.css'/>
 			<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Quicksand'>
-			<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>";
-?>
-			<script type='text/javascript'>
-			function upVotePlsWork(eventID){
-
-				//update the freaking number
-				var blah = $('#eventWrapper_'+eventID).html();
-				var number = parseInt(blah);
-				console.log("OLD number of votes: " + number);
-				number++;
-				console.log("NEW number of votes: " + number);
-				document.getElementById('eventWrapper_'+eventID).innerHTML = number;
-
-				//then send ajax
-				$.post('/ajax/upVoteAjax.php', {eventID});
-
-			}
-
-			function downVotePlsWork(eventID){
-
-				//update the freaking number
-				var blah = $('#eventWrapper_'+eventID).html();  //same thing as 42
-				var number = parseInt(blah);
-				console.log("OLD number of votes: " + number);
-				number--;
-				console.log("NEW number of votes: " + number);
-				document.getElementById('eventWrapper_'+eventID).innerHTML = number;
-
-				//then send ajax
-				$.post('/ajax/downVoteAjax.php', {eventID});
-			}
-			</script>
-
-
-<?php
-			echo "
-
-
-
-
-
+			<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
 		</head>
 
 		<body class='background'>
