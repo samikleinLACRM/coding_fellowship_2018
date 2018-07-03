@@ -1,7 +1,7 @@
 <?php
 include('config/init.php');
 
-echoHeader("Create Account", null);
+echoHeader("Profile Page", null);
 
 if(!isset($_SESSION['userID'])){
 	echo "<div class='textStyle form'>

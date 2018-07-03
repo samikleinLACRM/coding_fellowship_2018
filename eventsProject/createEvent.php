@@ -43,7 +43,8 @@ if(isset($_REQUEST['CreateEvent'])){ //
 			$_REQUEST['StartTime'],
 			$_REQUEST['EndTime'],
 			$_REQUEST['ComeBC'],
-			$_REQUEST['Description']
+			$_REQUEST['Description'],
+			$_REQUEST['pic']
 		);
 
 		//get the event ID of the new event from the database
@@ -99,9 +100,14 @@ echo "
 	Come BC: <input type='text' name='ComeBC' value='".@$_REQUEST['ComeBC']."'/><br />
 	<br>
 	<br>
+
 	Event Description:
 	<br>
+
 	<textarea cols='40' rows='8' name='Description'>".@$_REQUEST['Description']."</textarea>
+	<br><br>
+
+	Picture (type in a URL link to a .jpg file):<input type='text' name='pic' value='".@$_REQUEST['pic']."'>
 	<br><br>
 	Categories:<br><br>
 

@@ -4,7 +4,7 @@
 include('config/init.php');
 
 if(!@$_REQUEST['eventID']){
-	wrongPage();
+	wrongPage("No event selected.");
 }
 
 $eventID=($_REQUEST['eventID']);
@@ -12,7 +12,7 @@ $event=getOneEvent($eventID);
 $categories=getCatsForThisEvent($eventID);
 $usersGoing=getUsersGoingToThisEvent($eventID);
 
-$creator=getWhoCreatedEvent($_REQUEST['eventID']);
+$creator=getEventCreator($_REQUEST['eventID']);
 
 echoHeader($event['name'], null);
 
@@ -29,8 +29,8 @@ echo "
 
 	if ($creator['userID'] == $_SESSION['userID']){
 		echo "<br>
-		<div style='font-size:20px; background-color:#42e2f4; text-align:center; margin-left:100px; margin-right:100px;'>
-			<a href='editEvent.php'>EDIT YOUR EVENT</a>
+		<div style='font-size:20px; background-color:#19e8e4; text-align:center; margin-left:200px; margin-right:200px; border-radius:15px;'>
+			<a href='editEvent.php?eventID=$_REQUEST[eventID]'>EDIT YOUR EVENT</a>
 		</div>
 		<br>";
 	}
@@ -52,7 +52,7 @@ echo "
 					echo "
 				</div>
 				<div class='bodyColumn'>
-					<div style='margin-top: 15%'>
+					<div style='margin-top: 15%; padding:5px;'>
 						$event[name]
 					</div>
 				</div>
@@ -98,14 +98,25 @@ echo "
 					<br>";
 				}
 
+			$numPeopleGoing = count($usersGoing);
+			if ($numPeopleGoing == 1){
+				$ppl = "person";
+			}
+			else{
+				$ppl = "people";
+			}
+
 			echo"
 			</div>
 			<div class='column'>
-				<p class='heading'>People Going:</p>";
+				<p class='heading'>Going ($numPeopleGoing $ppl): </p>";
 
 				foreach ($usersGoing as $oneUserGoing) {
-					echo $oneUserGoing['username'];
-					echo "<br>";
+					echo "
+					<div class='singleFriend'>
+						$oneUserGoing[username]
+					</div>
+					<br>";
 				}
 
 				echo"

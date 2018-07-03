@@ -8,61 +8,51 @@ function echoHeader($Title, $PageName) {
 	<!-- <script type='text/javascript'> -->
 	<?php
 
-	//Wait for the page to load first
-		// window.onload = function() {
-		//
-		// 	//Get a reference to the link on the page
-		// 	// with an id of "mylink"
-		//
-		// 	var upVoting = document.getElementById("upVoting");
-		//
-        //      //Set code to run when the link is clicked
-        //      // by assigning a function to "onclick"
-        //      upVoting.onclick = function() {
-		//
-        //        // Your code here...
-		// 	   upVoteNumber($myEventVotes, $eventID);
-		//
-        //        //If you don't want the link to actually
-        //        // redirect the browser to another page,
-        //        // "google.com" in our example here, then
-        //        // return false at the end of this block.
-        //        // Note that this also prevents event bubbling,
-        //        // which is probably what we want here, but won't
-        //        // always be the case.
-        //        return false;
-        //      }
-		//
-		// 	 var downVoting = document.getElementById("downVoting");
-		//
-        //       //Set code to run when the link is clicked
-        //       // by assigning a function to "onclick"
-        //       upVoting.onclick = function() {
-		//
-        //         // Your code here...
- 		// 	   doVoteNumber($myEventVotes, $eventID);
-		//
-        //         //If you don't want the link to actually
-        //         // redirect the browser to another page,
-        //         // "google.com" in our example here, then
-        //         // return false at the end of this block.
-        //         // Note that this also prevents event bubbling,
-        //         // which is probably what we want here, but won't
-        //         // always be the case.
-        //         return false;
-        //       }
-		//
-		//
-		//
-        //    }
-
-
 	echo "
 		<head>
 			<title>$Title</title>
 			<link rel='stylesheet' href='style.css'/>
 			<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Quicksand'>
-			<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
+			<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>";
+?>
+			<script type='text/javascript'>
+			function upVotePlsWork(eventID){
+
+				//update the freaking number
+				var blah = $('#eventWrapper_'+eventID).html();
+				var number = parseInt(blah);
+				console.log("OLD number of votes: " + number);
+				number++;
+				console.log("NEW number of votes: " + number);
+				document.getElementById('eventWrapper_'+eventID).innerHTML = number;
+
+				//then send ajax
+				$.post('/ajax/upVoteAjax.php', {eventID});
+
+			}
+
+			function downVotePlsWork(eventID){
+
+				//update the freaking number
+				var blah = $('#eventWrapper_'+eventID).html();  //same thing as 42
+				var number = parseInt(blah);
+				console.log("OLD number of votes: " + number);
+				number--;
+				console.log("NEW number of votes: " + number);
+				document.getElementById('eventWrapper_'+eventID).innerHTML = number;
+
+				//then send ajax
+				$.post('/ajax/downVoteAjax.php', {eventID});
+			}
+			</script>
+
+
+<?php
+			echo "
+
+
+
+
 
 		</head>
 
@@ -82,9 +72,9 @@ function echoHeader($Title, $PageName) {
 
 
 
-function wrongPage(){
+function wrongPage($message){
 	echoHeader("Wrong Page!", "Wrong Page!");
-	echo "<p class='textStyle' style='text-align:center'>Oops! 404 Error. You've reached the wrong page. Go back. or use a nav bar once I build it<p>";
+	echo "<p class='textStyle' style='text-align:center'>Oops! 404 Error. You've reached the wrong page. $message <p>";
 	// echoFooter();
 	die("");
 }

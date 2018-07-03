@@ -71,7 +71,7 @@ function getUsersGoingToThisEvent($eventID){
 }
 
 
-function getWhoCreatedEvent($eventID){
+function getEventCreator($eventID){
 	$result = dbQuery("
 		SELECT *
 		FROM usersCreated2events
@@ -128,7 +128,7 @@ function echoColumnTwoEvent($eventID){
 
 function echoUpVoteButton($eventID){
 	echo"
-	<a href='#' onclick='upVotePlsWork($eventID);'>
+	<a href='javascript://' onclick='upVotePlsWork($eventID);'>
 		<img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px>
 	</a>";
 
@@ -136,46 +136,10 @@ function echoUpVoteButton($eventID){
 
 function echoDownVoteButton($eventID){ //sohuld there be a ; after the function?
 	echo"
-	<a href='#' onclick='downVotePlsWork($eventID);'>
+	<a href='javascript://' onclick='downVotePlsWork($eventID);'>
 		<img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px>
 	</a>";
 }
-
-?>
-<script type='text/javascript'>
-function upVotePlsWork(eventID){
-
-	//update the freaking number
-	var blah = $('#eventWrapper_'+eventID).html();
-	var number = parseInt(blah);
-	console.log("OLD number of votes: " + number);
-	number++;
-	console.log("NEW number of votes: " + number);
-	document.getElementById('eventWrapper_'+eventID).innerHTML = number;
-
-	//then send ajax
-	$.post('/ajax/upVoteAjax.php', {eventID});
-
-}
-</script>
-
-<script type='text/javascript'>
-function downVotePlsWork(eventID){
-
-	//update the freaking number
-	var blah = $('#eventWrapper_'+eventID).html();
-	var number = parseInt(blah);
-	console.log("OLD number of votes: " + number);
-	number--;
-	console.log("NEW number of votes: " + number);
-	document.getElementById('eventWrapper_'+eventID).innerHTML = number;
-
-	//then send ajax
-	$.post('/ajax/downVoteAjax.php', {eventID});
-}
-</script>
-
-<?php
 
 
 
@@ -239,10 +203,10 @@ function downVoteInDB($eventID){
 
 
 
-function insertEvent($name, $location, $date, $startTime, $endTime, $comeBc, $description){
+function insertEvent($name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic){
 	$result = dbQuery("
-		INSERT INTO events(name, votes, location, dateOfEvent, startTime, endTime, comeBc, description)
-		VALUES(:name, '0', :location, :dateOfEvent, :startTime, :endTime, :comeBc, :description)
+		INSERT INTO events(name, votes, location, dateOfEvent, startTime, endTime, comeBc, description, pic)
+		VALUES(:name, '0', :location, :dateOfEvent, :startTime, :endTime, :comeBc, :description, :pic)
 	", array(
 		'name'=>$name,
 		'location'=>$location,
@@ -250,7 +214,26 @@ function insertEvent($name, $location, $date, $startTime, $endTime, $comeBc, $de
 		'startTime'=>$startTime,
 		'endTime'=>$endTime,
 		'comeBc'=>$comeBc,
-		'description'=>$description
+		'description'=>$description,
+		'pic'=>$pic
+	))->fetchAll(); //All
+}
+
+function insertChangedEvent($eventID, $votes, $name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic){
+	$result = dbQuery("
+		INSERT INTO events(eventID, votes, name, location, dateOfEvent, startTime, endTime, comeBc, description, pic)
+		VALUES(:eventID, :votes, :name, :location, :dateOfEvent, :startTime, :endTime, :comeBc, :description, :pic)
+	", array(
+		'eventID'=>$eventID,
+		'votes'=>$votes,
+		'name'=>$name,
+		'location'=>$location,
+		'dateOfEvent'=>$date,
+		'startTime'=>$startTime,
+		'endTime'=>$endTime,
+		'comeBc'=>$comeBc,
+		'description'=>$description,
+		'pic'=>$pic
 	))->fetchAll(); //All
 }
 
@@ -287,4 +270,20 @@ function insertCategory($name, $color){
 		'name'=>$name,
 		'color'=>$color
 	))->fetchAll(); //All
+}
+
+//deletes event by eventID
+function deleteEvent($newEventID) {
+	$result = dbQuery("
+		DELETE FROM events
+		WHERE eventID = :eventID
+		", array(
+			'eventID'=>$newEventID
+	))->fetch();
+}
+
+
+function submitChangedEvent($eventID, $votes, $name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic){
+	deleteEvent($eventID);
+	insertChangedEvent($eventID, $votes, $name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic);
 }
