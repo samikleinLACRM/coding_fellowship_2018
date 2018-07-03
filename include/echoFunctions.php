@@ -16,6 +16,48 @@ function echoHeader($Title, $PageName) {
 			<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
 		</head>
 
+";
+?>
+
+<script type='text/javascript'>
+
+function jsUpVote(eventID){
+
+	//gets the number
+	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
+	var pureNumber = parseInt(insideTheDiv);
+	console.log("before you voted = " +pureNumber);
+
+	//changes the number in the UI
+	document.getElementById("eventWrapper_"+eventID).innerHTML = pureNumber+1;
+	console.log("after you voted = " +(pureNumber+1));
+
+	//call ajax
+	$.ajax({ url:'/ajax/ajaxUp.php', data:{eventID}});
+}
+
+
+function jsDownVote(eventID){
+
+	//gets the number
+	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
+	var pureNumber = parseInt(insideTheDiv);
+	console.log("before you voted = " +pureNumber);
+
+	//changes the number in the UI
+	document.getElementById("eventWrapper_"+eventID).innerHTML = pureNumber-1;
+	console.log("after you voted = " +(pureNumber-1));
+
+	//call ajax
+	$.ajax({ url:'/ajax/ajaxDown.php', data:{eventID}});
+
+}
+</script>
+
+<?php
+
+echo"
+
 		<body class='background'>
 
 			";

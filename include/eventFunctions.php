@@ -128,7 +128,7 @@ function echoColumnTwoEvent($eventID){
 
 function echoUpVoteButton($eventID){
 	echo"
-	<a href='/'>
+	<a href='javascript://' onclick='jsUpVote($eventID);'>
 		<img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px>
 	</a>";
 
@@ -136,7 +136,7 @@ function echoUpVoteButton($eventID){
 
 function echoDownVoteButton($eventID){ //sohuld there be a ; after the function?
 	echo"
-	<a href='/'>
+	<a href='javascript://' onclick='jsDownVote($eventID);'>
 		<img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px>
 	</a>";
 }
