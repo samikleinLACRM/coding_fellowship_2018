@@ -31,11 +31,11 @@ function intakeVote(eventID, userID, direction){
 		if(direction == "up"){
 			jsUpVote(eventID, userID, direction);
 			//this makes the button gray
-			document.getElementById("upVoteButton").classList.add('voted');
+			// document.getElementById("upVoteButton").classList.add('voted');
 		}
 		else{ //direction is down
 			jsDownVote(eventID, userID, direction);
-			document.getElementById("downVoteButton").classList.add('voted');
+			// document.getElementById("downVoteButton").classList.add('voted');
 		}
 	}
 
@@ -45,28 +45,27 @@ function intakeVote(eventID, userID, direction){
 	//the downvote has been pressed but not the upvote
 	else if(!document.getElementById("upVoteButton").classList.contains('voted') && document.getElementById("downVoteButton").classList.contains('voted')){
 		if(direction == "up"){
+			undoDownVote(eventID, userID, direction);
 			jsUpVote(eventID, userID, direction);
-			document.getElementById("upVoteButton").classList.add('voted');
-			document.getElementById("downVoteButton").classList.remove('voted');
 		}
 		else{ //direction is down
-			jsUpVote(eventID, userID, direction);
-			document.getElementById("downVoteButton").classList.remove('voted');
+			undoDownVote(eventID, userID, direction);
 		}
 	}
 
 	//the upvote has been pressed but not the downvote
 	else{
 		if(direction == "up"){
-			jsDownVote(eventID, userID, direction);
-			document.getElementById("upVoteButton").classList.remove('voted');
+			undoUpVote(eventID, userID, direction);
+			// document.getElementById("upVoteButton").classList.remove('voted');
 
 		}
 		else{ //direction is down
+			undoUpVote(eventID, userID, direction);
 			jsDownVote(eventID, userID, direction);
 			//this makes the button gray
-			document.getElementById("upVoteButton").classList.remove('voted');
-			document.getElementById("downVoteButton").classList.add('voted');
+			// document.getElementById("upVoteButton").classList.remove('voted');
+			// document.getElementById("downVoteButton").classList.add('voted');
 		}
 
 	}
@@ -77,6 +76,8 @@ function intakeVote(eventID, userID, direction){
 function jsUpVote(eventID, userID, direction){
 	//update UI so gets unvoted,
 	//ajax request to unvote this in the server.
+
+	document.getElementById("upVoteButton").classList.add('voted');
 
 	//gets the number
 	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
@@ -95,6 +96,8 @@ function jsUpVote(eventID, userID, direction){
 
 function jsDownVote(eventID, userID, direction){
 
+	document.getElementById("downVoteButton").classList.add('voted');
+
 	//gets the number
 	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
 	var pureNumber = parseInt(insideTheDiv);
@@ -110,6 +113,46 @@ function jsDownVote(eventID, userID, direction){
 	$.post({ url:'/ajax/ajaxVote.php', data:{eventID, userID, direction}});
 
 }
+
+function undoUpVote(eventID, userID, direction){
+
+	document.getElementById("upVoteButton").classList.remove('voted');
+
+
+	// i thikn literally this just means downvote - like thats how u get rid of the upvote
+
+	//gets the number
+	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
+	var pureNumber = parseInt(insideTheDiv);
+	console.log("before you voted = " +pureNumber);
+
+	//changes the number in the UI
+	document.getElementById("eventWrapper_"+eventID).innerHTML = pureNumber-1;
+	console.log("after you voted = " +(pureNumber-1));
+
+
+}
+
+function undoDownVote(eventID, userID, direction){
+
+	document.getElementById("downVoteButton").classList.remove('voted');
+
+
+	// i think this literally just means upvote. thats how u get rid of a downvote, right?!
+
+	//gets the number
+	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
+	var pureNumber = parseInt(insideTheDiv);
+	console.log("before you voted = " +pureNumber);
+
+	//changes the number in the UI
+	document.getElementById("eventWrapper_"+eventID).innerHTML = pureNumber+1;
+	console.log("after you voted = " +(pureNumber+1));
+
+
+}
+
+
 </script>
 
 <?php
