@@ -126,18 +126,21 @@ function echoColumnTwoEvent($eventID){
 	</div>";
 }
 
-function echoUpVoteButton($eventID){
+// $direction = "up";
+function echoUpVoteButton($eventID, $upVoted){
+	$direction = 'up'; //nic fixed this. very weird string stuff, but it works now!
 	echo"
-	<a href='javascript://' onclick='jsUpVote($eventID);'>
-		<img class='iconAligned' style='background-color:white' src='/pics/arrow2.jpg' alt='arrow' height=40px>
+	<a href='javascript://' onclick=\"intakeVote($eventID, $_SESSION[userID], '$direction');\">
+		<img id='upVoteButton' class='iconAligned $upVoted' src='/pics/arrow2.jpg' alt='arrow' height=40px>
 	</a>";
 
 }
 
-function echoDownVoteButton($eventID){ //sohuld there be a ; after the function?
+function echoDownVoteButton($eventID, $downVoted){ //sohuld there be a ; after the function?
+	$direction = 'down';
 	echo"
-	<a href='javascript://' onclick='jsDownVote($eventID);'>
-		<img class='iconAligned' style='background-color:white' src='/pics/line2.jpg' alt='line' height=40px>
+	<a href='javascript://' onclick=\"intakeVote($eventID, $_SESSION[userID], '$direction');\">
+		<img id='downVoteButton' class='iconAligned $downVoted' src='/pics/line2.jpg' alt='line' height=40px>
 	</a>";
 }
 
@@ -145,10 +148,28 @@ function echoDownVoteButton($eventID){ //sohuld there be a ; after the function?
 
 function echoEvent($event){
 	$eventID=$event['eventID'];
+
+	$exists = doesUserVoteExist($eventID, $_SESSION['userID']);
+	// echoNicely($exists['0']['userID']);
+	// echoNicely($exists['0']['direction']);
+	// echoNicely($exists['0']['eventID']);
+	// echoNicely($exists['0']['direction'] == "up");
+	// die();
+	$upVoted = null;
+	$downVoted= null;
+	if ($exists !=null){
+		if ($exists['0']['direction'] == "up"){
+			$upVoted="voted";
+		}
+		else{ //which means that direction must be down
+			$downVoted="voted";
+		}
+	}
+
 	echo"
 		<div class='voteColumn'>
 			<br>";
-			echoUpVoteButton($eventID);
+			echoUpVoteButton($eventID, $upVoted);
 
 			echo "
 			<br><br>
@@ -157,7 +178,7 @@ function echoEvent($event){
 			</div>
 			<br>
 			";
-			echoDownVoteButton($eventID);
+			echoDownVoteButton($eventID, $downVoted);
 			echo "
 		</div>
 
@@ -286,4 +307,43 @@ function deleteEvent($newEventID) {
 function submitChangedEvent($eventID, $votes, $name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic){
 	deleteEvent($eventID);
 	insertChangedEvent($eventID, $votes, $name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic);
+}
+
+
+function doesUserVoteExist($eventID, $userID){
+	$result = dbQuery("
+		SELECT *
+		FROM events2usersVoted
+		WHERE eventID = :eventID
+		AND userID = :userID
+	", array(
+		'eventID'=>$eventID,
+		'userID'=>$userID
+	))->fetchAll();
+	return $result;
+}
+
+
+function insertUserVote($eventID, $userID, $direction){
+	$result = dbQuery("
+		INSERT INTO events2usersVoted(eventID, userID, direction)
+		VALUES(:eventID, :userID, :direction)
+	", array(
+		'eventID'=>$eventID,
+		'userID'=>$userID,
+		'direction'=>$direction
+	))->fetchAll(); //All
+}
+
+function deleteUserVote($eventID, $userID, $direction){
+	$result = dbQuery("
+		DELETE FROM events2usersVoted
+		WHERE eventID = :eventID
+		AND userID = :userID
+		AND direction = :direction
+		", array(
+			'eventID'=>$eventID,
+			'userID'=>$userID,
+			'direction'=>$direction
+	))->fetchAll();
 }

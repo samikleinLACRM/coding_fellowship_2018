@@ -40,13 +40,26 @@ echo "
 			<div class='titleWithVotes'>
 				<div class='voteColumn' style='font-size:20px'>
 					<br>";
-					echoUpVoteButton($eventID);
+
+					$exists = doesUserVoteExist($eventID, $_SESSION['userID']);
+					$upVoted = null;
+					$downVoted= null;
+					if ($exists !=null){
+						if ($exists['0']['direction'] == "up"){
+							$upVoted="voted";
+						}
+						else{ //which means that direction must be down
+							$downVoted="voted";
+						}
+					}
+
+					echoUpVoteButton($eventID, $upVoted);
 					echo "<br><br>
 					<div id='eventWrapper_$eventID'>
 						$event[votes]
 					</div>
 					<br>";
-					echoDownVoteButton($eventID);
+					echoDownVoteButton($eventID, $downVoted);
 					echo "
 				</div>
 				<div class='bodyColumn'>

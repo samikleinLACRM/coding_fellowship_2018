@@ -106,6 +106,7 @@ a:hover{
 .iconAligned{
 	width: 40px;
 	vertical-align: sub;
+	background-color:white
 }
 
 
@@ -335,4 +336,8 @@ a:hover{
 	border: 1px solid #19e8e4; /*#521f66*/
 	border-radius: 25px;
 
+}
+
+.voted{
+	background-color: gray;
 }

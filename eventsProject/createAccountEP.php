@@ -42,7 +42,7 @@ echo "
 	<p style='font-size:18px'>Create Account:</p>
 	<form action='' method='post'>
 	Email: <input type='email' name='Email' value='".@$_REQUEST['Email']."' placeholder='email'><br><br>
-	Username: <input type='text' name='Username' value='".@$_REQUEST['Username']."' placeholder='username'><br><br>
+	Username: <input type='varchar' name='Username' value='".@$_REQUEST['Username']."' placeholder='username'><br><br>
 	Display Name: <input type='text' name='DisplayName' value='".@$_REQUEST['DisplayName']."' placeholder='display name'><br><br>
 	Password: <input type='password' name='Password' value='".@$_REQUEST['Password']."' placeholder='password' id='myInput'><br>
 	<input type='checkbox' onclick='togglePasswordVisibility()'>Show Password<br>

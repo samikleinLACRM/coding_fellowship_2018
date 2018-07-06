@@ -35,7 +35,7 @@ if(isset($_REQUEST['editEventForm'])){ //
 }
 //prob need to change the date later
 echo "
-<div class='textStyle form' style='padding:30px; background-color:#ffd5b5'>
+<div class='textStyle form' style='padding:30px; background-color:#a8edeb'>
 	<form action='' method='post'>
 
 

@@ -21,7 +21,62 @@ function echoHeader($Title, $PageName) {
 
 <script type='text/javascript'>
 
-function jsUpVote(eventID){
+
+function intakeVote(eventID, userID, direction){
+
+	console.log(eventID, userID, direction);
+
+	//both buttons haven't been pressed
+	if(!document.getElementById("upVoteButton").classList.contains('voted') && !document.getElementById("downVoteButton").classList.contains('voted')){
+		if(direction == "up"){
+			jsUpVote(eventID, userID, direction);
+			//this makes the button gray
+			document.getElementById("upVoteButton").classList.add('voted');
+		}
+		else{ //direction is down
+			jsDownVote(eventID, userID, direction);
+			document.getElementById("downVoteButton").classList.add('voted');
+		}
+	}
+
+	//if vote exists
+
+
+	//the downvote has been pressed but not the upvote
+	else if(!document.getElementById("upVoteButton").classList.contains('voted') && document.getElementById("downVoteButton").classList.contains('voted')){
+		if(direction == "up"){
+			jsUpVote(eventID, userID, direction);
+			document.getElementById("upVoteButton").classList.add('voted');
+			document.getElementById("downVoteButton").classList.remove('voted');
+		}
+		else{ //direction is down
+			jsUpVote(eventID, userID, direction);
+			document.getElementById("downVoteButton").classList.remove('voted');
+		}
+	}
+
+	//the upvote has been pressed but not the downvote
+	else{
+		if(direction == "up"){
+			jsDownVote(eventID, userID, direction);
+			document.getElementById("upVoteButton").classList.remove('voted');
+
+		}
+		else{ //direction is down
+			jsDownVote(eventID, userID, direction);
+			//this makes the button gray
+			document.getElementById("upVoteButton").classList.remove('voted');
+			document.getElementById("downVoteButton").classList.add('voted');
+		}
+
+	}
+}
+
+
+
+function jsUpVote(eventID, userID, direction){
+	//update UI so gets unvoted,
+	//ajax request to unvote this in the server.
 
 	//gets the number
 	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
@@ -33,11 +88,12 @@ function jsUpVote(eventID){
 	console.log("after you voted = " +(pureNumber+1));
 
 	//call ajax
-	$.ajax({ url:'/ajax/ajaxUp.php', data:{eventID}});
+	$.post({ url:'/ajax/ajaxVote.php', data:{eventID, userID, direction}});
+
 }
 
 
-function jsDownVote(eventID){
+function jsDownVote(eventID, userID, direction){
 
 	//gets the number
 	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
@@ -48,8 +104,10 @@ function jsDownVote(eventID){
 	document.getElementById("eventWrapper_"+eventID).innerHTML = pureNumber-1;
 	console.log("after you voted = " +(pureNumber-1));
 
+	// console.log($_SESSION[]);
+
 	//call ajax
-	$.ajax({ url:'/ajax/ajaxDown.php', data:{eventID}});
+	$.post({ url:'/ajax/ajaxVote.php', data:{eventID, userID, direction}});
 
 }
 </script>
@@ -96,7 +154,7 @@ function echoNavBar(){
 	<div class='textStyle form'>
 		<a href='trendingEvents.php'>Trending Events</a> ||
 		<a href='logInMenuEP.php'>Log In Menu</a> ||
-		<a href='accountPage.php'>Profile</a> ||
+		<a href='accountPage.php?userID=".@$_SESSION['userID']."'>Profile</a> ||
 		<a href='createEvent.php'>Create Event</a>
 	</div>
 	";

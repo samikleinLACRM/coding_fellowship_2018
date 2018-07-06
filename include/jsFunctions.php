@@ -1,4 +1,4 @@
-
+<!--
 <script type='text/javascript'>
 
 function upVoteNumber(eventID){
@@ -40,4 +40,4 @@ function downVoteNumber($eventID){
 
 }
 
-</script>
+</script> -->

@@ -63,7 +63,6 @@ function getUserByUserID($userID){
 	return $result;
 }
 
-
 function getUserByUserEmail($userEmail){
 	$result = dbQuery("
 		SELECT *
@@ -142,5 +141,30 @@ function getAllThisUsersFriends($userID){
 	))->fetchAll();
 	return $result;
 }
+
+
+
+//this is not working at all
+function editProfile($userID, $username, $displayName, $bio, $class){
+	$result = dbQuery("
+	UPDATE users
+	SET username = ':username',
+	displayName = ':displayName',
+	bio = ':bio',
+	class = ':class'
+	WHERE userID = $userID
+	", array(
+		'username'=>$username,
+		'displayName'=>$displayName,
+		'bio'=>$bio,
+		'class'=>$class,
+		'userID'=>$userID
+	))->fetchAll();
+	return $result;
+
+
+}
+
+
 
  ?>

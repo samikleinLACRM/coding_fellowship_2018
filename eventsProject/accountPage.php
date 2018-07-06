@@ -12,7 +12,9 @@ if(!isset($_SESSION['userID'])){
 	die();
 }
 
-$user=getUserByUserID($_SESSION['userID']);
+$user=getUserByUserID($_REQUEST['userID']);
+//NEED TO DO MORE VERIFICATION ON THIS! - actually wait, should be fine. bc should be able to see anyone's
+
 $eventsGoingTo=getAllEventsThisUserIsGoingTo($user['userID']);
 $eventsCreated=getAllEventsThisUserCreated($user['userID']);
 $friends=getAllThisUsersFriends($user['userID']);
@@ -21,8 +23,18 @@ $friends=getAllThisUsersFriends($user['userID']);
 echo "
 
 <div class='whiteBox'>
+";
 
+//this is the rlly imp part
+if ($_SESSION['userID'] == $user['userID']){
+	echo "<br>
+	<div style='font-size:20px; background-color:#19e8e4; text-align:center; margin-left:200px; margin-right:200px; border-radius:15px;'>
+		<a href='editAccount.php?userID=$_SESSION[userID]'>EDIT YOUR ACCOUNT</a>
+	</div>
+	<br>";
+}
 
+echo"
 	<div class='bioBox' style='margin:50px;'>
 		<div style='float:left'>
 			<img src='/pics/smiley.jpg' alt='Smiley face' width='200' height='200'>
