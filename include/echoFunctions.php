@@ -20,6 +20,14 @@ function echoHeader($Title, $PageName) {
 
 <script type='text/javascript'>
 
+function togglePasswordVisibility(){
+	var x = document.getElementById("myInput");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
 
 function intakeVote(eventID, userID, direction){
 
@@ -177,7 +185,7 @@ function echoDate($dateFromMySQL){
 function echoNavBar(){
 	echo "
 	<div class='textStyle form'>
-		<a href='trendingEvents.php'>Trending Events</a> ||
+		<a href='index.php'>Trending Events</a> ||
 		<a href='logInMenuEP.php'>Log In Menu</a> ||
 		<a href='accountPage.php?userID=".@$_SESSION['userID']."'>Profile</a> ||
 		<a href='createEvent.php'>Create Event</a>

@@ -117,10 +117,14 @@ echo"
 				foreach ($friends as $friend) {
 					// var_dump($event);
 					echo "
-					<div class='singleFriend'>";
 
-					echo $friend['username'];
-					echo "
+					<div class='friendBox' style='margin:50px; border-radius:10px;'>
+						<div style='float:left; overflow:auto;'>
+							<img src='/pics/smiley.jpg' alt='Smiley face' width='50' height='50'>
+						</div>
+						<div class='friendName'>
+							<a href='accountPage.php?userID=$friend[userID]'>$friend[username]</a>
+						</div>
 					</div>
 					<br>
 					";

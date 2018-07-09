@@ -45,7 +45,7 @@ echo "
 	Username: <input type='varchar' name='Username' value='".@$_REQUEST['Username']."' placeholder='username'><br><br>
 	Display Name: <input type='text' name='DisplayName' value='".@$_REQUEST['DisplayName']."' placeholder='display name'><br><br>
 	Password: <input type='password' name='Password' value='".@$_REQUEST['Password']."' placeholder='password' id='myInput'><br>
-	<input type='checkbox' onclick='togglePasswordVisibility()'>Show Password<br>
+	<input type='checkbox' onclick='togglePasswordVisibility();'>Show Password<br>
 	<br>
 	<input type='submit' name='createAccount' value='Sign Up' />
 	</form>

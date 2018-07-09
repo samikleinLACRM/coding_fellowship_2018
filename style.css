@@ -287,8 +287,21 @@ a:hover{
 	border: 5px solid #19e8e4; /*#521f66;*/
 }
 
+.friendBox{
+	padding:20px;
+ 	text-align: left;
+	/* font-size: 30px; */
+	/* overflow:auto; */
+	border: 5px solid #19e8e4; /*#521f66;*/
+	margin:auto;
+}
+
 .bioWords{
 	padding-left:225px;
+}
+
+.friendName{
+	text-align:center;
 }
 
 .bioColumn {

@@ -125,7 +125,7 @@ echo "
 				foreach ($usersGoing as $oneUserGoing) {
 					echo "
 					<div class='singleFriend'>
-						$oneUserGoing[username]
+						<a href='accountPage.php?userID=$oneUserGoing[userID]'>$oneUserGoing[username]</a>
 					</div>
 					<br>";
 				}
