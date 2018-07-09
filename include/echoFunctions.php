@@ -5,7 +5,6 @@ function echoHeader($Title, $PageName) {
 
 	?>
 	<script src="/include/jquery.js"></script>
-	<!-- <script type='text/javascript'> -->
 	<?php
 
 	echo "
@@ -26,21 +25,17 @@ function intakeVote(eventID, userID, direction){
 
 	console.log(eventID, userID, direction);
 
-	//both buttons haven't been pressed
+//both buttons haven't been pressed
 	if(!document.getElementById("upVoteButton").classList.contains('voted') && !document.getElementById("downVoteButton").classList.contains('voted')){
 		if(direction == "up"){
 			jsUpVote(eventID, userID, direction);
-			//this makes the button gray
-			// document.getElementById("upVoteButton").classList.add('voted');
 		}
 		else{ //direction is down
 			jsDownVote(eventID, userID, direction);
-			// document.getElementById("downVoteButton").classList.add('voted');
 		}
 	}
 
-	//if vote exists
-
+//if vote exists
 
 	//the downvote has been pressed but not the upvote
 	else if(!document.getElementById("upVoteButton").classList.contains('voted') && document.getElementById("downVoteButton").classList.contains('voted')){
@@ -57,15 +52,10 @@ function intakeVote(eventID, userID, direction){
 	else{
 		if(direction == "up"){
 			undoUpVote(eventID, userID, direction);
-			// document.getElementById("upVoteButton").classList.remove('voted');
-
 		}
 		else{ //direction is down
 			undoUpVote(eventID, userID, direction);
 			jsDownVote(eventID, userID, direction);
-			//this makes the button gray
-			// document.getElementById("upVoteButton").classList.remove('voted');
-			// document.getElementById("downVoteButton").classList.add('voted');
 		}
 
 	}
@@ -87,6 +77,7 @@ function jsUpVote(eventID, userID, direction){
 	//changes the number in the UI
 	document.getElementById("eventWrapper_"+eventID).innerHTML = pureNumber+1;
 	console.log("after you voted = " +(pureNumber+1));
+	// console.log(eventID, userID, direction);
 
 	//call ajax
 	$.post({ url:'/ajax/ajaxVote.php', data:{eventID, userID, direction}});
@@ -107,8 +98,6 @@ function jsDownVote(eventID, userID, direction){
 	document.getElementById("eventWrapper_"+eventID).innerHTML = pureNumber-1;
 	console.log("after you voted = " +(pureNumber-1));
 
-	// console.log($_SESSION[]);
-
 	//call ajax
 	$.post({ url:'/ajax/ajaxVote.php', data:{eventID, userID, direction}});
 
@@ -119,7 +108,7 @@ function undoUpVote(eventID, userID, direction){
 	document.getElementById("upVoteButton").classList.remove('voted');
 
 
-	// i thikn literally this just means downvote - like thats how u get rid of the upvote
+	// i think this just means downvote - like thats how u get rid of the upvote
 
 	//gets the number
 	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
@@ -130,7 +119,7 @@ function undoUpVote(eventID, userID, direction){
 	document.getElementById("eventWrapper_"+eventID).innerHTML = pureNumber-1;
 	console.log("after you voted = " +(pureNumber-1));
 
-
+	$.post({ url:'/ajax/ajaxVote.php', data:{eventID, userID, direction}});
 }
 
 function undoDownVote(eventID, userID, direction){
@@ -149,7 +138,7 @@ function undoDownVote(eventID, userID, direction){
 	document.getElementById("eventWrapper_"+eventID).innerHTML = pureNumber+1;
 	console.log("after you voted = " +(pureNumber+1));
 
-
+	$.post({ url:'/ajax/ajaxVote.php', data:{eventID, userID, direction}});
 }
 
 
