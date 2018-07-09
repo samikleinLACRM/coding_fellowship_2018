@@ -16,6 +16,20 @@ function echoHeader($Title, $PageName) {
 	    }
 	}
 
+
+	function saveComment(blogPostID){
+	//get the content of the "blogPost" field
+    	var commentAuthor = $('#commentAuthor').val();
+		var content = $('#content').val();
+
+    	//send the content to the server to be saved
+        $.post('/addCommentAjax.php', {blogPostID, commentAuthor, content},
+			function(contentEchoedFromServer){
+        		$('#confirmContentFromServer').html(contentEchoedFromServer);
+        	}
+		)
+	}
+
 	</script>
 <?php
 

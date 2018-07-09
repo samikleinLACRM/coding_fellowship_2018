@@ -18,42 +18,41 @@ echoHeader("Blog Page", $post['title']);
 echoBlogPost($_REQUEST['blogPostID']);
 
 //process the form
-$Errors = array();
-if(isset($_REQUEST['commentForm'])){ //
+// $Errors = array();
+// if(isset($_REQUEST['commentForm'])){ //
+//
+// 	areWordsInField('Author');
+// 	areWordsInField('Comment');
+//
+// 	if(sizeof($Errors) == 0){
+// 		insertComment(
+// 			$_REQUEST['blogPostID'],
+// 			$_REQUEST['Author'],  //these have to match the form
+// 			$_REQUEST['Comment']
+// 		);
+// 		header("Location: commentAdded.php?blogPostID=$blogPostID"); // this is how you redirect the browser directly.
+// 		exit();
+// 	}
+// }
 
-	validateFormField('Author');
-	validateFormField('Comment');
-
-	if(sizeof($Errors) == 0){
-		insertComment(
-			$_REQUEST['blogPostID'],
-			$_REQUEST['Author'],  //these have to match the form
-			$_REQUEST['Comment']
-		);
-		header("Location: commentAdded.php?blogPostID=$blogPostID"); // this is how you redirect the browser directly.
-		exit();
-	}
-}
 //echo's comment form
 echo "
 <div class='textStyle form'>
 
 	<div style='color:red'>";
-	if(sizeof($Errors) > 0){
-		foreach($Errors as $Index=>$Error){
-			echo "*$Index is $Error<br>";
-		}
-	}
+	// if(sizeof($Errors) > 0){
+	// 	foreach($Errors as $Index=>$Error){
+	// 		echo "*$Index is $Error<br>";
+	// 	}
+	// }
 echo "
 	</div>
 	<p style='font-size:18px'>Submit Comment:</p>
-	<form action='' method='post'>
-
-	Author: <input type='text' name='Author' value='".@$_REQUEST['Author']."'/><br />
-	Comment:   <textarea cols='22' rows='4' name='Comment'>".@$_REQUEST['Comment']."</textarea>
+	Author: <input type='text' id='commentAuthor' value='".@$_REQUEST['Author']."'/><br />
+	Comment: <textarea cols='22' rows='4' id='content'>".@$_REQUEST['Comment']."</textarea>
 	<br>
 	<br>
-	<input type='submit' name='commentForm' value='Submit your comment' />
+	<input type='button' onclick='saveComment($_REQUEST[blogPostID])' name='commentForm' value='Submit your comment' />
 	</form>
 </div>
 ";

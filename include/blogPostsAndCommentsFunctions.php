@@ -33,21 +33,16 @@ function echoBlogPost($blogPostID){
 	echo "
 		<br><br>
 		$post[body]
-	";
+		</div>
 
 
+		<div id='confirmContentFromServer'> ";
 
-	$comments=getPostComments($post['blogPostID']);
-	if($comments!=null) {
-		echo "
-		</div> <div class='textStyle'>
-			<h2 style='font-size:20px'>Comments: </h2>";
-			foreach($comments as $comment){
-				$date = echoJustDate($comment['date']);
-				echoComment($date, $comment['author'], $comment['comment']);
-			}
- 	}
-	echo "</div>";
+		echoAllComments($post['blogPostID']);
+
+	echo "
+		</div>
+	</div>";
 }
 
 
@@ -65,6 +60,19 @@ function echoComment($date, $author, $comment){
 	// }
 }
 
+
+function echoAllComments($blogPostID){
+	$comments=getPostComments($blogPostID);
+	if($comments!=null) {
+		echo "
+		<div class='textStyle'>
+			<h2 style='font-size:20px'>Comments: </h2>";
+			foreach($comments as $comment){
+				$date = echoJustDate($comment['date']);
+				echoComment($date, $comment['author'], $comment['comment']);
+			}
+	}
+}
 
 
 
