@@ -214,6 +214,7 @@ a:hover{
 	background-color: white;
 	display: grid;
     grid-template-columns: 25% 1fr;
+	/* border:solid; */
 }
 
 .secondTier{
@@ -253,7 +254,7 @@ a:hover{
 .bodyColumn{
 	background-color: #ffff82;
 	overflow: auto;
-
+	padding:5px;
 }
 
 

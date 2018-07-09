@@ -23,10 +23,8 @@ function echoHeader($Title, $PageName) {
 
 function intakeVote(eventID, userID, direction){
 
-	console.log(eventID, userID, direction);
-
 //both buttons haven't been pressed
-	if(!document.getElementById("upVoteButton").classList.contains('voted') && !document.getElementById("downVoteButton").classList.contains('voted')){
+	if(!document.getElementById("upVoteButton_"+eventID).classList.contains('voted') && !document.getElementById("downVoteButton_"+eventID).classList.contains('voted')){
 		if(direction == "up"){
 			jsUpVote(eventID, userID, direction);
 		}
@@ -38,23 +36,23 @@ function intakeVote(eventID, userID, direction){
 //if vote exists
 
 	//the downvote has been pressed but not the upvote
-	else if(!document.getElementById("upVoteButton").classList.contains('voted') && document.getElementById("downVoteButton").classList.contains('voted')){
+	else if(!document.getElementById("upVoteButton_"+eventID).classList.contains('voted') && document.getElementById("downVoteButton_"+eventID).classList.contains('voted')){
 		if(direction == "up"){
-			undoDownVote(eventID, userID, direction);
+			undoDownVote(eventID, userID, direction, "double");
 			jsUpVote(eventID, userID, direction);
 		}
 		else{ //direction is down
-			undoDownVote(eventID, userID, direction);
+			undoDownVote(eventID, userID, direction, null);
 		}
 	}
 
 	//the upvote has been pressed but not the downvote
 	else{
 		if(direction == "up"){
-			undoUpVote(eventID, userID, direction);
+			undoUpVote(eventID, userID, direction, null);
 		}
 		else{ //direction is down
-			undoUpVote(eventID, userID, direction);
+			undoUpVote(eventID, userID, direction, "double");
 			jsDownVote(eventID, userID, direction);
 		}
 
@@ -66,8 +64,7 @@ function intakeVote(eventID, userID, direction){
 function jsUpVote(eventID, userID, direction){
 	//update UI so gets unvoted,
 	//ajax request to unvote this in the server.
-
-	document.getElementById("upVoteButton").classList.add('voted');
+	document.getElementById("upVoteButton_"+eventID).classList.add('voted');
 
 	//gets the number
 	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
@@ -87,7 +84,7 @@ function jsUpVote(eventID, userID, direction){
 
 function jsDownVote(eventID, userID, direction){
 
-	document.getElementById("downVoteButton").classList.add('voted');
+	document.getElementById("downVoteButton_"+eventID).classList.add('voted');
 
 	//gets the number
 	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
@@ -103,10 +100,9 @@ function jsDownVote(eventID, userID, direction){
 
 }
 
-function undoUpVote(eventID, userID, direction){
+function undoUpVote(eventID, userID, direction, ifUndoAndVote){
 
-	document.getElementById("upVoteButton").classList.remove('voted');
-
+	document.getElementById("upVoteButton_"+eventID).classList.remove('voted');
 
 	// i think this just means downvote - like thats how u get rid of the upvote
 
@@ -119,15 +115,12 @@ function undoUpVote(eventID, userID, direction){
 	document.getElementById("eventWrapper_"+eventID).innerHTML = pureNumber-1;
 	console.log("after you voted = " +(pureNumber-1));
 
-	$.post({ url:'/ajax/ajaxVote.php', data:{eventID, userID, direction}});
+	$.post({ url:'/ajax/ajaxUndoVote.php', data:{eventID, userID, direction, ifUndoAndVote}});
 }
 
-function undoDownVote(eventID, userID, direction){
+function undoDownVote(eventID, userID, direction, ifUndoAndVote){
 
-	document.getElementById("downVoteButton").classList.remove('voted');
-
-
-	// i think this literally just means upvote. thats how u get rid of a downvote, right?!
+	document.getElementById("downVoteButton_"+eventID).classList.remove('voted');
 
 	//gets the number
 	var insideTheDiv = document.getElementById("eventWrapper_"+eventID).innerHTML;
@@ -138,7 +131,7 @@ function undoDownVote(eventID, userID, direction){
 	document.getElementById("eventWrapper_"+eventID).innerHTML = pureNumber+1;
 	console.log("after you voted = " +(pureNumber+1));
 
-	$.post({ url:'/ajax/ajaxVote.php', data:{eventID, userID, direction}});
+	$.post({ url:'/ajax/ajaxUndoVote.php', data:{eventID, userID, direction, ifUndoAndVote}});
 }
 
 

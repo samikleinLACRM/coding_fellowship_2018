@@ -131,7 +131,7 @@ function echoUpVoteButton($eventID, $upVoted){
 	$direction = 'up'; //nic fixed this. very weird string stuff, but it works now!
 	echo"
 	<a href='javascript://' onclick=\"intakeVote($eventID, $_SESSION[userID], '$direction');\">
-		<img id='upVoteButton' class='iconAligned $upVoted' src='/pics/arrow2.jpg' alt='arrow' height=40px>
+		<img id='upVoteButton_$eventID' class='iconAligned $upVoted' src='/pics/arrow2.jpg' alt='arrow' height=40px>
 	</a>";
 
 }
@@ -140,7 +140,7 @@ function echoDownVoteButton($eventID, $downVoted){ //sohuld there be a ; after t
 	$direction = 'down';
 	echo"
 	<a href='javascript://' onclick=\"intakeVote($eventID, $_SESSION[userID], '$direction');\">
-		<img id='downVoteButton' class='iconAligned $downVoted' src='/pics/line2.jpg' alt='line' height=40px>
+		<img id='downVoteButton_$eventID' class='iconAligned $downVoted' src='/pics/line2.jpg' alt='line' height=40px>
 	</a>";
 }
 
@@ -150,10 +150,10 @@ function echoEvent($event){
 	$eventID=$event['eventID'];
 
 	$exists = doesUserVoteExist($eventID, $_SESSION['userID']);
-	// echoNicely($exists['0']['userID']);
+	// echoNicely($eventID );
 	// echoNicely($exists['0']['direction']);
 	// echoNicely($exists['0']['eventID']);
-	// echoNicely($exists['0']['direction'] == "up");
+	// echoNicely($exists!= null); // this is false, if vote doesn't exist
 	// die();
 	$upVoted = null;
 	$downVoted= null;
@@ -335,15 +335,13 @@ function insertUserVote($eventID, $userID, $direction){
 	))->fetchAll(); //All
 }
 
-function deleteUserVote($eventID, $userID, $direction){
+function deleteUserVote($eventID, $userID){
 	$result = dbQuery("
 		DELETE FROM events2usersVoted
 		WHERE eventID = :eventID
 		AND userID = :userID
-		AND direction = :direction
 		", array(
 			'eventID'=>$eventID,
 			'userID'=>$userID,
-			'direction'=>$direction
 	))->fetchAll();
 }

@@ -44,12 +44,12 @@ if($exists == null){
 
 else if($exists['0']['direction'] == "down"){
 	if($_REQUEST['direction'] == "up"){
-		deleteUserVote($exists['0']['eventID'], $exists['0']['userID'], $exists['0']['direction']);
+		deleteUserVote($exists['0']['eventID'], $exists['0']['userID']);
 		insertUserVote($_REQUEST['eventID'], $_REQUEST['userID'], $_REQUEST['direction']);
 		upVoteinDB($_REQUEST['eventID']);
 	}
 	else{
-		deleteUserVote($exists['0']['eventID'], $exists['0']['userID'], $exists['0']['direction']);
+		deleteUserVote($exists['0']['eventID'], $exists['0']['userID']);
 		upVoteinDB($_REQUEST['eventID']);
 	}
 }
@@ -68,11 +68,11 @@ else if($exists['0']['direction'] == "down"){
 
 else { //aka exists[direction]==up
 	if($_REQUEST['direction'] == "up"){
-		deleteUserVote($exists['0']['eventID'], $exists['0']['userID'], $exists['0']['direction']);
+		deleteUserVote($exists['0']['eventID'], $exists['0']['userID']);
 		downVoteinDB($_REQUEST['eventID']);
 	}
 	else{
-		deleteUserVote($exists['0']['eventID'], $exists['0']['userID'], $exists['0']['direction']);
+		deleteUserVote($exists['0']['eventID'], $exists['0']['userID']);
 		insertUserVote($_REQUEST['eventID'], $_REQUEST['userID'], $_REQUEST['direction']);
 		downVoteinDB($_REQUEST['eventID']);
 	}
