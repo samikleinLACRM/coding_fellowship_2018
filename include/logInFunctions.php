@@ -20,6 +20,31 @@ function verifyUserIsLoggedIn($session){
 		</div>";
 	}
 }
+// function loggedIn($sessionUserID){
+// 	if(isset($sessionUserID)){
+// 		return true;
+// 	}
+// 	else {
+// 		return false;
+// 	}
+// }
+
+function verifyUser($username, $password){
+
+//if this user exists w this pass in the database, then return true
+//if not, return false
+
+	$result=getUserByUsername($username);
+
+	if ($password == $result['password']){
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+
 
 function areWordsInField($formField){
 	global $Errors;
@@ -76,20 +101,6 @@ function getUserByUserEmail($userEmail){
 
 
 
-function verifyUser($username, $password){
-
-//if this user exists w this pass in the database, then return true
-//if not, return false
-
-	$result=getUserByUsername($username);
-
-	if ($password == $result['password']){
-		return true;
-	}
-	else {
-		return false;
-	}
-}
 
 
 function getUsersGoing($eventID){

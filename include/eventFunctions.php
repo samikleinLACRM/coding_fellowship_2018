@@ -130,7 +130,7 @@ function echoColumnTwoEvent($eventID){
 function echoUpVoteButton($eventID, $upVoted){
 	$direction = 'up'; //nic fixed this. very weird string stuff, but it works now!
 	echo"
-	<a href='javascript://' onclick=\"intakeVote($eventID, $_SESSION[userID], '$direction');\">
+	<a href='javascript://' onclick=\"intakeVote($eventID, '$direction');\">
 		<img id='upVoteButton_$eventID' class='iconAligned $upVoted' src='/pics/arrow2.jpg' alt='arrow' height=40px>
 	</a>";
 
@@ -139,7 +139,7 @@ function echoUpVoteButton($eventID, $upVoted){
 function echoDownVoteButton($eventID, $downVoted){ //sohuld there be a ; after the function?
 	$direction = 'down';
 	echo"
-	<a href='javascript://' onclick=\"intakeVote($eventID, $_SESSION[userID], '$direction');\">
+	<a href='javascript://' onclick=\"intakeVote($eventID, '$direction');\">
 		<img id='downVoteButton_$eventID' class='iconAligned $downVoted' src='/pics/line2.jpg' alt='line' height=40px>
 	</a>";
 }
@@ -191,6 +191,22 @@ function echoEvent($event){
 			</a>
 		</div>
 	";
+}
+
+function generalVoteinDB($eventID, $direction){
+	$sign = "+";
+	if ($direction == "down"){
+		$sign = "-";
+	}
+
+	$result = dbQuery("
+		UPDATE events
+		SET votes = votes $sign 1
+		WHERE eventID = :eventID
+	", array(
+		'eventID'=>$eventID
+	))->fetchAll();
+	return $result;
 }
 
 

@@ -13,13 +13,7 @@ else{
 echoHeader("Create Your Own Event", $pageName);
 
 if(!isset($_SESSION['userID'])) {  //&& !empty($_SESSION['userID']) <-- had this before. not sure if necessary
-	echo "
-	<div class= 'textStyle form'>
-		Sorry! You must be logged in to create an event. Please log in here:
-		<br><br>
-		<a href='logInEP.php'>Log In</a>
-	</div>
-	";
+	echoNotLoggedIn("You must be logged in to create an event.");
 	die();
 }
 

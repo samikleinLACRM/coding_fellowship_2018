@@ -3,6 +3,8 @@ include('config/init.php');
 
 echoHeader("Profile Page", null);
 
+// var_dump(isset($_SESSION['userID']));
+
 if(!isset($_SESSION['userID'])){
 	echo "<div class='textStyle form'>
 	Sorry! You must be logged in to view your profile. Please log in here:

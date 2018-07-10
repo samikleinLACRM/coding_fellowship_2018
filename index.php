@@ -10,6 +10,11 @@ echo "
 </div>
 ";
 
+if(!isset($_SESSION['userID'])) {  //&& !empty($_SESSION['userID']) <-- had this before. not sure if necessary
+	echoNotLoggedIn("You must be logged in to see events.");
+	die();
+}
+
 $allEvents=getAllEvents();
 
 $event1=$allEvents[0];
