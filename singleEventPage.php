@@ -14,23 +14,17 @@ $creator=getEventCreator($_REQUEST['eventID']);
 
 echoHeader($event['name'], null);
 
-// $myEventVotes=$event['votes'];
-
-// echoNicely($event['votes']);
-// die();
-
-
-
-
 echo "
 	<div class='whiteBox'>";
 
-	if ($creator['userID'] == $_SESSION['userID']){
-		echo "<br>
-		<div style='font-size:20px; background-color:#19e8e4; text-align:center; margin-left:200px; margin-right:200px; border-radius:15px;'>
-			<a href='editEvent.php?eventID=$_REQUEST[eventID]'>EDIT YOUR EVENT</a>
-		</div>
-		<br>";
+	if(isset($_SESSION['userID'])){
+		if ($creator['userID'] == $_SESSION['userID']){
+			echo "<br>
+			<div style='font-size:20px; background-color:#19e8e4; text-align:center; margin-left:200px; margin-right:200px; border-radius:15px;'>
+				<a href='editEvent.php?eventID=$_REQUEST[eventID]'>EDIT YOUR EVENT</a>
+			</div>
+			<br>";
+		}
 	}
 echo "
 	<div class='container'>
@@ -41,15 +35,17 @@ echo "
 				<div class='voteColumn' style='font-size:20px'>
 					<br>";
 
-					$exists = doesUserVoteExist($eventID, $_SESSION['userID']);
 					$upVoted = null;
 					$downVoted= null;
-					if ($exists !=null){
-						if ($exists['0']['direction'] == "up"){
-							$upVoted="voted";
-						}
-						else{ //which means that direction must be down
-							$downVoted="voted";
+					if(isset($_SESSION['userID'])){
+						$exists = doesUserVoteExist($eventID, $_SESSION['userID']);
+						if ($exists !=null){
+							if ($exists['0']['direction'] == "up"){
+								$upVoted="voted";
+							}
+							else{ //which means that direction must be down
+								$downVoted="voted";
+							}
 						}
 					}
 

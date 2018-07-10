@@ -57,8 +57,11 @@ echo"
 				Upcoming Events
 			</div>
 			<br>";
-
-			foreach ($eventsGoingTo as $event) {
+			if ($eventsGoingTo == null) {
+				echo "Going to 0 events";
+			}
+			else {
+				foreach ($eventsGoingTo as $event) {
 				// var_dump($event);
 				echo "
 				<div class='row accountColumn' style='border:solid; margin:10px;'>";
@@ -69,7 +72,7 @@ echo"
 
 				</div>";
 			}
-
+		}
 			echo "
 		</div>
 		<div class='bioColumn right'>
@@ -117,10 +120,10 @@ echo"
 			}
 			else{
 				foreach ($friends as $friend) {
-					// var_dump($event);
+
 					echo "
 
-					<div class='friendBox' style='margin:50px; border-radius:10px;'>
+					<div class='friendBox'>
 						<div style='float:left; overflow:auto;'>
 							<img src='/pics/smiley.jpg' alt='Smiley face' width='50' height='50'>
 						</div>
@@ -128,7 +131,7 @@ echo"
 							<a href='accountPage.php?userID=$friend[userID]'>$friend[username]</a>
 						</div>
 					</div>
-					<br>
+
 					";
 				}
 			}

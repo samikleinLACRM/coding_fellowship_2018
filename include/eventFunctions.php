@@ -148,23 +148,20 @@ function echoDownVoteButton($eventID, $downVoted){ //sohuld there be a ; after t
 
 function echoEvent($event){
 	$eventID=$event['eventID'];
-
-	$exists = doesUserVoteExist($eventID, $_SESSION['userID']);
-	// echoNicely($eventID );
-	// echoNicely($exists['0']['direction']);
-	// echoNicely($exists['0']['eventID']);
-	// echoNicely($exists!= null); // this is false, if vote doesn't exist
-	// die();
 	$upVoted = null;
 	$downVoted= null;
-	if ($exists !=null){
-		if ($exists['0']['direction'] == "up"){
-			$upVoted="voted";
-		}
-		else{ //which means that direction must be down
-			$downVoted="voted";
+	if(isset($_SESSION['userID'])){
+		$exists = doesUserVoteExist($eventID, $_SESSION['userID']);
+		if ($exists !=null){
+			if ($exists['0']['direction'] == "up"){
+				$upVoted="voted";
+			}
+			else{ //which means that direction must be down
+				$downVoted="voted";
+			}
 		}
 	}
+
 
 	echo"
 		<div class='voteColumn'>

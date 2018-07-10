@@ -14,6 +14,8 @@ $userVote = doesUserVoteExist($eventID, $sessionUserID);
 deleteUserVote($userVote['0']['eventID'], $_SESSION['userID']);
 
 
+// the following wasn't working :( but not sure why because I thought it was similiar logic to the front pages. 
+
 // if(($_REQUEST['ifUndoAndVote']!=null && $_REQUEST['direction'] == "up") || ($_REQUEST['ifUndoAndVote']==null && $_REQUEST['direction'] == "down")){
 // 	generalVoteInDB($eventID, "up");
 // }

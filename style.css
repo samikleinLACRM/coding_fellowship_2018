@@ -288,12 +288,14 @@ a:hover{
 }
 
 .friendBox{
-	padding:20px;
  	text-align: left;
-	/* font-size: 30px; */
-	/* overflow:auto; */
 	border: 5px solid #19e8e4; /*#521f66;*/
-	margin:auto;
+	overflow:auto;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top:15px;
+	margin-bottom:15px;
+	border-radius:10px;
 }
 
 .bioWords{
@@ -301,6 +303,7 @@ a:hover{
 }
 
 .friendName{
+	padding-top:15px;
 	text-align:center;
 }
 

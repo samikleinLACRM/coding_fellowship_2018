@@ -1,3 +1,9 @@
+<!-- <?php
+
+$userID=$_SESSION['userID'];
+
+?> -->
+
 
 <script type='text/javascript'>
 
@@ -33,7 +39,8 @@ function intakeVote(eventID, direction){
 
 	//I assumed there are 3 options: either your straight up voting,
 	//	you're undoing a vote, or your undoing and voting.
-
+	// var x = getUserID();
+	// console.log(x);
 	//both buttons haven't been pressed
 	if(getCurrentVoteDirection(eventID)=="no vote"){
 		jsVote(eventID, direction);
@@ -91,6 +98,14 @@ function undoVote(eventID, direction, ifUndoAndVote){
 
 	$.post({ url:'/ajax/ajaxUndoVote.php', data:{eventID, direction, ifUndoAndVote}});
 }
+
+
+//
+// function getUserID(){
+// 	var userID = '<%= Session["userID"] %>';
+//     alert(userID);
+// }
+
 
 
 //not sure if Tyler also meant to function out every one of those document.getelement calls... but if so that's how I would do it
