@@ -3,26 +3,29 @@
 
 function echoHeader($Title, $PageName) {
 
-	?>
-	<script src="/include/jquery.js"></script>
-	<?php
+
+
 
 	echo "
 		<head>
 			<title>$Title</title>
 			<link rel='stylesheet' href='style.css'/>
 			<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Quicksand'>
-			<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
+			<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>";
+			?>
+			<script src="/include/jquery.js"></script>
+			<script src="/include/jsFunctions.js"></script>
+			<?php
+			echo "
 		</head>
 
-";
-include('include/jsFunctions.php');
+		";
 
-echo"
+		// include('include/jsFunctions.js');
 
-		<body class='background'>
+	echo"
 
-			";
+		<body class='background'>";
 			echoNavBar();
 			if ($PageName!=null) {
 				echo "
@@ -73,6 +76,14 @@ function echoNotLoggedIn($message){
 	</div>
 	";
 }
+
+function checkIfUserIsLoggedIn($sessionUserID){
+	if(!isset($sessionUserID)) {
+		echoNotLoggedIn("You must be logged in to vote.");
+		die();
+	}
+}
+
 
 
 //

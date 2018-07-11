@@ -2,19 +2,33 @@
 
 include('config/init.php');
 
-if(!isset($_SESSION['userID'])) {  //&& !empty($_SESSION['userID']) <-- had this before. not sure if necessary
-	echoNotLoggedIn("You must be logged in to vote.");
-	die();
-}
+checkIfUserIsLoggedIn($_SESSION['userID']);
 
 $eventID=$_REQUEST['eventID'];
 $sessionUserID=$_SESSION['userID'];
 $userVote = doesUserVoteExist($eventID, $sessionUserID);
 
-deleteUserVote($userVote['0']['eventID'], $_SESSION['userID']);
+if ($userVote !=null){ //should def be not null if get to this point tho
+	deleteUserVote($userVote['0']['eventID'], $_SESSION['userID']);
+}
+
+$undoVotingDirection="up";
+if($_REQUEST['direction'] == "up"){
+	$undoVotingDirection="down";
+}
+
+generalVoteInDB($_REQUEST['eventID'], $undoVotingDirection);
 
 
-// the following wasn't working :( but not sure why because I thought it was similiar logic to the front pages. 
+
+
+
+// if($_REQUEST['ifUndoAndVote']!=null){
+	// generalVoteInDB($_REQUEST['eventID'], $_REQUEST['direction']);
+// }
+
+
+// the following wasn't working :( but not sure why because I thought it was similiar logic to the front pages.
 
 // if(($_REQUEST['ifUndoAndVote']!=null && $_REQUEST['direction'] == "up") || ($_REQUEST['ifUndoAndVote']==null && $_REQUEST['direction'] == "down")){
 // 	generalVoteInDB($eventID, "up");
@@ -23,20 +37,21 @@ deleteUserVote($userVote['0']['eventID'], $_SESSION['userID']);
 // 	generalVoteInDB($eventID, "down");
 // }
 
+// generalVoteInDB($eventID, $_REQUEST['direction']);
 
-if($_REQUEST['ifUndoAndVote']!=null){ //if you have to undo the vote and then vote
-	if($_REQUEST['direction'] == "up"){
-		upVoteInDB($eventID);
-	}
-	else{ // aka direction is down
-		downVoteInDB($eventID);
-	}
-}
-else{	//if this is just undo-ing the vote, no next steps
-	if($_REQUEST['direction'] == "up"){
-		downVoteInDB($eventID);
-	}
-	else{ // aka direction is down
-		upVoteInDB($eventID); //bc undoing the downvote
-	}
-}
+// if($_REQUEST['ifUndoAndVote']!=null){ //if you have to undo the vote and then vote
+// 	if($_REQUEST['direction'] == "up"){
+// 		upVoteInDB($eventID);
+// 	}
+// 	else{ // aka direction is down
+// 		downVoteInDB($eventID);
+// 	}
+// }
+// else{	//if this is just undo-ing the vote, no next steps
+// 	if($_REQUEST['direction'] == "up"){
+// 		downVoteInDB($eventID);
+// 	}
+// 	else{ // aka direction is down
+// 		upVoteInDB($eventID); //bc undoing the downvote
+// 	}
+// }

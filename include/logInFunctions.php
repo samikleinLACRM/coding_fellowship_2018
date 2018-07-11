@@ -101,6 +101,10 @@ function getUserByUserEmail($userEmail){
 
 
 
+function getSessionUserID(){
+	$userID=$_SESSION['userID'];
+	return $userID;
+}
 
 
 function getUsersGoing($eventID){
@@ -175,6 +179,8 @@ function editProfile($userID, $username, $displayName, $bio, $class){
 
 
 }
+
+
 
 
 

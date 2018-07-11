@@ -1,11 +1,3 @@
-<!-- <?php
-
-$userID=$_SESSION['userID'];
-
-?> -->
-
-
-<script type='text/javascript'>
 
 function togglePasswordVisibility(){
 	var x = document.getElementById("myInput");
@@ -43,48 +35,52 @@ function intakeVote(eventID, direction){
 	// console.log(x);
 	//both buttons haven't been pressed
 	if(getCurrentVoteDirection(eventID)=="no vote"){
-		jsVote(eventID, direction);
+		jsVote(eventID, direction, null);
 	}
 
-	else if((getCurrentVoteDirection(eventID)=="down" && direction=="down") ||(getCurrentVoteDirection(eventID)=="up" && direction == "up")){
+	else if(getCurrentVoteDirection(eventID)==direction){
 		undoVote(eventID, direction, null);
 	}
 
 	else{
 		undoVote(eventID, direction, "double");
-		jsVote(eventID, direction);
+		jsVote(eventID, direction, "double");
 	}
 }
 
 
-function jsVote(eventID, direction){
+function jsVote(eventID, direction, ifBoth){
 
-	total = getCurrentVoteTotal(eventID);
+	var total = getCurrentVoteTotal(eventID);
 	console.log("before you voted = " +total);
 
-	if(direction == "up"){
-		document.getElementById("upVoteButton_"+eventID).classList.add('voted');
-		document.getElementById("eventWrapper_"+eventID).innerHTML = total+1;
-		console.log("after you voted = " +(total+1));
+	var sign = 1;
+	if (direction == "down"){
+		sign = -1;
 	}
 
-	else{ //aka direction == "down"
-		document.getElementById("downVoteButton_"+eventID).classList.add('voted');
-		document.getElementById("eventWrapper_"+eventID).innerHTML = total-1;
-		console.log("after you voted = " +(total-1));
-	}
+	// if (ifBoth !=null){
+	// 	sign=2;
+	// 	if (direction == "down"){
+	// 		sign = -2;
+	// 	}
+	// }
 
-	$.post({ url:'/ajax/ajaxVote.php', data:{eventID, direction}});
+	document.getElementById(direction+"VoteButton_"+eventID).classList.add('voted');
+	document.getElementById("eventWrapper_"+eventID).innerHTML = (total+sign);
+	console.log("after you voted = " +(total+sign));
+
+	$.post({ url:'/ajax/ajaxVote.php', data:{eventID, direction, ifBoth}});
 
 }
 
 
-function undoVote(eventID, direction, ifUndoAndVote){
+function undoVote(eventID, direction, ifBoth){
 
 	total = getCurrentVoteTotal(eventID);
 	console.log("before you voted = " +total);
 
-	if((direction=="up" && ifUndoAndVote==null) || (direction=="down" && ifUndoAndVote=="double")){ //this is the weird part. just take it.
+	if((direction=="up" && ifBoth==null) || (direction=="down" && ifBoth=="double")){ //this is the weird part. just take it.
 		document.getElementById("upVoteButton_"+eventID).classList.remove('voted');
 		document.getElementById("eventWrapper_"+eventID).innerHTML = total-1;
 		console.log("after you voted = " +(total-1));
@@ -96,29 +92,7 @@ function undoVote(eventID, direction, ifUndoAndVote){
 		console.log("after you voted = " +(total+1));
 	}
 
-	$.post({ url:'/ajax/ajaxUndoVote.php', data:{eventID, direction, ifUndoAndVote}});
+	if(ifBoth == null){ //only do an ajax call to undo this if there isn't an additional vote being registered
+		$.post({ url:'/ajax/ajaxUndoVote.php', data:{eventID, direction, ifBoth}});
+	}
 }
-
-
-//
-// function getUserID(){
-// 	var userID = '<%= Session["userID"] %>';
-//     alert(userID);
-// }
-
-
-
-//not sure if Tyler also meant to function out every one of those document.getelement calls... but if so that's how I would do it
-// function byID(direction, eventID, action){
-//
-//    bc doesn't like the . with a variable like action
-// 	if (action == "remove"){
-// 		document.getElementById(direction+"VoteButton_"+eventID).classList.remove('voted');
-// 	}
-// if (action == "contains"){
-// }
-// if (action == "add"){
-// }
-
-
-</script>

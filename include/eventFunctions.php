@@ -1,6 +1,5 @@
 <?php
 
-
 function getAllEvents(){
 	$result = dbQuery("
 		SELECT *
