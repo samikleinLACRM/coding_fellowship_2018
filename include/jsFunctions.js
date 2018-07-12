@@ -29,10 +29,6 @@ function getCurrentVoteTotal(eventID){
 
 function intakeVote(eventID, direction){
 
-	//I assumed there are 3 options: either your straight up voting,
-	//	you're undoing a vote, or your undoing and voting.
-	// var x = getUserID();
-	// console.log(x);
 	//both buttons haven't been pressed
 	if(getCurrentVoteDirection(eventID)=="no vote"){
 		jsVote(eventID, direction, null);
@@ -59,13 +55,6 @@ function jsVote(eventID, direction, ifBoth){
 		sign = -1;
 	}
 
-	// if (ifBoth !=null){
-	// 	sign=2;
-	// 	if (direction == "down"){
-	// 		sign = -2;
-	// 	}
-	// }
-
 	document.getElementById(direction+"VoteButton_"+eventID).classList.add('voted');
 	document.getElementById("eventWrapper_"+eventID).innerHTML = (total+sign);
 	console.log("after you voted = " +(total+sign));
@@ -85,16 +74,8 @@ function undoVote(eventID, direction, ifBoth){
 
 	if((direction=="up" && ifBoth==null) || (direction=="down" && ifBoth=="double")){ //this is the weird part. just take it.
 		buttonDirection = "up";
-		// document.getElementById("upVoteButton_"+eventID).classList.remove('voted');
 		sign = -1;
-		// document.getElementById("eventWrapper_"+eventID).innerHTML = total-1;
-		// console.log("after you voted = " +(total-1));
 	}
-	// else{
-	// 	document.getElementById("downVoteButton_"+eventID).classList.remove('voted');
-	// 	// document.getElementById("eventWrapper_"+eventID).innerHTML = total+1;
-	// 	// console.log("after you voted = " +(total+1));
-	// }
 
 	document.getElementById(buttonDirection+"VoteButton_"+eventID).classList.remove('voted');
 	document.getElementById("eventWrapper_"+eventID).innerHTML = total+sign;

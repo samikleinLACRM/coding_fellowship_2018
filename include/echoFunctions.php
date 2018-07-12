@@ -21,8 +21,6 @@ function echoHeader($Title, $PageName) {
 
 		";
 
-		// include('include/jsFunctions.js');
-
 	echo"
 
 		<body class='background'>";
