@@ -2,30 +2,24 @@
 
 include('config/init.php');
 
-if(!isset($_SESSION['userID'])) {
-	echoNotLoggedIn("You must be logged in to vote.");
-	die();
-}
+checkIfUserIsLoggedIn($_SESSION['userID']);
 
+//these are not necessary, just a little cleaner?
+$direction = $_REQUEST['direction'];
 $eventID=$_REQUEST['eventID'];
+$sessionUserID= $_SESSION['userID'];
 
-$userVote = doesUserVoteExist($eventID, $_SESSION['userID']);
+//this deals with the undo&vote
+$userVote = doesUserVoteExist($eventID, $sessionUserID);
 if ($userVote !=null){
-	deleteUserVote($userVote['0']['eventID'], $_SESSION['userID']);
-
-	if($_REQUEST['ifBoth']!=null && $_REQUEST['direction'] == "up" || $_REQUEST['ifBoth']==null && $_REQUEST['direction'] == "down"){
-		generalVoteinDB($eventID, "up");
-	}
-	else{
-		generalVoteinDB($eventID, "down");
-	}
-
+	deleteUserVote($userVote['0']['eventID'], $sessionUserID);
+	generalVoteinDB($eventID, $direction);
 }
 
 //also assumed 3 cases: 1) insert&vote 2)delete&vote and 3)delete, insert, and vote
 // if($userVote == null){
-	insertUserVote($eventID, $_SESSION['userID'], $_REQUEST['direction']);
-	generalVoteinDB($eventID, $_REQUEST['direction']);
+	insertUserVote($eventID, $sessionUserID, $direction);
+	generalVoteinDB($eventID, $direction);
 // }
 
 // else {

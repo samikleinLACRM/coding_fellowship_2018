@@ -42,7 +42,7 @@ function intakeVote(eventID, direction){
 		undoVote(eventID, direction, null);
 	}
 
-	else{
+	else{ //getCurrentVoteDirection = opposite direction than it is rn,
 		undoVote(eventID, direction, "double");
 		jsVote(eventID, direction, "double");
 	}
@@ -80,17 +80,25 @@ function undoVote(eventID, direction, ifBoth){
 	total = getCurrentVoteTotal(eventID);
 	console.log("before you voted = " +total);
 
+	var sign = 1;
+	var buttonDirection = "down";
+
 	if((direction=="up" && ifBoth==null) || (direction=="down" && ifBoth=="double")){ //this is the weird part. just take it.
-		document.getElementById("upVoteButton_"+eventID).classList.remove('voted');
-		document.getElementById("eventWrapper_"+eventID).innerHTML = total-1;
-		console.log("after you voted = " +(total-1));
+		buttonDirection = "up";
+		// document.getElementById("upVoteButton_"+eventID).classList.remove('voted');
+		sign = -1;
+		// document.getElementById("eventWrapper_"+eventID).innerHTML = total-1;
+		// console.log("after you voted = " +(total-1));
 	}
-	else{
-		// byID("down", eventID, "remove");
-		document.getElementById("downVoteButton_"+eventID).classList.remove('voted');
-		document.getElementById("eventWrapper_"+eventID).innerHTML = total+1;
-		console.log("after you voted = " +(total+1));
-	}
+	// else{
+	// 	document.getElementById("downVoteButton_"+eventID).classList.remove('voted');
+	// 	// document.getElementById("eventWrapper_"+eventID).innerHTML = total+1;
+	// 	// console.log("after you voted = " +(total+1));
+	// }
+
+	document.getElementById(buttonDirection+"VoteButton_"+eventID).classList.remove('voted');
+	document.getElementById("eventWrapper_"+eventID).innerHTML = total+sign;
+	console.log("after you voted = " +(total+sign));
 
 	if(ifBoth == null){ //only do an ajax call to undo this if there isn't an additional vote being registered
 		$.post({ url:'/ajax/ajaxUndoVote.php', data:{eventID, direction, ifBoth}});

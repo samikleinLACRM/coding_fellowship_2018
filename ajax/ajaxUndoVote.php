@@ -4,11 +4,10 @@ include('config/init.php');
 
 checkIfUserIsLoggedIn($_SESSION['userID']);
 
-$eventID=$_REQUEST['eventID'];
-$sessionUserID=$_SESSION['userID'];
-$userVote = doesUserVoteExist($eventID, $sessionUserID);
 
-if ($userVote !=null){ //should def be not null if get to this point tho
+$userVote = doesUserVoteExist($_REQUEST['eventID'], $_SESSION['userID']);
+
+if ($userVote !=null){ //just in case, bc should def be not null if get to this point
 	deleteUserVote($userVote['0']['eventID'], $_SESSION['userID']);
 }
 

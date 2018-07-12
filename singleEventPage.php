@@ -38,9 +38,9 @@ echo "
 					$upVoted = null;
 					$downVoted= null;
 					if(isset($_SESSION['userID'])){
-						$exists = doesUserVoteExist($eventID, $_SESSION['userID']);
-						if ($exists !=null){
-							if ($exists['0']['direction'] == "up"){
+						$vote = doesUserVoteExist($eventID, $_SESSION['userID']);
+						if ($vote !=null){
+							if ($vote['0']['direction'] == "up"){
 								$upVoted="voted";
 							}
 							else{ //which means that direction must be down
