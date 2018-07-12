@@ -21,12 +21,7 @@ if(isset($_REQUEST['logIn'])){ //
 			exit();
 		}
 		else {
-			echo "
-			<br>
-			<div class='textStyle form' style='color:red'>
-				*Username & Password not found.
-			</div>
-			";
+			$Errors['Username and password:'] = "not found";
 		}
 	}
 }

@@ -18,9 +18,9 @@ if(!isset($_SESSION['userID'])){ //if username is not set
 $eventEditing = getOneEvent($_REQUEST['eventID']);
 echoHeader("Edit Your Event", null);
 if(isset($_REQUEST['editEventForm'])){ //
-	submitChangedEvent(
+	editEvent(
 		$_REQUEST['eventID'],
-		$_REQUEST['votes'],
+		// $_REQUEST['votes'],
 		$_REQUEST['name'],  //these have to match the form
 		$_REQUEST['location'],
 		$_REQUEST['date'],
@@ -33,6 +33,20 @@ if(isset($_REQUEST['editEventForm'])){ //
 		header("Location: singleEventPage.php?eventID=$_REQUEST[eventID]");
 		exit();
 }
+
+
+if(isset($_REQUEST['deleteEvent'])){ //
+	$message = "wrong answer";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+	// alert("Are you sure you want to delete your event?
+	// This action cannot be undone");
+	header("Location: deleteEvent.php?eventID=$_REQUEST[eventID]");
+	exit();
+}
+
+
+
+
 //prob need to change the date later
 echo "
 <div class='textStyle form' style='padding:30px; background-color:#a8edeb'>
@@ -43,7 +57,6 @@ echo "
 			Event ID: <input type='number' name='eventID' value='".$eventEditing['eventID']."'>
 			<div style='color:red'>*Do not change the eventID</div>
 			<br>
-			Votes: <input type='number' name='votes' value='".$eventEditing['votes']."'>
 		</div>
 
 		Name of event: <input type='text' name='name' value='".$eventEditing['name']."'>
@@ -73,6 +86,13 @@ echo "
 
 		<input type='submit' name='editEventForm' value='Submit your changes' />
 	</form>
+
+<br><br><br><br><br><br>
+	<form action='' method='post'>
+		<input type='submit' name='deleteEvent' value='Delete Your Event' />
+	</form>
+
+
 </div>
 ";
 // echoFooter();

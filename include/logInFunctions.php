@@ -163,11 +163,11 @@ function getAllThisUsersFriends($userID){
 function editProfile($userID, $username, $displayName, $bio, $class){
 	$result = dbQuery("
 	UPDATE users
-	SET username = ':username',
-	displayName = ':displayName',
-	bio = ':bio',
-	class = ':class'
-	WHERE userID = $userID
+	SET username = :username,
+	displayName = :displayName,
+	bio = :bio,
+	class = :class
+	WHERE userID = :userID
 	", array(
 		'username'=>$username,
 		'displayName'=>$displayName,
@@ -176,8 +176,6 @@ function editProfile($userID, $username, $displayName, $bio, $class){
 		'userID'=>$userID
 	))->fetchAll();
 	return $result;
-
-
 }
 
 

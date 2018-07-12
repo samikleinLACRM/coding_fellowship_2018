@@ -27,7 +27,11 @@ function getCurrentVoteTotal(eventID){
 }
 
 
-function intakeVote(eventID, direction){
+function intakeVote(eventID, direction, session){
+
+	if(session==null){
+		alert("Oops! Since you are not logged in, you're vote will not be saved.");
+	}
 
 	//both buttons haven't been pressed
 	if(getCurrentVoteDirection(eventID)=="no vote"){

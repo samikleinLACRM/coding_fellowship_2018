@@ -8,5 +8,9 @@ include('include/eventFunctions.php');
 include('include/echoFunctions.php');
 include('include/logInFunctions.php');
 // include('include/jsFunctions.php');
+?>
+<script src="/include/jquery.js"></script>
+<script src="/include/jsFunctions.js"></script>
+<?php
 
 session_start();

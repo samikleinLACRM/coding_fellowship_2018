@@ -128,8 +128,14 @@ function echoColumnTwoEvent($eventID){
 // $direction = "up";
 function echoUpVoteButton($eventID, $upVoted){
 	$direction = 'up'; //nic fixed this. very weird string stuff, but it works now!
+	if(!isset($_SESSION['userID'])){
+		$s = null;
+	}
+	else{
+		$s = $_SESSION['userID'];
+	}
 	echo"
-	<a href='javascript://' onclick=\"intakeVote($eventID, '$direction');\">
+	<a href='javascript://' onclick=\"intakeVote($eventID, '$direction', $s);\">
 		<img id='upVoteButton_$eventID' class='iconAligned $upVoted' src='/pics/arrow2.jpg' alt='arrow' height=40px>
 	</a>";
 
@@ -137,8 +143,14 @@ function echoUpVoteButton($eventID, $upVoted){
 
 function echoDownVoteButton($eventID, $downVoted){ //sohuld there be a ; after the function?
 	$direction = 'down';
+	if(!isset($_SESSION['userID'])){
+		$s = null;
+	}
+	else{
+		$s = $_SESSION['userID'];
+	}
 	echo"
-	<a href='javascript://' onclick=\"intakeVote($eventID, '$direction');\">
+	<a href='javascript://' onclick=\"intakeVote($eventID, '$direction', $s);\">
 		<img id='downVoteButton_$eventID' class='iconAligned $downVoted' src='/pics/line2.jpg' alt='line' height=40px>
 	</a>";
 }
@@ -252,13 +264,20 @@ function insertEvent($name, $location, $date, $startTime, $endTime, $comeBc, $de
 	))->fetchAll(); //All
 }
 
-function insertChangedEvent($eventID, $votes, $name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic){
+function editEvent($eventID, $name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic){
 	$result = dbQuery("
-		INSERT INTO events(eventID, votes, name, location, dateOfEvent, startTime, endTime, comeBc, description, pic)
-		VALUES(:eventID, :votes, :name, :location, :dateOfEvent, :startTime, :endTime, :comeBc, :description, :pic)
+	UPDATE events
+	SET name = :name,
+	location = :location,
+	dateOfEvent = :dateOfEvent,
+	startTime = :startTime,
+	endTime = :endTime,
+	comeBc = :comeBc,
+	description = :description,
+	pic = :pic
+	WHERE eventID = :eventID
 	", array(
 		'eventID'=>$eventID,
-		'votes'=>$votes,
 		'name'=>$name,
 		'location'=>$location,
 		'dateOfEvent'=>$date,
@@ -269,7 +288,6 @@ function insertChangedEvent($eventID, $votes, $name, $location, $date, $startTim
 		'pic'=>$pic
 	))->fetchAll(); //All
 }
-
 
 function getAllCategories(){
 	$result = dbQuery("
@@ -313,12 +331,6 @@ function deleteEvent($newEventID) {
 		", array(
 			'eventID'=>$newEventID
 	))->fetch();
-}
-
-
-function submitChangedEvent($eventID, $votes, $name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic){
-	deleteEvent($eventID);
-	insertChangedEvent($eventID, $votes, $name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic);
 }
 
 

@@ -11,17 +11,8 @@ function echoHeader($Title, $PageName) {
 			<title>$Title</title>
 			<link rel='stylesheet' href='style.css'/>
 			<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Quicksand'>
-			<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>";
-			?>
-			<script src="/include/jquery.js"></script>
-			<script src="/include/jsFunctions.js"></script>
-			<?php
-			echo "
+			<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
 		</head>
-
-		";
-
-	echo"
 
 		<body class='background'>";
 			echoNavBar();

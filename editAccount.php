@@ -44,7 +44,7 @@ echo "
 		Bio: <input type='text' name='bio' value='".$user['bio']."'>
 		<br><br>
 
-		Class: <input type='text' name='class' value='".$user['class']."'>
+		Class: <input type='varchar' name='class' value='".$user['class']."'>
 		<br><br>
 
 		<input type='submit' name='editAccount' value='Submit your changes' />

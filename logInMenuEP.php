@@ -13,6 +13,7 @@ if(isset($_SESSION['userID'])) {  //&& !empty($_SESSION['userID']) <-- had this 
 		Click here to log out:
 		<a href='loggedOutEP.php'> <u>Log Out</u></a>
 	</div>";
+	die();
 }
 
 echo "
