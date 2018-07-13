@@ -7,6 +7,8 @@ include('include/db_query.php'); //this should happen right after config so othe
 include('include/eventFunctions.php');
 include('include/echoFunctions.php');
 include('include/logInFunctions.php');
+include('include/friendFunctions.php');
+
 // include('include/jsFunctions.php');
 ?>
 <script src="/include/jquery.js"></script>

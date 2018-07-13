@@ -23,6 +23,20 @@ a:hover{
 	text-decoration: underline;
 }
 
+#friendbutton{
+	/* background-color:#eeaebe; */
+	border-color: black;
+	/* border-radius: 10px; */
+	border-width: 2px;
+	width: 70px;
+        height: 30px;
+}
+
+.friended{
+	background-color:blue;
+}
+
+
 
 .background{
 	/* background: linear-gradient(to bottom, #b2f7ff 0%, #b8b1ef 100%); */

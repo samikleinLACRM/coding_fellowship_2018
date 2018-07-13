@@ -94,3 +94,17 @@ function undoVote(eventID, direction, ifBoth){
 function onclickDeleteEvent(eventID){
 	location.href = "deleteEvent.php?eventID="+eventID;
 }
+
+//might need a intake friendship status function? that can direct to
+// which function is necessary
+
+function createFriendship(userID1, userID2){
+
+	document.getElementById("friendButton").classList.add('friended');
+
+
+}
+
+function deleteFriendship(userID1, userID2){
+
+}
