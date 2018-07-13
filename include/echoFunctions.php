@@ -100,5 +100,21 @@ function echoNicely($interm) {
 // 	return $realDate;
 // }
 
+function echoDialogBox(){
+	echo "
+
+	<div id='dialogoverlay'><div>
+	<div id='dialogbox'>
+		<div>
+			<div id='DBhead'></div>
+			<div id='DBbody'></div>
+			<div id='DBfoot'></div>
+		</div>
+	</div>
+	";
+}
+
+
+
 
 ?>

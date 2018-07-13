@@ -35,16 +35,16 @@ if(isset($_REQUEST['editEventForm'])){ //
 }
 
 
-if(isset($_REQUEST['deleteEvent'])){ //
-	$message = "wrong answer";
-	echo "<script type='text/javascript'>alert('$message');</script>";
-	// alert("Are you sure you want to delete your event?
-	// This action cannot be undone");
-	header("Location: deleteEvent.php?eventID=$_REQUEST[eventID]");
-	exit();
-}
+// if(isset($_REQUEST['deleteEvent'])){ //
+// 	$message = "wrong answer";
+// 	echo "<script type='text/javascript'>alert('$message');</script>";
+// 	// alert("Are you sure you want to delete your event?
+// 	// This action cannot be undone");
+// 	header("Location: deleteEvent.php?eventID=$_REQUEST[eventID]");
+// 	exit();
+// }
 
-
+// echoDialogBox();
 
 
 //prob need to change the date later
@@ -88,12 +88,13 @@ echo "
 	</form>
 
 <br><br><br><br><br><br>
-	<form action='' method='post'>
-		<input type='submit' name='deleteEvent' value='Delete Your Event' />
-	</form>
 
+	<button type='button' id='myButton' onclick='onclickDeleteEvent($_REQUEST[eventID]);'>DELETE EVENT</button>
+
+	<button onclick=\"alert('you look pretty today')\">Default alert</button>
 
 </div>
 ";
+echoDialogBox();
 // echoFooter();
 ?>

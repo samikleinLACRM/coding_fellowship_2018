@@ -30,7 +30,7 @@ function getCurrentVoteTotal(eventID){
 function intakeVote(eventID, direction, session){
 
 	if(session==null){
-		alert("Oops! Since you are not logged in, you're vote will not be saved.");
+		alert("Oops! Since you are not logged in, your vote will not be saved.");
 	}
 
 	//both buttons haven't been pressed
@@ -88,4 +88,9 @@ function undoVote(eventID, direction, ifBoth){
 	if(ifBoth == null){ //only do an ajax call to undo this if there isn't an additional vote being registered
 		$.post({ url:'/ajax/ajaxUndoVote.php', data:{eventID, direction, ifBoth}});
 	}
+}
+
+
+function onclickDeleteEvent(eventID){
+	location.href = "deleteEvent.php?eventID="+eventID;
 }
