@@ -1,5 +1,32 @@
 <?php
 
+
+function echoFriends($userID){
+
+	$friends=getAllThisUsersFriends($userID);
+
+	if ($friends == null) {
+		echo "No friends yet";
+	}
+	else{
+		foreach ($friends as $friend) {
+
+			echo "
+
+			<div class='friendBox'>
+				<div style='float:left; overflow:auto;'>
+					<img src='/pics/smiley.jpg' alt='Smiley face' width='50' height='50'>
+				</div>
+				<div class='friendName'>
+					<a href='accountPage.php?userID=$friend[userID]'>$friend[username]</a>
+				</div>
+			</div>
+
+			";
+		}
+	}
+
+}
 // function createFriendship($userID1, $userID2){
 // 	$result = dbQuery("
 // 		INSERT INTO friends(userID1, userID2)

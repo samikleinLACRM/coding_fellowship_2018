@@ -19,11 +19,9 @@ $user=getUserByUserID($_REQUEST['userID']);
 
 $eventsGoingTo=getAllEventsThisUserIsGoingTo($user['userID']);
 $eventsCreated=getAllEventsThisUserCreated($user['userID']);
-$friends=getAllThisUsersFriends($user['userID']);
 
 
 echo "
-
 <div class='whiteBox'>
 ";
 
@@ -126,12 +124,7 @@ echo"
 					<div class='row accountColumn' style='border:solid; margin:10px;'>";
 
 					echoEvent($event);
-					echo "
-
-
-					</div>
-
-					";
+					echo "</div>";
 				}
 			}
 
@@ -146,29 +139,9 @@ echo"
 			<div class='friends'>
 			";
 
-			if ($friends == null) {
-				echo "No friends yet";
-			}
-			else{
-				foreach ($friends as $friend) {
-
-					echo "
-
-					<div class='friendBox'>
-						<div style='float:left; overflow:auto;'>
-							<img src='/pics/smiley.jpg' alt='Smiley face' width='50' height='50'>
-						</div>
-						<div class='friendName'>
-							<a href='accountPage.php?userID=$friend[userID]'>$friend[username]</a>
-						</div>
-					</div>
-
-					";
-				}
-			}
-
-
-			echo "
+			echo "<div id='confirmContentFromServer'> ";
+				echoFriends($user['userID']);
+			echo "</div>
 		</div>
 
 	</div>

@@ -9,5 +9,5 @@ $exists = doesFriendshipExist($_REQUEST['userID1'], $_REQUEST['userID2']);
 
 if($exists == null){ //which is should
 	createFriendship($_REQUEST['userID1'], $_REQUEST['userID2']);  //this is the wrong part = wtf
-	// echo "friendship created";
+	echoFriends($_REQUEST['userID2']);
 }

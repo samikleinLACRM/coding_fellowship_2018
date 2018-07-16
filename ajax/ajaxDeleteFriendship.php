@@ -9,4 +9,5 @@ $exists = doesFriendshipExist($_REQUEST['userID1'], $_REQUEST['userID2']);
 
 if($exists != null){ //which is should
 	deleteFriendship($_REQUEST['userID1'], $_REQUEST['userID2']);
+	echoFriends($_REQUEST['userID2']);
 }

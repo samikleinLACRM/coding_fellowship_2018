@@ -305,7 +305,8 @@ a:hover{
 
 .friendBox{
  	text-align: left;
-	border: 5px solid #19e8e4; /*#521f66;*/
+	border: 2px solid #19e8e4; /*#521f66;*/
+	padding:2px;
 	overflow:auto;
 	margin-left: 20%;
 	margin-right: 20%;

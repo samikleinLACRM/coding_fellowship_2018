@@ -112,11 +112,15 @@ function intakeFriendship(userID1, userID2, friendWord){
 function createFriendship(userID1, userID2){
 	document.getElementById("friendButton").classList.add('friended');
 	document.getElementById("friendButton").innerHTML = "FRIENDS";
-	$.post('/ajax/ajaxCreateFriendship.php', {userID1, userID2})
+	$.post('/ajax/ajaxCreateFriendship.php', {userID1, userID2}, function(contentEchoedFromServer){
+		$('#confirmContentFromServer').html(contentEchoedFromServer);
+		})
 }
 
 function deleteFriendship(userID1, userID2){
 	document.getElementById("friendButton").classList.remove('friended');
 	document.getElementById("friendButton").innerHTML = "FRIEND";
-	$.post('/ajax/ajaxDeleteFriendship.php', {userID1, userID2})
+	$.post('/ajax/ajaxDeleteFriendship.php', {userID1, userID2},function(contentEchoedFromServer){
+		$('#confirmContentFromServer').html(contentEchoedFromServer);
+		})
 }
