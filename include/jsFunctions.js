@@ -86,7 +86,7 @@ function undoVote(eventID, direction, ifBoth){
 	console.log("after you voted = " +(total+sign));
 
 	if(ifBoth == null){ //only do an ajax call to undo this if there isn't an additional vote being registered
-		$.post({ url:'/ajax/ajaxUndoVote.php', data:{eventID, direction, ifBoth}});
+		$.post({ url:'/ajax/ajaxUndoVote.php', data:{eventID, direction, ifBoth} } ) ;
 	}
 }
 
@@ -95,16 +95,28 @@ function onclickDeleteEvent(eventID){
 	location.href = "deleteEvent.php?eventID="+eventID;
 }
 
-//might need a intake friendship status function? that can direct to
-// which function is necessary
+
+
+
+//friendship functions
+
+function intakeFriendship(userID1, userID2, friendWord){
+	if(friendWord == "FRIEND"){
+		createFriendship(userID1, userID2);
+	}
+	else {
+		deleteFriendship(userID1, userID2);
+	}
+}
 
 function createFriendship(userID1, userID2){
-
 	document.getElementById("friendButton").classList.add('friended');
-
-
+	document.getElementById("friendButton").innerHTML = "FRIENDS";
+	$.post('/ajax/ajaxCreateFriendship.php', {userID1, userID2})
 }
 
 function deleteFriendship(userID1, userID2){
-
+	document.getElementById("friendButton").classList.remove('friended');
+	document.getElementById("friendButton").innerHTML = "FRIEND";
+	$.post('/ajax/ajaxDeleteFriendship.php', {userID1, userID2})
 }

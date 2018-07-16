@@ -24,7 +24,7 @@ a:hover{
 }
 
 #friendbutton{
-	/* background-color:#eeaebe; */
+	background-color:#eeaebe;
 	border-color: black;
 	/* border-radius: 10px; */
 	border-width: 2px;
@@ -32,7 +32,9 @@ a:hover{
         height: 30px;
 }
 
-.friended{
+/*helps the problem of both the id & the class, adn the id background taking over*/
+
+#friendbutton.friended{
 	background-color:blue;
 }
 

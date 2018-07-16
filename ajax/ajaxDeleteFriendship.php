@@ -4,11 +4,9 @@ include('config/init.php');
 
 checkIfUserIsLoggedIn($_SESSION['userID']);
 
+//if it exists in DB, delete it
+$exists = doesFriendshipExist($_REQUEST['userID1'], $_REQUEST['userID2']);
 
-//wowow, wait, don't trust the client. should be getting this stuff from server
-
-// if exists in DB, delete it
-
-deleteFriendship($_REQUEST['userID1'], $_REQUEST['userID2']);
-
- ?>
+if($exists != null){ //which is should
+	deleteFriendship($_REQUEST['userID1'], $_REQUEST['userID2']);
+}

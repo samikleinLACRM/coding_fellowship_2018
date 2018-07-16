@@ -36,26 +36,27 @@ if ($_SESSION['userID'] == $user['userID']){
 	<br>";
 }
 
-$friended = null;
+
+
+//tells it if friended or nah
+$friendedColor = null;
+$friendWord = "FRIEND";
 
 $stringNum = $_REQUEST['userID'];
 $requestUserID = (int)$stringNum;
 
-// echoNicely($_SESSION['userID']);
-// echoNicely($_REQUEST['userID']);
-// echoNicely($int);
-//
-// die();
-
-
-
 if(isset($_SESSION['userID'])){ // && $_SESSION['userID'] != $_REQUEST['userID'] <-- actually don't think necessary, bc just changing varibales, and if the variables arent used, then doesnt matter
 	$friendship = doesFriendshipExist($_SESSION['userID'], $requestUserID);
 	if ($friendship !=null){
-		$friended = "friended";
-		// echoNicely("TESTTTT");
+		$friendedColor = "friended";
+		$friendWord = "FRIENDS";
 	}
 }
+
+// $nfdjk= doesFriendshipExist($requestUserID, $_SESSION['userID']);
+// echoNicely($friended);
+// die();
+
 
 echo"
 	<div class='bioBox' style='margin:50px;'>
@@ -69,12 +70,8 @@ echo"
 				//only print a friend button if it's not your page
 				if($_SESSION['userID'] != $_REQUEST['userID']){
 					echo"
-					<button type='button' id='friendButton' class='friended' onclick=''>FRIEND</button>";
-
+					<button type='button' onclick=\"intakeFriendship($_SESSION[userID], $requestUserID, '$friendWord');\" id='friendButton' class='$friendedColor' onclick=''>$friendWord</button>";
 				}
-				//problem is both the id & the class
-				// the id background is taking over
-
 				echo"
 			</div>
 			<p>$user[class]</p>

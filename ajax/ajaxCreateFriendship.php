@@ -1,17 +1,13 @@
 <?php
 
-include('config/init.php');
+include('config/init.php');  //it's this it doesn't like
 
 checkIfUserIsLoggedIn($_SESSION['userID']);
 
-
-//wowow, wait, don't trust the client. should be getting this stuff from server
-
 //if doesn't exists in DB, create it
+$exists = doesFriendshipExist($_REQUEST['userID1'], $_REQUEST['userID2']);
 
-
-
-
-createFriendship($_REQUEST['userID1'], $_REQUEST['userID2']);
-
- ?>
+if($exists == null){ //which is should
+	createFriendship($_REQUEST['userID1'], $_REQUEST['userID2']);  //this is the wrong part = wtf
+	// echo "friendship created";
+}
