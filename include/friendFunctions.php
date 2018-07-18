@@ -12,7 +12,6 @@ function echoFriends($userID){
 		foreach ($friends as $friend) {
 
 			echo "
-
 			<div class='friendBox'>
 				<div style='float:left; overflow:auto;'>
 					<img src='/pics/smiley.jpg' alt='Smiley face' width='50' height='50'>
@@ -97,6 +96,7 @@ function doesFriendshipExist($userID1, $userID2){
 		WHERE (userID1 = $userID1 AND userID2 = $userID2)
 		OR (userID2 = $userID1 AND userID1 = $userID2)
 	")->fetchAll();
+	//return is_array($result);
 	return $result;
 }
 

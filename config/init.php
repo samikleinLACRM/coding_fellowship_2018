@@ -10,9 +10,6 @@ include('include/logInFunctions.php');
 include('include/friendFunctions.php');
 
 // include('include/jsFunctions.php');
-?>
-<script src="/include/jquery.js"></script>
-<script src="/include/jsFunctions.js"></script>
-<?php
+
 
 session_start();

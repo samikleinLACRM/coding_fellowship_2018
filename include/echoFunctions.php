@@ -3,7 +3,10 @@
 
 function echoHeader($Title, $PageName) {
 
-
+	?>
+	<script src="/include/jquery.js"></script>
+	<script src="/include/jsFunctions.js"></script>
+	<?php
 
 
 	echo "
