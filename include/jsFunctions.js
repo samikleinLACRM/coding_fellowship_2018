@@ -101,15 +101,19 @@ function onclickDeleteEvent(eventID){
 //friendship functions
 
 function intakeFriendship(userID1, userID2, friendWord){
-	if(friendWord == "FRIEND"){
+	console.log("intaking friendship");
+	if(document.getElementById("friendButton").classList.contains('friended')){
+		console.log("about to DELTE a friendship");
+		deleteFriendship(userID1, userID2);
+		// also, if more complex, pop up an alert that says "are you sure you want to do this?"
+
+	}
+	else {
+		console.log("about to CREATE a friendship");
 		createFriendship(userID1, userID2);
 		// instead of automatically creating the friendship, would lead to another function that
 		// 		sends a notification to the user, asking to be friends. then if presses accepts,
 		//		then create the friendship
-	}
-	else {
-		deleteFriendship(userID1, userID2);
-		// also, if more complex, pop up an alert that says "are you sure you want to do this?"
 	}
 }
 
@@ -117,7 +121,6 @@ function createFriendship(userID1, userID2){
 	document.getElementById("friendButton").classList.add('friended');
 	document.getElementById("friendButton").innerHTML = "FRIENDS";
 	$.post('/ajax/ajaxCreateFriendship.php', {userID1, userID2}, function(contentEchoedFromServer){
-		console.log(contentEchoedFromServer);
 		$('#confirmContentFromServer').html(contentEchoedFromServer);
 		})
 }

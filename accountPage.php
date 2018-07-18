@@ -93,13 +93,11 @@ echo"
 				foreach ($eventsGoingTo as $event) {
 				// var_dump($event);
 				echo "
-				<div class='row accountColumn' style='border:solid; margin:10px;'>";
+				<div class='row accountColumn' style='border:solid; border-color: gray;'>";
 
 				echoEvent($event);
 				echo "
-
-
-				</div>";
+				</div><br>";
 			}
 		}
 			echo "
@@ -109,7 +107,7 @@ echo"
 			<div class='headingBox'>
 				Events Created
 			</div>
-			<br>
+
 
 			<div class='eventsCreatedBox'>
 			";
@@ -121,10 +119,10 @@ echo"
 				foreach ($eventsCreated as $event) {
 					// var_dump($event);
 					echo "
-					<div class='row accountColumn' style='border:solid; margin:10px;'>";
+					<div class='row accountColumn' style='border:solid; border-color: gray;'>";
 
 					echoEvent($event);
-					echo "</div>";
+					echo "</div> <br>";
 				}
 			}
 
@@ -148,8 +146,8 @@ echo"
 
 
 </div>
+</div>
 ";
 
 
-
- ?>
+echoFooter();

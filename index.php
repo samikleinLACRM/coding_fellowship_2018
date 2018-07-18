@@ -73,3 +73,4 @@ echo "
 	}
 echo "
 </div>";
+echoFooter();

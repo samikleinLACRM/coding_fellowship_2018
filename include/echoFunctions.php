@@ -78,18 +78,19 @@ function checkIfUserIsLoggedIn($sessionUserID){
 
 
 
-//
-// function echoFooter(){
-// 	echo "
-// 		<div class='row right footer'>
-// 			Sami Klein <br>
-// 			email: sami.klein@wustl.edu <br>
-// 		</div>
-// </body>
-// 	";
-// }
-//
-//
+
+function echoFooter(){
+	echo "
+		<div class='row footer'>
+			Events Project <br>
+			By: Sami Klein <br>
+			email: sami.klein@wustl.edu
+		</div>
+</body>
+	";
+}
+
+
 function echoNicely($interm) {
 	echo "<pre>";
 	var_dump($interm);

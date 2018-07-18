@@ -127,5 +127,4 @@ echo "
 
 
 
-
- ?>
+echoFooter();

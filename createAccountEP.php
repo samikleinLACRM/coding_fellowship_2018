@@ -51,6 +51,3 @@ echo "
 	</form>
 </div>
 ";
-
-// echoFooter();
-?>

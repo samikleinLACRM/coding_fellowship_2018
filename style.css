@@ -27,15 +27,16 @@ a:hover{
 	background-color:#eeaebe;
 	border-color: black;
 	/* border-radius: 10px; */
-	border-width: 2px;
+	/* border-width: 2px; */
 	width: 70px;
-        height: 30px;
+    height: 30px;
+	box-shadow: 2px 3px;
 }
 
 /*helps the problem of both the id & the class, adn the id background taking over*/
 
 #friendbutton.friended{
-	background-color:blue;
+	background-color:#e16f8b;
 }
 
 
@@ -43,8 +44,12 @@ a:hover{
 .background{
 	/* background: linear-gradient(to bottom, #b2f7ff 0%, #b8b1ef 100%); */
 	/* background: linear-gradient(to bottom, #00cfee 0%, #01122e  100%); */
-	background-color:#dd2c57;
+	/* background-color:#dd2c57; */
 	/* background: linear-gradient(to bottom, #b2f7ff 0%, #b8b1ef 100%); */
+	background: linear-gradient(to bottom, #92FE9D 0%, #00C9FF 100%);
+	/* background: linear-gradient(to bottom, #DAE2F8 0%, #D6A4A4 100%); */
+
+
 	/* background: linear-gradient(45deg, #7a289a, #ff821c); */
 	/* font-family: "Verdana", Verdana, sans-serif; */
 	/* font-family: 'Quicksand', sans-serif; */
@@ -264,7 +269,7 @@ a:hover{
 
 .voteColumn{
 	text-align: center;
-	background-color: #19e8e4; //blue #1c99ff mint#1cff82
+	background-color: #dd2c57; //blue #1c99ff mint#1cff82    l// last #19e8e4
 }
 
 .bodyColumn{
@@ -363,17 +368,10 @@ a:hover{
 	overflow:auto;
 }
 
-.singleFriend{
-	padding:10px;
-	margin-left:50px;
-	margin-right:50px;
-	border: 1px solid #19e8e4; /*#521f66*/
-	border-radius: 25px;
 
-}
 
 .voted{
-	background-color: gray;
+	background-color: #00a1cc;
 }
 
 #dialogoverlay{
@@ -400,3 +398,15 @@ a:hover{
 #dialogbox > div > #DBhead{background: #666; font-size:19px; padding:10px; color:#CCC;}
 #dialogbox > div > #DBbody{background: #333; padding:20px; color:#FFF;}
 #dialogbox > div > #DBfoot{background: #666; padding:10px; text-align:right;}
+
+.footer{
+	position:relative;
+	bottom:0;
+	background-color: white;
+	padding:10px;
+	margin: 20px;
+	width: 15%;
+	float:left;
+	border:solid;
+	border-color: gray;
+}

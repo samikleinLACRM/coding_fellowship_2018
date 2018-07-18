@@ -70,4 +70,4 @@ echo "
 
 
 
- ?>
+echoFooter();
