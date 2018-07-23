@@ -17,8 +17,6 @@ if(!isset($_SESSION['userID'])){
 $user=getUserByUserID($_REQUEST['userID']);
 //NEED TO DO MORE VERIFICATION ON THIS! - actually wait, should be fine. bc should be able to see anyone's
 
-$eventsCreated=getAllEventsThisUserCreated($user['userID']);
-
 
 echo "
 <div class='whiteBox'>
@@ -84,15 +82,18 @@ echo"
 			<div class='headingBox'>
 				Upcoming Events
 			</div>
-			<br>";
-			$seeMore = "See More";
-			echo "
-			<div id='confirmEvent'>
+			<br>
+			<div id='confirmUpcoming'>
 			";
 				echo3EventsGoingTo($_REQUEST['userID']);
 				echo "
-			</div>
-			<button type='button' onclick='intakeSeeMoreClick($requestUserID)'; id='seeMore'>$seeMore</button>
+			</div>";
+			if(count(getAllEventsThisUserIsGoingTo($_REQUEST['userID'])) > 3){
+				echo "
+				<button type='button' onclick='intakeUpcomingClick($requestUserID)'; id='upcomingButton'>See All</button>";
+			}
+
+			echo "
 		</div>
 		<div class='bioColumn right'>
 
@@ -100,26 +101,16 @@ echo"
 				Events Created
 			</div>
 
-
 			<div class='eventsCreatedBox'>
-			";
-
-			if ($eventsCreated == null) {
-				echo "0 events created";
-			}
-			else{
-				foreach ($eventsCreated as $event) {
-					// var_dump($event);
-					echo "
-					<div class='row accountColumn' style='border:solid; border-color: gray;'>";
-
-					echoEvent($event);
-					echo "</div> <br>";
-				}
-			}
-
-			//can't just do br, need an actual fix
+				<div id='confirmCreated'>";
+					echo3EventsCreated($_REQUEST['userID']);
 			echo "
+				</div>";
+				if(count(getAllEventsCreated($_REQUEST['userID'])) > 3){
+					echo "
+					<button type='button' onclick='intakeEventsCreatedButton($requestUserID)'; id='eventsCreatedButton'>See All</button>";
+				}
+				echo"
 			</div>
 			<br>
 			<div class='headingBox'>

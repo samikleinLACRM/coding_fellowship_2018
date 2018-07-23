@@ -162,6 +162,43 @@ function echoAllEventsGoingTo($userID){
 }
 
 
+function echoAllEventsCreated($userID){
+
+	$eventsCreated=getAllEventsCreated($userID);
+	if ($eventsCreated == null) {
+		echo "0 events created";
+	}
+	else{
+		foreach ($eventsCreated as $event) {
+			// var_dump($event);
+			echo "
+			<div class='row accountColumn' style='border:solid; border-color: gray;'>";
+			echoEvent($event);
+			echo "</div> <br>";
+		}
+	}
+}
+
+
+function echo3EventsCreated($userID){
+	$eventsCreated=get3EventsCreated($userID);
+	if ($eventsCreated == null) {
+		echo "0 events created";
+	}
+	else{
+		foreach ($eventsCreated as $event) {
+			// var_dump($event);
+			echo "
+			<div class='row accountColumn' style='border:solid; border-color: gray;'>";
+			echoEvent($event);
+			echo "</div> <br>";
+		}
+	}
+}
+
+
+
+
 function echoColumnEvent($eventID){
 	$thisEvent=getOneEvent($eventID);
 	echo "

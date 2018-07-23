@@ -133,27 +133,53 @@ function deleteFriendship(userID1, userID2){
 		})
 }
 
-function intakeSeeMoreClick(userID){
+function intakeUpcomingClick(userID){
 	console.log("intaking click");
-	if(document.getElementById("seeMore").classList.contains('all')){
+	if(document.getElementById("upcomingButton").classList.contains('all')){
 
 		console.log("contains all, so going back to see more");
 
 		//print just the 3, remove all from the list
-		document.getElementById("seeMore").classList.remove('all');
-		document.getElementById("seeMore").innerHTML = "See All";
-		$.post('/ajax/ajaxSee3.php', {userID},function(contentEchoedFromServer){
-			$('#confirmEvent').html(contentEchoedFromServer);
+		document.getElementById("upcomingButton").classList.remove('all');
+		document.getElementById("upcomingButton").innerHTML = "See All";
+		$.post('/ajax/ajaxSee3Upcoming.php', {userID},function(contentEchoedFromServer){
+			$('#confirmUpcoming').html(contentEchoedFromServer);
 			})
 	}
 	else{
 		console.log("does not contain anything, so doing a SEE ALL call");
 		//print All of them
 		// add all to the list
-		document.getElementById("seeMore").classList.add('all');
-		document.getElementById("seeMore").innerHTML = "See More";
-		$.post('/ajax/ajaxSeeAll.php', {userID},function(contentEchoedFromServer){
-			$('#confirmEvent').html(contentEchoedFromServer);
+		document.getElementById("upcomingButton").classList.add('all');
+		document.getElementById("upcomingButton").innerHTML = "See Less";
+		$.post('/ajax/ajaxSeeAllUpcoming.php', {userID},function(contentEchoedFromServer){
+			$('#confirmUpcoming').html(contentEchoedFromServer);
+			})
+	}
+
+}
+
+function intakeEventsCreatedButton(userID){
+	console.log("intaking click");
+	if(document.getElementById("eventsCreatedButton").classList.contains('all')){
+
+		console.log("contains all, so going back to see more");
+
+		//print just the 3, remove all from the list
+		document.getElementById("eventsCreatedButton").classList.remove('all');
+		document.getElementById("eventsCreatedButton").innerHTML = "See All";
+		$.post('/ajax/ajaxSee3Created.php', {userID},function(contentEchoedFromServer){
+			$('#confirmCreated').html(contentEchoedFromServer);
+			})
+	}
+	else{
+		console.log("does not contain anything, so doing a SEE ALL call");
+		//print All of them
+		// add all to the list
+		document.getElementById("eventsCreatedButton").classList.add('all');
+		document.getElementById("eventsCreatedButton").innerHTML = "See Less";
+		$.post('/ajax/ajaxSeeAllCreated.php', {userID},function(contentEchoedFromServer){
+			$('#confirmCreated').html(contentEchoedFromServer);
 			})
 	}
 

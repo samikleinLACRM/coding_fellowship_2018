@@ -146,7 +146,7 @@ function get3EventsUserGoingTo($userID){
 
 }
 
-function getAllEventsThisUserCreated($userID){
+function getAllEventsCreated($userID){
 	$result = dbQuery("
 		SELECT *
 		FROM events
@@ -157,7 +157,20 @@ function getAllEventsThisUserCreated($userID){
 		'userID'=>$userID
 	))->fetchAll();
 	return $result;
+}
 
+function get3EventsCreated($userID){
+	$result = dbQuery("
+		SELECT *
+		FROM events
+		INNER JOIN usersCreated2events ON events.eventID = usersCreated2events.eventID
+		WHERE usersCreated2events.userID = :userID
+		ORDER BY dateOfEvent ASC
+		LIMIT 3
+	", array(
+		'userID'=>$userID
+	))->fetchAll();
+	return $result;
 }
 
 

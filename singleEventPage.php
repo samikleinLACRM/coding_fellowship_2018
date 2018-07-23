@@ -84,7 +84,7 @@ echo "
 		<br>
 		<hr>
 
-		<div style='margin:20px'>
+		<div style='margin-left:50px; margin-right:50px; margin-top:30px; margin-top:30px;'>
 			<p class='heading'> Description: </p>
 			<p style='font-size:18px'> $event[description] </p>
 		</div>
