@@ -132,3 +132,29 @@ function deleteFriendship(userID1, userID2){
 		$('#confirmContentFromServer').html(contentEchoedFromServer);
 		})
 }
+
+function intakeSeeMoreClick(userID){
+	console.log("intaking click");
+	if(document.getElementById("seeMore").classList.contains('all')){
+
+		console.log("contains all, so going back to see more");
+
+		//print just the 3, remove all from the list
+		document.getElementById("seeMore").classList.remove('all');
+		document.getElementById("seeMore").innerHTML = "See All";
+		$.post('/ajax/ajaxSee3.php', {userID},function(contentEchoedFromServer){
+			$('#confirmEvent').html(contentEchoedFromServer);
+			})
+	}
+	else{
+		console.log("does not contain anything, so doing a SEE ALL call");
+		//print All of them
+		// add all to the list
+		document.getElementById("seeMore").classList.add('all');
+		document.getElementById("seeMore").innerHTML = "See More";
+		$.post('/ajax/ajaxSeeAll.php', {userID},function(contentEchoedFromServer){
+			$('#confirmEvent').html(contentEchoedFromServer);
+			})
+	}
+
+}

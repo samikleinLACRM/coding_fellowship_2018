@@ -17,7 +17,6 @@ if(!isset($_SESSION['userID'])){
 $user=getUserByUserID($_REQUEST['userID']);
 //NEED TO DO MORE VERIFICATION ON THIS! - actually wait, should be fine. bc should be able to see anyone's
 
-$eventsGoingTo=getAllEventsThisUserIsGoingTo($user['userID']);
 $eventsCreated=getAllEventsThisUserCreated($user['userID']);
 
 
@@ -86,21 +85,14 @@ echo"
 				Upcoming Events
 			</div>
 			<br>";
-			if ($eventsGoingTo == null) {
-				echo "Going to 0 events";
-			}
-			else {
-				foreach ($eventsGoingTo as $event) {
-				// var_dump($event);
-				echo "
-				<div class='row accountColumn' style='border:solid; border-color: gray;'>";
-
-				echoEvent($event);
-				echo "
-				</div><br>";
-			}
-		}
+			$seeMore = "See More";
 			echo "
+			<div id='confirmEvent'>
+			";
+				echo3EventsGoingTo($_REQUEST['userID']);
+				echo "
+			</div>
+			<button type='button' onclick='intakeSeeMoreClick($requestUserID)'; id='seeMore'>$seeMore</button>
 		</div>
 		<div class='bioColumn right'>
 

@@ -118,6 +118,142 @@ function echoDialogBox(){
 	";
 }
 
+function echo3EventsGoingTo($userID){
+
+	// if(){ //something w doc.getbyel? or need another parameter
+	//
+	// }
+	// $eventsGoingTo=getAllEventsThisUserIsGoingTo($userID);
+	$eventsGoingTo=get3EventsUserGoingTo($userID);
+
+	if ($eventsGoingTo == null) {
+		echo "Going to 0 events";
+	}
+	else {
+		foreach ($eventsGoingTo as $event) {
+		// var_dump($event);
+		echo "
+		<div class='row accountColumn' style='border:solid; border-color: gray;'>";
+
+		echoEvent($event);
+		echo "
+		</div><br>";
+		}
+	}
+}
+
+function echoAllEventsGoingTo($userID){
+
+	$eventsGoingTo=getAllEventsThisUserIsGoingTo($userID);
+
+	if ($eventsGoingTo == null) {
+		echo "Going to 0 events";
+	}
+	else {
+		foreach ($eventsGoingTo as $event) {
+		echo "
+		<div class='row accountColumn' style='border:solid; border-color: gray;'>";
+
+		echoEvent($event);
+		echo "
+		</div><br>";
+		}
+	}
+}
+
+
+function echoColumnEvent($eventID){
+	$thisEvent=getOneEvent($eventID);
+	echo "
+	<div class='trendingColumn'>";
+		echoEvent($thisEvent);
+	echo "
+	</div>";
+}
+
+function echoColumnTwoEvent($eventID){
+	$thisEvent=getOneEvent($eventID);
+	echo "<div class='trendingColumn' style='margin-left:5%; margin-right:5%;'>";
+		echoEvent($thisEvent);
+	echo "
+	</div>";
+}
+
+// $direction = "up";
+function echoUpVoteButton($eventID, $upVoted){
+	$direction = 'up'; //nic fixed this. very weird string stuff, but it works now!
+	if(!isset($_SESSION['userID'])){
+		$s = null;
+	}
+	else{
+		$s = $_SESSION['userID'];
+	}
+	echo"
+	<a href='javascript://' onclick=\"intakeVote($eventID, '$direction', $s);\">
+		<img id='upVoteButton_$eventID' class='iconAligned $upVoted' src='/pics/arrow2.jpg' alt='arrow' height=40px>
+	</a>";
+
+}
+
+function echoDownVoteButton($eventID, $downVoted){ //sohuld there be a ; after the function?
+	$direction = 'down';
+	if(!isset($_SESSION['userID'])){
+		$s = null;
+	}
+	else{
+		$s = $_SESSION['userID'];
+	}
+	echo"
+	<a href='javascript://' onclick=\"intakeVote($eventID, '$direction', $s);\">
+		<img id='downVoteButton_$eventID' class='iconAligned $downVoted' src='/pics/line2.jpg' alt='line' height=40px>
+	</a>";
+}
+
+
+
+function echoEvent($event){
+	$eventID=$event['eventID'];
+	$upVoted = null;
+	$downVoted= null;
+	if(isset($_SESSION['userID'])){
+		$vote = doesUserVoteExist($eventID, $_SESSION['userID']);
+		if ($vote !=null){
+			if ($vote['0']['direction'] == "up"){
+				$upVoted="voted";
+			}
+			else{ //which means that direction must be down
+				$downVoted="voted";
+			}
+		}
+	}
+
+
+	echo"
+		<div class='voteColumn'>
+			<br>";
+			echoUpVoteButton($eventID, $upVoted);
+
+			echo "
+			<br><br>
+			<div id='eventWrapper_$eventID'>
+				$event[votes]
+			</div>
+			<br>
+			";
+			echoDownVoteButton($eventID, $downVoted);
+			echo "
+		</div>
+
+		<div class='bodyColumn'>
+			<a href='singleEventPage.php?eventID=$eventID'>
+				<h2 style='border:solid; margin:5px;'>$event[name]</h2>
+				<p>$event[dateOfEvent]</p>
+				<p>$event[location]</p>
+				<p><strong>Come Bc:</strong> $event[comeBc]</p>
+			</a>
+		</div>
+	";
+}
 
 
 
