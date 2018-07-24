@@ -184,3 +184,30 @@ function intakeEventsCreatedButton(userID){
 	}
 
 }
+
+$(document).ready(function(){
+    $("#friendButton").click(function(){
+		document.getElementById("confirmContentFromServer").style.display = "none";
+        $("#confirmContentFromServer").fadeIn();
+        // $("#confirmContentFromServer").fadeIn("slow");
+        // $("#confirmContentFromServer").fadeIn(30000);
+		console.log("fading in the friends");
+    });
+
+	$("#upcomingButton").click(function(){
+		document.getElementById("confirmUpcoming").style.display = "none";
+        $("#confirmUpcoming").fadeIn();
+        // $("#confirmContentFromServer").fadeIn("slow");
+        // $("#confirmContentFromServer").fadeIn(30000);
+		console.log("fading in upcoming events");
+    });
+
+	$("#eventsCreatedButton").click(function(){
+		document.getElementById("confirmCreated").style.display = "none";
+        $("#confirmCreated").fadeIn();
+        // $("#confirmContentFromServer").fadeIn("slow");
+        // $("#confirmContentFromServer").fadeIn(30000);
+		console.log("fading in events created");
+    });
+
+});

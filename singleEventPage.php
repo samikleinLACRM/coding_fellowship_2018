@@ -15,14 +15,12 @@ $creator=getEventCreator($_REQUEST['eventID']);
 echoHeader($event['name'], null);
 
 echo "
-	<div class='whiteBox'>";
+<div class='whiteBox'>";
 
 	if(isset($_SESSION['userID'])){
 		if ($creator['userID'] == $_SESSION['userID']){
 			echo "<br>
-			<div style='font-size:20px; background-color:#19e8e4; text-align:center; margin-left:200px; margin-right:200px; border-radius:15px;'>
-				<a href='editEvent.php?eventID=$_REQUEST[eventID]'>EDIT YOUR EVENT</a>
-			</div>
+			<button type='button' onclick='location.href = \"editEvent.php?eventID=$_REQUEST[eventID]\"'; class='editEventButton'>Edit Your Event</button>
 			<br>";
 		}
 	}
@@ -75,23 +73,28 @@ echo "
 		<div class='coloredOutline'>
 			<p>COME B/C: $event[comeBc]</p>
 		</div>
+";
 
+
+echo"
 		<div class='dateTime'>
 			<p> <img class='iconAligned' src='/pics/location.jpg' alt='location' height=40px> $event[location]</p>
-			<p> <img class='iconAligned' src='/pics/time.jpg' alt='time' height=40px> $event[dateOfEvent], $event[startTime]-$event[endTime]</p>
+			<p> <img class='iconAligned' src='/pics/time.jpg' alt='time' height=40px>"; echo " ";echoDate($event['dateOfEvent']); echo" <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @ $event[startTime]-$event[endTime]</p>
 		</div>
 
 		<br>
 		<hr>
 
-		<div style='margin-left:50px; margin-right:50px; margin-top:30px; margin-top:30px;'>
-			<p class='heading'> Description: </p>
+		<div class='description'>
+			<p class='heading'> <strong>Description: </strong></p>
 			<p style='font-size:18px'> $event[description] </p>
 		</div>
 
 		<br>
-		<hr>
-		<br>
+<hr>
+		<br>";
+
+		echo"
 
 		<div class='row'>
 	  		<div class='column'>
@@ -135,10 +138,12 @@ echo "
 		</div>
 
 		<hr>
-		<br>
 
-		<p> Event Created By: <a href='accountPage.php?userID=$creator[userID]'>$creator[username]</a></p>
-		<p> Contact: <a href='mailto:$creator[email]'>$creator[email]</a></p>";
+
+		<div class='description' style='margin-top:30px;'>
+			<p> Event Created By: <a href='accountPage.php?userID=$creator[userID]'>$creator[username]</a></p>
+			<p> Contact: <a href='mailto:$creator[email]'>$creator[email]</a></p>
+		</div>";
 
 
 		echo"
@@ -146,3 +151,4 @@ echo "
 ";
 
 echoFooter();
+calculatePoints($event);

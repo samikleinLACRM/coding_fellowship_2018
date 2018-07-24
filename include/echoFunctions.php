@@ -42,11 +42,35 @@ function wrongPage($message){
 
 function echoDate($dateFromMySQL){
 
-	echo date_format($dateFromMySQL, 'g:ia \o\n l jS F Y');
+	// echo date_format($dateFromMySQL, 'g:ia \o\n l jS F Y');
 #output: 5:45pm on Saturday 24th March 2012
 
+	// date_default_timezone_set('UTC');
+	// echo date($dateFromMySQL);
+	echo date("F j, Y", strtotime( $dateFromMySQL ));
+
+	// $time=strtotime($dateFromMySQL);
+	// $month=date("F",$time);
+	// $year=date("Y",$time);
+	// $timestamp = strtotime($dateFromMySQL);
+	// $realDate = date('d/m/Y', $timestamp);
+ 	// echo $realDate;
+	// echo $month + $year;
 
 }
+
+function formatDateToCalculate($dateFromMySQL){
+	$toReturn = date("F j, Y", strtotime( $dateFromMySQL ));
+	return $toReturn;
+}
+
+//
+//
+// function echoJustDate($date){
+// 	$timestamp = strtotime($date);
+// 	$realDate = date('d-m-Y', $timestamp);
+// 	return $realDate;
+// }
 
 function echoNavBar(){
 	echo "
@@ -81,6 +105,7 @@ function checkIfUserIsLoggedIn($sessionUserID){
 
 function echoFooter(){
 	echo "
+	<br><br><br>
 		<div class='row footer'>
 			Events Project <br>
 			By: Sami Klein <br>
@@ -96,13 +121,7 @@ function echoNicely($interm) {
 	var_dump($interm);
 	echo "<pre>";
 }
-//
-//
-// function echoJustDate($date){
-// 	$timestamp = strtotime($date);
-// 	$realDate = date('d-m-Y', $timestamp);
-// 	return $realDate;
-// }
+
 
 function echoDialogBox(){
 	echo "
@@ -284,7 +303,7 @@ function echoEvent($event){
 		<div class='bodyColumn'>
 			<a href='singleEventPage.php?eventID=$eventID'>
 				<h2 style='border:solid; margin:5px;'>$event[name]</h2>
-				<p>$event[dateOfEvent]</p>
+				<p>"; echoDate($event['dateOfEvent']);echo"</p>
 				<p>$event[location]</p>
 				<p><strong>Come Bc:</strong> $event[comeBc]</p>
 			</a>
