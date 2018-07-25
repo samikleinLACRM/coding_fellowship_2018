@@ -151,4 +151,4 @@ echo"
 ";
 
 echoFooter();
-calculatePoints($event);
+// calculatePoints($event);

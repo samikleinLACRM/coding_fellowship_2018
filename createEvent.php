@@ -44,7 +44,8 @@ if(isset($_REQUEST['CreateEvent'])){ //
 				insertCatCombo($newEvent['eventID'], $category['catID']);
 			}
 		}
-		header("Location: eventCreated.php");
+		$newEventID = $newEvent['eventID'];
+		header("Location: eventCreated.php?eventID=$newEventID");
 		exit();
 	}
 }

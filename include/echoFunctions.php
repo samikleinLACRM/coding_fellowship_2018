@@ -268,6 +268,16 @@ function echoDownVoteButton($eventID, $downVoted){ //sohuld there be a ; after t
 
 
 function echoEvent($event){
+
+	//re calculate points
+	$hold = $hold= getLastCalculated($event['eventID']);
+	$dateCalculated = $hold['0']['lastCalculated'];
+	if($dateCalculated !==  date('Y-m-d')){
+		calculatePoints($event);
+		// echo "recalculating";
+	}
+
+
 	$eventID=$event['eventID'];
 	$upVoted = null;
 	$downVoted= null;

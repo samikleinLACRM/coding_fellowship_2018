@@ -4,7 +4,7 @@ function getAllEvents(){
 	$result = dbQuery("
 		SELECT *
 		FROM events
-		ORDER BY votes DESC
+		ORDER BY points DESC
 	")->fetchAll();
 	return $result;
 }
@@ -88,7 +88,7 @@ function getAllEventsButTopThree(){
 	$result = dbQuery("
 		SELECT *
 		FROM events
-		ORDER BY votes
+		ORDER BY points
 		DESC limit 3,100000
 	")->fetchAll();
 	return $result;
@@ -100,7 +100,7 @@ function getTopThreeEvents(){
 	$result = dbQuery("
 		SELECT *
 		FROM events
-		ORDER BY votes DESC
+		ORDER BY points DESC
 		LIMIT 3
 	")->fetchAll();
 	return $result;
@@ -156,9 +156,10 @@ function downVoteInDB($eventID){
 
 
 function insertEvent($name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic){
+	$today = date('Y-m-d');
 	$result = dbQuery("
-		INSERT INTO events(name, votes, location, dateOfEvent, startTime, endTime, comeBc, description, pic)
-		VALUES(:name, '0', :location, :dateOfEvent, :startTime, :endTime, :comeBc, :description, :pic)
+		INSERT INTO events(name, votes, location, dateOfEvent, startTime, endTime, comeBc, description, pic, points, lastCalculated)
+		VALUES(:name, '0', :location, :dateOfEvent, :startTime, :endTime, :comeBc, :description, :pic, '0', $today)
 	", array(
 		'name'=>$name,
 		'location'=>$location,
