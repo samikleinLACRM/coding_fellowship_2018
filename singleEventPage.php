@@ -143,10 +143,7 @@ echo"
 		<div class='description' style='margin-top:30px;'>
 			<p> Event Created By: <a href='accountPage.php?userID=$creator[userID]'>$creator[username]</a></p>
 			<p> Contact: <a href='mailto:$creator[email]'>$creator[email]</a></p>
-		</div>";
-
-
-		echo"
+		</div>
 	</div>
 ";
 

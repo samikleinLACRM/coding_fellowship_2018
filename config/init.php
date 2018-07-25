@@ -8,7 +8,7 @@ include('include/eventFunctions.php');
 include('include/echoFunctions.php');
 include('include/logInFunctions.php');
 include('include/friendFunctions.php');
-include('include/algorithmFunction.php');
+include('include/algorithmFunctions.php');
 
 // include('include/jsFunctions.php');
 

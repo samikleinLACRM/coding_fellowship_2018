@@ -8,9 +8,12 @@ function calculatePoints($event){
 	// these both get in the format of 'July 24, 2018'
 	$shortEventDate=formatDateToCalculate($event['dateOfEvent']);
 	$shortTodayDate= date("F j, Y");
+
 	$fullEventDate = $event['dateOfEvent']; //00:00 version
 	$fullTodayDate = date('Y-m-d H:i:s'); //00:00 version
+
 	$dateDiff= dateDifference($fullTodayDate, $event['dateOfEvent'])+1;
+
 
 	//NOTE: there is probably a better way to do this than a bunch of if statements,
 	// 		but just doing this for now.
@@ -33,7 +36,7 @@ function calculatePoints($event){
 	else if($dateDiff == 5){
 		$points = $points +100;
 	}
-	else if(15>$dateDiff&&$dateDiff > 6){
+	else if(15>$dateDiff&&$dateDiff > 5){
 		$points = $points +100;
 	}
 	else if(60 > $dateDiff && $dateDiff >30){
@@ -47,19 +50,13 @@ function calculatePoints($event){
 	}
 
 
-	$points=$points+$event['votes'];
-
-	// echo $dateDiff; echo "hey";
-	// echo $points;
-	$hold= getLastCalculated($event['eventID']);
-	// echoNicely($hold['0']['lastCalculated']);
-	//at the end, need to update field called points? w this number?
-	//but will it re-run every day?
-	$yMD=date('Y-m-d');
-	updatePoints($event['eventID'], $points, $yMD);
+	$points=$points+($event['votes']*1.5);
+	$yMDH=date('Y-m-d-H');
+	updatePoints($event['eventID'], $points, $yMDH);
 }
 
 
+//found this online
 function dateDifference($date_1 , $date_2 , $differenceFormat = '%R%a' ){
     $datetime1 = date_create($date_1);
     $datetime2 = date_create($date_2);
@@ -68,23 +65,23 @@ function dateDifference($date_1 , $date_2 , $differenceFormat = '%R%a' ){
 }
 
 
-function updatePoints($eventID, $points, $yMD){
+function updatePoints($eventID, $points, $yMDH){
 	$result = dbQuery("
 	UPDATE events
 	SET points = :points,
-	lastCalculated = :yMD
+	lastCalculated2 = :yMDH
 	WHERE eventID = :eventID
 	", array(
 		'points'=>$points,
 		'eventID'=>$eventID,
-		'yMD'=>$yMD
+		'yMDH'=>$yMDH
 	))->fetchAll();
 	return $result;
 }
 
-function getLastCalculated($eventID){
+function getLastCalculated2($eventID){
 	$result = dbQuery("
-		SELECT lastCalculated
+		SELECT lastCalculated2
 		FROM events
 		WHERE eventID =:eventID
 	", array(

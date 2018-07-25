@@ -105,12 +105,13 @@ function checkIfUserIsLoggedIn($sessionUserID){
 
 function echoFooter(){
 	echo "
-	<br><br><br>
+	<br><br>
 		<div class='row footer'>
 			Events Project <br>
 			By: Sami Klein <br>
 			email: sami.klein@wustl.edu
 		</div>
+		<br><br><br><br><br><br>
 </body>
 	";
 }
@@ -269,10 +270,10 @@ function echoDownVoteButton($eventID, $downVoted){ //sohuld there be a ; after t
 
 function echoEvent($event){
 
-	//re calculate points
-	$hold = $hold= getLastCalculated($event['eventID']);
-	$dateCalculated = $hold['0']['lastCalculated'];
-	if($dateCalculated !==  date('Y-m-d')){
+	//re calculate points, hourly
+	$hold = getLastCalculated2($event['eventID']);
+	$dateNHourCalculated = $hold['0']['lastCalculated2'];
+	if($dateNHourCalculated !==  date('Y-m-d-H')){
 		calculatePoints($event);
 		// echo "recalculating";
 	}
