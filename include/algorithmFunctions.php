@@ -9,8 +9,9 @@ function calculatePoints($event){
 	$shortEventDate=formatDateToCalculate($event['dateOfEvent']);
 	$shortTodayDate= date("F j, Y");
 
-	$fullEventDate = $event['dateOfEvent']; //00:00 version
-	$fullTodayDate = date('Y-m-d H:i:s'); //00:00 version
+	//00:00 format
+	$fullEventDate = $event['dateOfEvent'];
+	$fullTodayDate = date('Y-m-d H:i:s');
 
 	$dateDiff= dateDifference($fullTodayDate, $event['dateOfEvent'])+1;
 
@@ -49,6 +50,21 @@ function calculatePoints($event){
 		$points = $points -500;
 	}
 
+	$usersGoing=getUsersGoingToThisEvent($event['eventID']);
+	$numPeopleGoing = count($usersGoing);
+
+	if($numPeopleGoing < 5){
+		$points = $points -100;
+	}
+	else if(10 > $numPeopleGoing && $numPeopleGoing > 5){
+		$points = $points +100;
+	}
+	else if(25 > $numPeopleGoing && $numPeopleGoing > 10){
+		$points = $points +150;
+	}
+	else if($numPeopleGoing > 25){
+		$points = $points +200;
+	}
 
 	$points=$points+($event['votes']*1.5);
 	$yMDH=date('Y-m-d-H');
