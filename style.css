@@ -44,7 +44,7 @@ a:hover{
 	border-color: black;
 	/* border-radius: 10px; */
 	/* border-width: 2px; */
-	width: 70px;
+	width: 100px;
     height: 30px;
 	box-shadow: 2px 3px;
 }
@@ -55,9 +55,7 @@ a:hover{
 #saveButton{
 	background-color:#c4daff;
 	border-color: black;
-	/* border-radius: 10px; */
-	/* border-width: 2px; */
-	width: 70px;
+	width: 100px;
     height: 30px;
 	box-shadow: 2px 3px;
 }
@@ -417,7 +415,8 @@ a:hover{
 
 
 .voted{
-	background-color: #00a1cc;
+	/* background-color: #00a1cc; */
+	background-color: #00C9FF;
 }
 
 #dialogoverlay{
