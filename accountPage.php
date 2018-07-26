@@ -65,7 +65,7 @@ echo"
 				//only print a friend button if it's not your page
 				if($_SESSION['userID'] != $_REQUEST['userID']){
 					echo"
-					<button type='button' onclick=\"intakeFriendship($_SESSION[userID], $requestUserID, '$friendWord');\" id='friendButton' class='$friendedColor' onclick=''>$friendWord</button>";
+					<button type='button' onclick=\"intakeFriendship($_SESSION[userID], $requestUserID, '$friendWord');\" id='friendButton' class='$friendedColor'>$friendWord</button>";
 				}
 				echo"
 			</div>
@@ -93,7 +93,18 @@ echo"
 				<button type='button' onclick='intakeUpcomingClick($requestUserID)'; id='upcomingButton'>See All</button>";
 			}
 
-			echo "
+			if($_SESSION['userID'] == $user['userID']){
+				echo "
+				<br><br><br>
+				<div class='headingBox'>
+					Saved (Private)
+				</div>";
+
+				echoSavedEvents($_SESSION['userID']); //i guess could do request too, but just to be sure.
+
+			}
+
+			echo"
 		</div>
 		<div class='bioColumn right'>
 

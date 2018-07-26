@@ -8,7 +8,6 @@ if(!@$_REQUEST['eventID']){
 $eventID=($_REQUEST['eventID']);
 $event=getOneEvent($eventID);
 $categories=getCatsForThisEvent($eventID);
-$usersGoing=getUsersGoingToThisEvent($eventID);
 
 $creator=getEventCreator($_REQUEST['eventID']);
 
@@ -24,6 +23,33 @@ echo "
 			<br>";
 		}
 	}
+
+
+
+	//tells it if going or nah
+	$goingColor = null;
+	$goingWord = "Going";
+
+	if(isset($_SESSION['userID'])){
+		$ifGoing = getIfGoing($_SESSION['userID'], $eventID);
+		if ($ifGoing !=null){
+			$goingColor = "userGoing";
+			$goingWord = "✓Going";
+		}
+	}
+
+	$savedColor = null;
+	$savedWord = "Save (private)";
+
+	if(isset($_SESSION['userID'])){
+		$ifSaved = getIfSaved($_SESSION['userID'], $eventID);
+		if ($ifSaved !=null){
+			$savedColor = "saved";
+			$savedWord = "✓Saved (private)";
+		}
+	}
+
+
 echo "
 	<div class='container'>
 		<img class='centerImage' src='$event[pic]' alt='$event[name]' height=500>
@@ -80,6 +106,10 @@ echo"
 		<div class='dateTime'>
 			<p> <img class='iconAligned' src='/pics/location.jpg' alt='location' height=40px> $event[location]</p>
 			<p> <img class='iconAligned' src='/pics/time.jpg' alt='time' height=40px>"; echo " ";echoDate($event['dateOfEvent']); echo" <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @ $event[startTime]-$event[endTime]</p>
+			<div class='display:inline'>
+				<button type='button' onclick=\"intakeGoing($_SESSION[userID], $event[eventID]);\" id='goingButton' class='$goingColor'>$goingWord</button>
+				<button type='button' onclick=\"intakeSave($_SESSION[userID], $event[eventID]);\" id='saveButton' class='$savedColor'>$savedWord</button>
+			</div>
 		</div>
 
 		<br>
@@ -108,32 +138,13 @@ echo"
 					<br>";
 				}
 
-			$numPeopleGoing = count($usersGoing);
-			if ($numPeopleGoing == 1){
-				$ppl = "person";
-			}
-			else{
-				$ppl = "people";
-			}
+
 
 			echo"
 			</div>
-			<div class='column'>
-				<p class='heading'>Going ($numPeopleGoing $ppl): </p>";
-
-				foreach ($usersGoing as $oneUserGoing) {
-					echo "
-					<div class='friendBox'>
-						<div style='float:left; overflow:auto;'>
-							<img src='/pics/smiley.jpg' alt='Smiley face' width='50' height='50'>
-						</div>
-						<div class='friendName'>
-							<a href='accountPage.php?userID=$oneUserGoing[userID]'>$oneUserGoing[username]</a>
-						</div>
-					</div>";
-				}
-
-				echo"
+			<div id=confirmGoing>";
+				echo echoGoing($event['eventID']);
+				echo "
 			</div>
 		</div>
 
@@ -148,4 +159,3 @@ echo"
 ";
 
 echoFooter();
-// calculatePoints($event);

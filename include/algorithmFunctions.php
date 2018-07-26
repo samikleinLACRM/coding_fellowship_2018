@@ -14,30 +14,28 @@ function calculatePoints($event){
 	$fullTodayDate = date('Y-m-d H:i:s');
 
 	$dateDiff= dateDifference($fullTodayDate, $event['dateOfEvent'])+1;
+		//ps - something weird going on with the today's date and
 
 
 	//NOTE: there is probably a better way to do this than a bunch of if statements,
 	// 		but just doing this for now.
-	if($shortEventDate==$shortTodayDate){
-		// echo "same day";
+
+	if($shortEventDate==$shortTodayDate){ //event is today
 		$points = $points +500;
 	}
-	else if($dateDiff == 1){ //aka tomorrow
-		$points = $points +450;
+
+	$diff2points= array(
+		'1'=>'450', '2'=>'350','3'=>'250','4'=>'300',
+		'5'=>'100'
+	);
+
+	foreach ($diff2points as $key => $value){
+		if($dateDiff == $key && $shortEventDate!==$shortTodayDate){ //bc today's date is weird
+			$points = $points + $diff2points[$key];
+		}
 	}
-	else if($dateDiff == 2){ //aka 2 days away
-		$points = $points +350;
-	}
-	else if($dateDiff == 3){
-		$points = $points +250;
-	}
-	else if($dateDiff == 4){
-		$points = $points +200;
-	}
-	else if($dateDiff == 5){
-		$points = $points +100;
-	}
-	else if(15>$dateDiff&&$dateDiff > 5){
+
+	if(15>$dateDiff&&$dateDiff > 5){
 		$points = $points +100;
 	}
 	else if(60 > $dateDiff && $dateDiff >30){

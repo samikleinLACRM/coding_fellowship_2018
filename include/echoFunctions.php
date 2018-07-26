@@ -271,8 +271,7 @@ function echoDownVoteButton($eventID, $downVoted){ //sohuld there be a ; after t
 function echoEvent($event){
 
 	//re calculate points, hourly
-	$hold = getLastCalculated2($event['eventID']);
-	$dateNHourCalculated = $hold['0']['lastCalculated2'];
+	$dateNHourCalculated =$event['lastCalculated2'];
 	if($dateNHourCalculated !==  date('Y-m-d-H')){
 		calculatePoints($event);
 		// echo "recalculating";
@@ -321,7 +320,3 @@ function echoEvent($event){
 		</div>
 	";
 }
-
-
-
-?>

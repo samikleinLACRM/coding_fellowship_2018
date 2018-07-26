@@ -211,3 +211,74 @@ $(document).ready(function(){
     });
 
 });
+
+
+
+
+function intakeGoing(userID, eventID){
+	console.log("intaking going");
+	if(document.getElementById("goingButton").classList.contains('userGoing')){
+		console.log("about to DELETE going");
+		deleteGoingJS(userID, eventID);
+		// also, if more complex, pop up an alert that says "are you sure you want to do this?"
+
+	}
+	else {
+		console.log("about to CREATE going");
+		createGoingJS(userID, eventID);
+		// instead of automatically creating the friendship, would lead to another function that
+		// 		sends a notification to the user, asking to be friends. then if presses accepts,
+		//		then create the friendship
+	}
+}
+
+function createGoingJS(userID, eventID){
+	document.getElementById("goingButton").classList.add('userGoing');
+	document.getElementById("goingButton").innerHTML = "✓Going";
+	$.post('/ajax/ajaxCreateGoing.php', {userID, eventID}, function(contentEchoedFromServer){
+		$('#confirmGoing').html(contentEchoedFromServer);
+		})
+}
+
+function deleteGoingJS(userID, eventID){
+	document.getElementById("goingButton").classList.remove('userGoing');
+	document.getElementById("goingButton").innerHTML = "Going";
+	$.post('/ajax/ajaxDeleteGoing.php', {userID, eventID},function(contentEchoedFromServer){
+		$('#confirmGoing').html(contentEchoedFromServer);
+		})
+}
+
+
+
+
+
+
+
+function intakeSave(userID, eventID){
+	console.log("intaking save");
+	if(document.getElementById("saveButton").classList.contains('saved')){
+		console.log("about to DELETE save");
+		deleteSaveJS(userID, eventID);
+		// also, if more complex, pop up an alert that says "are you sure you want to do this?"
+
+	}
+	else {
+		console.log("about to CREATE save");
+		createSaveJS(userID, eventID);
+		// instead of automatically creating the friendship, would lead to another function that
+		// 		sends a notification to the user, asking to be friends. then if presses accepts,
+		//		then create the friendship
+	}
+}
+
+function createSaveJS(userID, eventID){
+	document.getElementById("saveButton").classList.add('saved');
+	document.getElementById("saveButton").innerHTML = "✓Saved (private)";
+	$.post('/ajax/ajaxCreateSave.php', {userID, eventID});
+}
+
+function deleteSaveJS(userID, eventID){
+	document.getElementById("saveButton").classList.remove('saved');
+	document.getElementById("saveButton").innerHTML = "Save (private)";
+	$.post('/ajax/ajaxDeleteSave.php', {userID, eventID});
+}

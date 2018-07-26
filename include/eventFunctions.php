@@ -274,6 +274,6 @@ function deleteUserVote($eventID, $userID){
 		AND userID = :userID
 		", array(
 			'eventID'=>$eventID,
-			'userID'=>$userID,
+			'userID'=>$userID
 	))->fetchAll();
 }

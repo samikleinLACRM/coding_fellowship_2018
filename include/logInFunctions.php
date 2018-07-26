@@ -107,14 +107,14 @@ function getSessionUserID(){
 }
 
 
-function getUsersGoing($eventID){
-
-}
-
-
-function getCreator($eventID){
-
-}
+// function getUsersGoing($eventID){
+//
+// }
+//
+//
+// function getCreator($eventID){
+//
+// }
 
 
 function getAllEventsThisUserIsGoingTo($userID){

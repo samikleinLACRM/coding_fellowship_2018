@@ -39,7 +39,31 @@ a:hover{
 	background-color:#e16f8b;
 }
 
+#goingButton{
+	background-color:#c4daff;
+	border-color: black;
+	/* border-radius: 10px; */
+	/* border-width: 2px; */
+	width: 70px;
+    height: 30px;
+	box-shadow: 2px 3px;
+}
+#goingButton.userGoing{
+	background-color:#5495ff;
+}
 
+#saveButton{
+	background-color:#c4daff;
+	border-color: black;
+	/* border-radius: 10px; */
+	/* border-width: 2px; */
+	width: 70px;
+    height: 30px;
+	box-shadow: 2px 3px;
+}
+#saveButton.saved{
+	background-color:#5495ff;
+}
 
 .background{
 	/* background: linear-gradient(to bottom, #b2f7ff 0%, #b8b1ef 100%); */
