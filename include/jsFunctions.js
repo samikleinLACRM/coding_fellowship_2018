@@ -197,17 +197,19 @@ $(document).ready(function(){
 	$("#upcomingButton").click(function(){
 		document.getElementById("confirmUpcoming").style.display = "none";
         $("#confirmUpcoming").fadeIn();
-        // $("#confirmContentFromServer").fadeIn("slow");
-        // $("#confirmContentFromServer").fadeIn(30000);
 		console.log("fading in upcoming events");
     });
 
 	$("#eventsCreatedButton").click(function(){
 		document.getElementById("confirmCreated").style.display = "none";
         $("#confirmCreated").fadeIn();
-        // $("#confirmContentFromServer").fadeIn("slow");
-        // $("#confirmContentFromServer").fadeIn(30000);
 		console.log("fading in events created");
+    });
+	
+	$("#seeAllSavedButton").click(function(){
+		document.getElementById("confirmSaved").style.display = "none";
+        $("#confirmSaved").fadeIn();
+		console.log("fading in saved events");
     });
 
 });
@@ -281,4 +283,32 @@ function deleteSaveJS(userID, eventID){
 	document.getElementById("saveButton").classList.remove('saved');
 	document.getElementById("saveButton").innerHTML = "Save (private)";
 	$.post('/ajax/ajaxDeleteSave.php', {userID, eventID});
+}
+
+
+
+
+function intakeSeeAllSavedButton(userID){
+	console.log("intaking see all for saved events click");
+	if(document.getElementById("seeAllSavedButton").classList.contains('all')){
+
+		console.log("contains all, so going back to see more");
+
+		//print just the 3, remove all from the list
+		document.getElementById("seeAllSavedButton").classList.remove('all');
+		document.getElementById("seeAllSavedButton").innerHTML = "See All";
+		$.post('/ajax/ajaxSee3Saved.php', {userID},function(contentEchoedFromServer){
+			$('#confirmSaved').html(contentEchoedFromServer);
+			})
+	}
+	else{
+		console.log("does not contain anything, so doing a SEE ALL call");
+		//print All of them
+		// add all to the list
+		document.getElementById("seeAllSavedButton").classList.add('all');
+		document.getElementById("seeAllSavedButton").innerHTML = "See Less";
+		$.post('/ajax/ajaxSeeAllSaved.php', {userID},function(contentEchoedFromServer){
+			$('#confirmSaved').html(contentEchoedFromServer);
+			})
+	}
 }

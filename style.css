@@ -44,7 +44,7 @@ a:hover{
 	border-color: black;
 	/* border-radius: 10px; */
 	/* border-width: 2px; */
-	width: 100px;
+	width: 110px;
     height: 30px;
 	box-shadow: 2px 3px;
 }
@@ -55,7 +55,7 @@ a:hover{
 #saveButton{
 	background-color:#c4daff;
 	border-color: black;
-	width: 100px;
+	width: 110px;
     height: 30px;
 	box-shadow: 2px 3px;
 }
@@ -459,13 +459,16 @@ a:hover{
 
 .editEventButton{
 	font-size:20px;
-	background-color:#19e8e4;
+	/* background-color:#19e8e4; */
+
+	background-color:#ffade7;
 	/* margin-left:500px; */
 	/* margin-right:200px;  */
 	float: right;
 	text-align:right;
 	padding:10px;
 	margin-bottom: 20px;
+	border-color: black;
 	/* display:inline; */
 	 /* display: table; */
 	 /* margin-bottom:500px; */
@@ -481,7 +484,6 @@ a:hover{
 
 }
 
-
-/* #confirmContentFromServer{
-	display:none;
-} */
+#seeAllSavedButton{
+	font-size:15px;
+}

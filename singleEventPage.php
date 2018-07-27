@@ -13,17 +13,21 @@ $creator=getEventCreator($_REQUEST['eventID']);
 
 echoHeader($event['name'], null);
 
+
+if(isset($_SESSION['userID'])){
+	if ($creator['userID'] == $_SESSION['userID']){
+		echo "
+		<div style='margin-right:17.5%;'>
+			<button type='button' onclick='location.href = \"editEvent.php?eventID=$_REQUEST[eventID]\"'; class='editEventButton'>Edit Your Event</button>
+		</div>
+		<br><br><br><br>
+		";
+
+	}
+}
+
 echo "
 <div class='whiteBox'>";
-
-	if(isset($_SESSION['userID'])){
-		if ($creator['userID'] == $_SESSION['userID']){
-			echo "<br>
-			<button type='button' onclick='location.href = \"editEvent.php?eventID=$_REQUEST[eventID]\"'; class='editEventButton'>Edit Your Event</button>
-			<br>";
-		}
-	}
-
 
 
 	//tells it if going or nah

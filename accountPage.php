@@ -98,9 +98,17 @@ echo"
 				<br><br><br>
 				<div class='headingBox'>
 					Saved (Private)
-				</div>";
+				</div>
 
-				echoSavedEvents($_SESSION['userID']); //i guess could do request too, but just to be sure.
+				<div id='confirmSaved'>";
+					echo3SavedEvents($_SESSION['userID']);
+			echo "</div>";
+
+			if(count(getAllSavedEvents($_SESSION['userID'])) > 3){
+				echo "
+				<button type='button' onclick='intakeSeeAllSavedButton($_SESSION[userID])'; id='seeAllSavedButton'>See All</button>";
+			}
+				// echoAllSavedEvents($_SESSION['userID']); //i guess could do request too, but just to be sure.
 
 			}
 

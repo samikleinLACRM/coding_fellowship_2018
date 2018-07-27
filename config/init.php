@@ -10,6 +10,7 @@ include('include/logInFunctions.php');
 include('include/friendFunctions.php');
 include('include/algorithmFunctions.php');
 include('include/goingFunctions.php');
+include('include/sortByFunctions.php');
 
 
 // include('include/jsFunctions.php');

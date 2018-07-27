@@ -2,15 +2,7 @@
 include('config/init.php');
 
 
-echoHeader("Trending Events", null);
-
-echo "
-<div class='bloghead'>
-	Trending Events
-</div>
-";
-
-
+echoHeader("Trending Events", "Trending Events");
 
 $allEvents=getAllEvents();
 

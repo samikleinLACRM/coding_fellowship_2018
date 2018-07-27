@@ -104,7 +104,7 @@ function deleteSave($userID, $eventID){
 
 
 
-function echoSavedEvents($userID){
+function echoAllSavedEvents($userID){
 
 	$eventsSaved=getAllSavedEvents($userID);
 
@@ -137,4 +137,39 @@ function getAllSavedEvents($userID){
 		'userID'=>$userID
 	))->fetchAll();
 	return $result;
+}
+
+
+function get3SavedEvents($userID){
+	$result = dbQuery("
+		SELECT *
+		FROM events
+		INNER JOIN users2SavedEvents ON events.eventID = users2SavedEvents.eventID
+		WHERE users2SavedEvents.userID = :userID
+		ORDER BY dateOfEvent ASC
+		LIMIT 3
+	", array(
+		'userID'=>$userID
+	))->fetchAll();
+	return $result;
+}
+
+function echo3SavedEvents($userID){
+
+	$threeEvents=get3SavedEvents($userID);
+
+	echo "<br>";
+
+	if ($threeEvents == null) {
+		echo "0 events saved";
+	}
+	else {
+		foreach ($threeEvents as $event) {
+		echo "
+		<div class='row accountColumn' style='border:solid; border-color: gray;'>";
+			echoEvent($event);
+		echo "
+		</div><br>";
+		}
+	}
 }

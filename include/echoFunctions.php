@@ -21,7 +21,7 @@ function echoHeader($Title, $PageName) {
 			echoNavBar();
 			if ($PageName!=null) {
 				echo "
-				<br>
+			
 				<div class='bloghead'>
 					$PageName
 				</div>
@@ -76,6 +76,7 @@ function echoNavBar(){
 	echo "
 	<div class='textStyle form'>
 		<a href='index.php'>Trending Events</a> ||
+		<a href='sortBy.php'>Sort By</a> ||
 		<a href='logInMenuEP.php'>Log In Menu</a> ||
 		<a href='accountPage.php?userID=".@$_SESSION['userID']."'>Profile</a> ||
 		<a href='createEvent.php'>Create Event</a>
