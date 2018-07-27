@@ -487,3 +487,14 @@ a:hover{
 #seeAllSavedButton{
 	font-size:15px;
 }
+
+.speed{
+	font-size:15px;
+}
+
+.label{
+	display: block;
+}
+.select{
+	width: 200px;
+}
