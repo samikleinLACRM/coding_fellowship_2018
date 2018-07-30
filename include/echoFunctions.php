@@ -21,7 +21,7 @@ function echoHeader($Title, $PageName) {
 			echoNavBar();
 			if ($PageName!=null) {
 				echo "
-			
+
 				<div class='bloghead'>
 					$PageName
 				</div>
@@ -76,7 +76,7 @@ function echoNavBar(){
 	echo "
 	<div class='textStyle form'>
 		<a href='index.php'>Trending Events</a> ||
-		<a href='sortBy.php'>Sort By</a> ||
+		<a href='sortBy.php?sortBy=date'>Sort By</a> ||
 		<a href='logInMenuEP.php'>Log In Menu</a> ||
 		<a href='accountPage.php?userID=".@$_SESSION['userID']."'>Profile</a> ||
 		<a href='createEvent.php'>Create Event</a>
@@ -110,7 +110,7 @@ function echoFooter(){
 		<div class='row footer'>
 			Events Project <br>
 			By: Sami Klein <br>
-			email: sami.klein@wustl.edu
+			email: <a href='mailto:sami.klein@wustl.edu'>sami.klein@wustl.edu</a>
 		</div>
 		<br><br><br><br><br><br>
 </body>

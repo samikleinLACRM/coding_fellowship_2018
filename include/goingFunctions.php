@@ -56,7 +56,7 @@ function echoGoing($eventID){
 					<img src='/pics/smiley.jpg' alt='Smiley face' width='50' height='50'>
 				</div>
 				<div class='friendName'>
-					<a href='accountPage.php?userID=$oneUserGoing[userID]'>$oneUserGoing[username]</a>
+					<a href='accountPage.php?userID=$oneUserGoing[userID]'>$oneUserGoing[displayName]</a>
 				</div>
 			</div>";
 		}

@@ -1,6 +1,6 @@
 <?php
 
-function getAllEventsByDate(){
+function getAllEventsByDateASC(){
 	$result = dbQuery("
 		SELECT *
 		FROM events
@@ -23,24 +23,21 @@ function getAllEventsByCategory($catID){
 }
 
 
-function getEventsWithThisDate($date){
 
+function echoSortByCat($catID){
+	$allEvents = getAllEventsByCategory($catID); //get all events w this cat,
+	echoEvents($allEvents);
 }
 
+function echoSortByDate(){
+	$allEvents = getAllEventsByDateASC();
+	echoEvents($allEvents);
+}
 
-function echoEventSortedBy($sortedBy, $catID){
-
-	if($sortedBy == "date"){
-		$allEvents = getAllEventsByDate();
-	}
-	if($sortedBy == "category"){
-		$allEvents = getAllEventsByCategory($catID);
-	}
-
-
-	// echoNicely($allEventsByDate);
+function echoEvents($allEvents){
 	echo "
-	<br><br><br>
+	</div>
+	<br>
 	<div class='row' style='margin-left:10%; margin-right:10%; '>";
 		for($i=0; $i<count($allEvents); $i++){
 

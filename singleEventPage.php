@@ -137,7 +137,10 @@ echo"
 				foreach ($categories as $category) {
 					echo "
 					<div style='background-color:$category[color]; border-radius:15px; margin-left:100px; margin-right:100px; padding:5px;'>
-						$category[name]
+
+						<a href='sortBy.php?catID=$category[catID]'>$category[name]</a>
+
+						
 					</div>
 					<br>";
 				}

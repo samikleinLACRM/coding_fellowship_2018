@@ -60,7 +60,7 @@ echo"
 		</div>
 		<div class='bioWords'>
 			<div style=''>
-				<p style='font-size:25px'>$user[displayName] </p>";
+				<p style='font-size:25px; font-weight:700;'>$user[displayName] </p>";
 
 				//only print a friend button if it's not your page
 				if($_SESSION['userID'] != $_REQUEST['userID']){
@@ -69,7 +69,7 @@ echo"
 				}
 				echo"
 			</div>
-			<p>$user[class]</p>
+			<p style='color:#808080;font-style: italic;'>$user[class]</p>
 			<p>$user[bio]</p>
 		</div>
 	</div>

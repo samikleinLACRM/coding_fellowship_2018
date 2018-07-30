@@ -17,7 +17,7 @@ function echoFriends($userID){
 					<img src='/pics/smiley.jpg' alt='Smiley face' width='50' height='50'>
 				</div>
 				<div class='friendName'>
-					<a href='accountPage.php?userID=$friend[userID]'>$friend[username]</a>
+					<a href='accountPage.php?userID=$friend[userID]'>$friend[displayName]</a>
 				</div>
 			</div>
 
