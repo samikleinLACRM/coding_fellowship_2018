@@ -4,8 +4,8 @@
 function echoHeader($Title, $PageName) {
 
 	?>
-	<script src="/include/jquery.js"></script>
-	<script src="/include/jsFunctions.js"></script>
+	<script src="jsFiles/jquery.js"></script>
+	<script src="jsFiles/jsFunctions.js"></script>
 	<?php
 
 
@@ -75,10 +75,10 @@ function formatDateToCalculate($dateFromMySQL){
 function echoNavBar(){
 	echo "
 	<div class='textStyle form'>
-		<a href='index.php'>Trending Events</a> ||
-		<a href='sortBy.php?sortBy=date'>Sort By</a> ||
-		<a href='logInMenuEP.php'>Log In Menu</a> ||
-		<a href='accountPage.php?userID=".@$_SESSION['userID']."'>Profile</a> ||
+		<a href='index.php'>Trending Events</a> |
+		<a href='sortBy.php?sortBy=date'>Sort By</a> |
+		<a href='logInMenuEP.php'>Log In Menu</a> |
+		<a href='accountPage.php?userID=".@$_SESSION['userID']."'>Profile</a> |
 		<a href='createEvent.php'>Create Event</a>
 	</div>
 	";

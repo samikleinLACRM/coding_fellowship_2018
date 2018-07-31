@@ -1,24 +1,28 @@
 <?php
 include("config/init.php");
 
-?>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-	<script>
-$( "#datepicker" ).datepicker();
-   </script>
-  <?php
 echoHeader("Sort By", null);
+
+// echo "
+// <div class='textStyle ' style='font-size:15px; background-color:white'>
+// 	<div style='font-size:25px'>Sort By:</div><br>
+// 	<form name='form1'>
+// 		<select name='Sort By' id='sortBy'>
+// 			<option value=''>-options-</option>
+// 			<option value='Date' id='qwerty'>Date</option>
+// 			<option value='Category' id='Category'>Category</option>
+// 		</select>
+// 	</form>
+// </div>
+//
+// <p id='demo'>";echoSortByDate();echo"</p>
+// ";
 
 echo "
 	<div class='textStyle ' style='font-size:15px; background-color:white'>
 		<div style='font-size:25px'>Sort By:</div><br>
 		<a href='sortBy.php'>Date (ASC)</a> <br>
-
-		<p>On date: <input type='text' id='datepicker'></p>
-
 		Categories:
 		<div class='dropdown'>
 		  <button onclick='myFunction()' class='dropbtn'>-options-</button>
@@ -50,11 +54,10 @@ else{
 // echoEventSortedBy('category', 1);
 
 
-// <label for='Sort By'>Sort By:</label>
-// <select name='Sort By' id='sortBy'>
-//   <option value='Date' id='Date'>Date</option>
-//   <option value='index.php' id='Category'>Category</option>
-// </select>
+
+
+
+
 //
 //
 // <FORM NAME='form1'>

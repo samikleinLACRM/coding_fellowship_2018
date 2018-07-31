@@ -140,7 +140,7 @@ echo"
 
 						<a href='sortBy.php?catID=$category[catID]'>$category[name]</a>
 
-						
+
 					</div>
 					<br>";
 				}

@@ -65,7 +65,7 @@ echo "
 		Location: <input type='text' name='location' value='".$eventEditing['location']."'>
 		<br><br>
 
-		Date: <input type='date' name='date' value='".$eventEditing['dateOfEvent']."'>
+		Date: <input type='dateTime' name='date' value='".$eventEditing['dateOfEvent']."'>
 		<br><br>
 
 		Start Time: <input type='text' name='startTime' value='".$eventEditing['startTime']."'>

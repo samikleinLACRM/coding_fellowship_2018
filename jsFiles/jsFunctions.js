@@ -1,3 +1,4 @@
+// JS Functions!
 
 function togglePasswordVisibility(){
 	var x = document.getElementById("myInput");
@@ -211,6 +212,12 @@ $(document).ready(function(){
         $("#confirmSaved").fadeIn();
 		console.log("fading in saved events");
     });
+	$("#sortBy").change(function() {
+		 console.log("f");
+		 var x = document.getElementById("sortBy").value;
+		 document.getElementById("demo").innerHTML = x;
+	 });
+
 
 });
 

@@ -88,8 +88,8 @@ echo "
 	<div style='margin-left:100px; margin-right:100px;'>";
 		foreach ($allCategories as $category) {
 			echo "
-			<input type='checkbox' name=$category[name] value='category'>$category[name]";
-			echo " &nbsp&nbsp";
+			<input type='checkbox' name=$category[name] value='category'><span style='background-color:$category[color]; border-radius:5px; padding:2px; line-height: 1.6;'>$category[name]</span>";
+			echo " &nbsp&nbsp&nbsp";
 		}
 	echo"
 	</div>
