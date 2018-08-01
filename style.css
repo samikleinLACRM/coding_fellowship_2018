@@ -3,7 +3,7 @@
 }
 
 hr{
-	border-color:#7a289a;
+	border-color:#19e8e4; /*#7a289a;*/
 
 }
 
@@ -18,15 +18,18 @@ a{
 }
 
 a:hover{
-	/* background-color: white; */
-	color:purple;
+	background-color: #b7fffd; /*#ffd4b2;*/
+	color:#0f6d6b;
 	text-decoration: underline;
 }
 
 
 .background{
 	/* background: linear-gradient(to bottom, #b2f7ff 0%, #b8b1ef 100%); */
-	background: linear-gradient(45deg, #7a289a, #ff821c);
+	/* background: linear-gradient(to bottom, #00cfee 0%, #01122e  100%); */
+	background-color:#dd2c57;
+	/* background: linear-gradient(to bottom, #b2f7ff 0%, #b8b1ef 100%); */
+	/* background: linear-gradient(45deg, #7a289a, #ff821c); */
 	/* font-family: "Verdana", Verdana, sans-serif; */
 	/* font-family: 'Quicksand', sans-serif; */
 	/* font-family: "Source Sans Pro", Helvetica, sans-serif; */
@@ -36,11 +39,17 @@ a:hover{
 
 
 .whiteBox{
-	max-width:75%;
+	max-width:65%;
 	margin:auto;
+	margin-bottom: 50px;
 	background-color:white;
 	padding:10px;
- 	/* box-shadow: 0px 0px 0px 10px rgba(0,0,0,0.2); */
+
+
+	/* border-style:solid; */
+    /* border-width:5px;
+	border: 5px solid black; 	 */
+	box-shadow: 0px 0px 0px 20px rgba(0,0,0,0.2);
 }
 
 .heading{
@@ -71,8 +80,8 @@ a:hover{
 	text-align: center;
     width: 50%;
     padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
 }
+
 .left {
 	float: left;
 	padding: 10px;
@@ -97,6 +106,7 @@ a:hover{
 .iconAligned{
 	width: 40px;
 	vertical-align: sub;
+	background-color:white
 }
 
 
@@ -107,7 +117,7 @@ a:hover{
 	margin-right: 60px;
  	text-align: center;
 	font-size: 30px;
-	border: 5px solid #521f66;
+	border: 5px solid #19e8e4; /*#521f66;*/
 }
 
 
@@ -174,7 +184,7 @@ a:hover{
 	color:#051138; /* Makes the words purple-y*/
 	font-size: 40;
 	background-color:white;
-	padding: 25px;
+	padding: 20px;
 }
 
 .topEvent {
@@ -204,6 +214,7 @@ a:hover{
 	background-color: white;
 	display: grid;
     grid-template-columns: 25% 1fr;
+	/* border:solid; */
 }
 
 .secondTier{
@@ -237,11 +248,138 @@ a:hover{
 
 .voteColumn{
 	text-align: center;
-	background-color: lime; //blue #1c99ff mint#1cff82
+	background-color: #19e8e4; //blue #1c99ff mint#1cff82
 }
 
 .bodyColumn{
-	background-color: yellow;
+	background-color: #ffff82;
 	overflow: auto;
+	padding:5px;
+}
+
+
+
+
+.form{
+	text-align: center;
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+
+.textStyle {
+	background-color: white;
+	margin-top:20px;
+	margin-left:10%;
+	margin-right:10%;
+	margin-bottom:50px;
+	border-style: solid;
+	/* border-radius: 15px; */
+	padding:10px;
+}
+
+
+.bioBox{
+	padding:20px;
+ 	text-align: left;
+	/* font-size: 30px; */
+	overflow:auto;
+	border: 5px solid #19e8e4; /*#521f66;*/
+}
+
+.friendBox{
+ 	text-align: left;
+	border: 5px solid #19e8e4; /*#521f66;*/
+	overflow:auto;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top:15px;
+	margin-bottom:15px;
+	border-radius:10px;
+}
+
+.bioWords{
+	padding-left:225px;
+}
+
+.friendName{
+	padding-top:15px;
+	text-align:center;
+}
+
+.bioColumn {
+    float: left;
+	text-align: center;
+    width: 50%;
+    padding: 10px;
+}
+
+.accountColumn{
+	/* float: inherit; */
+	text-align: center;
+	margin-left: 50px;
+	/* margin-right: 40px; */
+    width: 80%;
+    padding: 10px;
+ 	height: 225px;
+	background-color: white;
+	display: grid;
+    grid-template-columns: 25% 1fr;
+}
+
+.headingBox{
+	margin-left:50px;
+	margin-right:50px;
+	padding:20px;
+ 	text-align: center;
+	font-size: 20px;
+	overflow:auto;
+	border: 5px solid #19e8e4; /*#521f66*/
+}
+
+.eventsCreatedBox{
+	/* margin-left:50px;
+	margin-right:50px; */
+	padding:20px;
+ 	text-align: center;
+	/* font-size: 20px; */
+	overflow:auto;
+}
+
+.singleFriend{
+	padding:10px;
+	margin-left:50px;
+	margin-right:50px;
+	border: 1px solid #19e8e4; /*#521f66*/
+	border-radius: 25px;
 
 }
+
+.voted{
+	background-color: gray;
+}
+
+#dialogoverlay{
+	/* display:none; */
+	opacity: .8;
+	position:fixed;
+	top:0px;
+	left:0px;
+	background:#FFF;
+	width:100%;
+	z-index:10;
+}
+
+#dialogbox{
+	/* display:none; */
+	position:fixed;
+	background:#000;
+	z-index:10;
+	border-radius:7px;
+	width: 500px;
+}
+
+#dialogbox > div{background:#FFF; margin:8px;}
+#dialogbox > div > #DBhead{background: #666; font-size:19px; padding:10px; color:#CCC;}
+#dialogbox > div > #DBbody{background: #333; padding:20px; color:#FFF;}
+#dialogbox > div > #DBfoot{background: #666; padding:10px; text-align:right;}
