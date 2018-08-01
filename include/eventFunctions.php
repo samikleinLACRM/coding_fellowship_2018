@@ -277,3 +277,14 @@ function deleteUserVote($eventID, $userID){
 			'userID'=>$userID
 	))->fetchAll();
 }
+
+function getCategoryByID($catID){
+	$result = dbQuery("
+		SELECT *
+		FROM categories
+		WHERE catID = :catID
+	", array(
+		'catID'=>$catID
+		))->fetch();
+	return $result;
+}
