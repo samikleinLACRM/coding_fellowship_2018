@@ -49,7 +49,7 @@ if(isset($_REQUEST['editEventForm'])){ //
 
 //prob need to change the date later
 echo "
-<div class='textStyle form' style='padding:30px; background-color:#a8edeb'>
+<div class='textStyle form' style='padding:30px;'>
 	<form action='' method='post'>
 
 
@@ -65,7 +65,7 @@ echo "
 		Location: <input type='text' name='location' value='".$eventEditing['location']."'>
 		<br><br>
 
-		Date: <input type='date' name='date' value='".$eventEditing['dateOfEvent']."'>
+		Date: <input type='dateTime' name='date' value='".$eventEditing['dateOfEvent']."'>
 		<br><br>
 
 		Start Time: <input type='text' name='startTime' value='".$eventEditing['startTime']."'>
@@ -91,10 +91,10 @@ echo "
 
 	<button type='button' id='myButton' onclick='onclickDeleteEvent($_REQUEST[eventID]);'>DELETE EVENT</button>
 
-	<button onclick=\"alert('you look pretty today')\">Default alert</button>
-
 </div>
 ";
-echoDialogBox();
+
+	// <button onclick=\"alert('you look pretty today')\">Default alert</button>
+// echoDialogBox();
 // echoFooter();
 ?>

@@ -17,7 +17,7 @@ if(isset($_REQUEST['logIn'])){ //
 			$row=getUserByUsername($_REQUEST['Username']);
 			$userID=$row['userID'];
 			$_SESSION['userID'] = $userID;
-			header("Location: loggedInEP.php");
+			header("Location: accountPage.php?userID=$userID");
 			exit();
 		}
 		else {
