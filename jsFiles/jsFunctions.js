@@ -221,6 +221,11 @@ $(document).ready(function(){
 
 
 function intakeGoing(userID, eventID){
+
+	// if(userID==null){
+	// 	alert("Oops! Since you are not logged in, going cannot be saved.");
+	// }
+
 	console.log("intaking going");
 	if(document.getElementById("goingButton").classList.contains('userGoing')){
 		console.log("about to DELETE going");

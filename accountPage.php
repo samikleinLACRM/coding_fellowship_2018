@@ -7,7 +7,7 @@ echoHeader("Profile Page", null);
 
 if(!isset($_SESSION['userID'])){
 	echo "<div class='textStyle form'>
-	Sorry! You must be logged in to view your profile. Please log in here:
+	Sorry! You must be logged in to view a profile. Please log in here:
 	<br><br>
 	<a href='logInEP.php'>Log In</a>
 	";

@@ -106,13 +106,17 @@ echo "
 ";
 
 
+// if(!isset($_SESSION["userID"])){
+// 	$_SESSION["userID"] = null;
+// }
+
 echo"
 		<div class='dateTime'>
 			<p> <img class='iconAligned' src='/pics/location.jpg' alt='location' height=40px> $event[location]</p>
 			<p> <img class='iconAligned' src='/pics/time.jpg' alt='time' height=40px>"; echo " ";echoDate($event['dateOfEvent']); echo" <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @ $event[startTime]-$event[endTime]</p>
 			<div class='display:inline-block;'>
-				<button type='button' onclick=\"intakeGoing($_SESSION[userID], $event[eventID]);\" id='goingButton' class='$goingColor'>$goingWord</button>
-				<button type='button' onclick=\"intakeSave($_SESSION[userID], $event[eventID]);\" id='saveButton' class='$savedColor'>$savedWord</button>
+				<button type='button' onclick=\"".@"intakeGoing($_SESSION[userID], $event[eventID]);\" id='goingButton' class='$goingColor'>$goingWord</button>
+				<button type='button' onclick=\"".@"intakeSave($_SESSION[userID], $event[eventID]);\" id='saveButton' class='$savedColor'>$savedWord</button>
 			</div>
 		</div>
 
