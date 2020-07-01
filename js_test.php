@@ -4,7 +4,7 @@ include('config/init.php');
  ?>
 
 
-<script src="/include/jquery.js"></script>
+<script src="jsFiles/jquery.js"></script>
 
 <!-- <script type='text/javascript'>
 

@@ -7,10 +7,13 @@ include('include/db_query.php'); //this should happen right after config so othe
 include('include/eventFunctions.php');
 include('include/echoFunctions.php');
 include('include/logInFunctions.php');
+include('include/friendFunctions.php');
+include('include/algorithmFunctions.php');
+include('include/goingFunctions.php');
+include('include/sortByFunctions.php');
+
+
 // include('include/jsFunctions.php');
-?>
-<script src="/include/jquery.js"></script>
-<script src="/include/jsFunctions.js"></script>
-<?php
+
 
 session_start();

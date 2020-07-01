@@ -7,7 +7,7 @@ echoHeader("Profile Page", null);
 
 if(!isset($_SESSION['userID'])){
 	echo "<div class='textStyle form'>
-	Sorry! You must be logged in to view your profile. Please log in here:
+	Sorry! You must be logged in to view a profile. Please log in here:
 	<br><br>
 	<a href='logInEP.php'>Log In</a>
 	";
@@ -17,13 +17,8 @@ if(!isset($_SESSION['userID'])){
 $user=getUserByUserID($_REQUEST['userID']);
 //NEED TO DO MORE VERIFICATION ON THIS! - actually wait, should be fine. bc should be able to see anyone's
 
-$eventsGoingTo=getAllEventsThisUserIsGoingTo($user['userID']);
-$eventsCreated=getAllEventsThisUserCreated($user['userID']);
-$friends=getAllThisUsersFriends($user['userID']);
-
 
 echo "
-
 <div class='whiteBox'>
 ";
 
@@ -36,14 +31,45 @@ if ($_SESSION['userID'] == $user['userID']){
 	<br>";
 }
 
+
+
+//tells it if friended or nah
+$friendedColor = null;
+$friendWord = "FRIEND";
+
+$stringNum = $_REQUEST['userID'];
+$requestUserID = (int)$stringNum;
+
+if(isset($_SESSION['userID'])){ // && $_SESSION['userID'] != $_REQUEST['userID'] <-- actually don't think necessary, bc just changing varibales, and if the variables arent used, then doesnt matter
+	$friendship = doesFriendshipExist($_SESSION['userID'], $requestUserID);
+	if ($friendship !=null){
+		$friendedColor = "friended";
+		$friendWord = "FRIENDS";
+	}
+}
+
+// $nfdjk= doesFriendshipExist($requestUserID, $_SESSION['userID']);
+// echoNicely($friended);
+// die();
+
+
 echo"
 	<div class='bioBox' style='margin:50px;'>
 		<div style='float:left'>
 			<img src='/pics/smiley.jpg' alt='Smiley face' width='200' height='200'>
 		</div>
 		<div class='bioWords'>
-			<p style='font-size:25px'>$user[displayName] [friend button]</p>
-			<p>$user[class]</p>
+			<div style=''>
+				<p style='font-size:25px; font-weight:700;'>$user[displayName] </p>";
+
+				//only print a friend button if it's not your page
+				if($_SESSION['userID'] != $_REQUEST['userID']){
+					echo"
+					<button type='button' onclick=\"intakeFriendship($_SESSION[userID], $requestUserID, '$friendWord');\" id='friendButton' class='$friendedColor'>$friendWord</button>";
+				}
+				echo"
+			</div>
+			<p style='color:#808080;font-style: italic;'>$user[class]</p>
 			<p>$user[bio]</p>
 		</div>
 	</div>
@@ -56,56 +82,54 @@ echo"
 			<div class='headingBox'>
 				Upcoming Events
 			</div>
-			<br>";
-			if ($eventsGoingTo == null) {
-				echo "Going to 0 events";
-			}
-			else {
-				foreach ($eventsGoingTo as $event) {
-				// var_dump($event);
+			<br>
+			<div id='confirmUpcoming'>
+			";
+				echo3EventsGoingTo($_REQUEST['userID']);
 				echo "
-				<div class='row accountColumn' style='border:solid; margin:10px;'>";
-
-				echoEvent($event);
+			</div>";
+			if(count(getAllEventsThisUserIsGoingTo($_REQUEST['userID'])) > 3){
 				echo "
-
-
-				</div>";
+				<button type='button' onclick='intakeUpcomingClick($requestUserID)'; id='upcomingButton'>See All</button>";
 			}
-		}
-			echo "
+
+			if($_SESSION['userID'] == $user['userID']){
+				echo "
+				<br><br><br>
+				<div class='headingBox'>
+					Saved (Private)
+				</div>
+
+				<div id='confirmSaved'>";
+					echo3SavedEvents($_SESSION['userID']);
+			echo "</div>";
+
+			if(count(getAllSavedEvents($_SESSION['userID'])) > 3){
+				echo "
+				<button type='button' onclick='intakeSeeAllSavedButton($_SESSION[userID])'; id='seeAllSavedButton'>See All</button>";
+			}
+				// echoAllSavedEvents($_SESSION['userID']); //i guess could do request too, but just to be sure.
+
+			}
+
+			echo"
 		</div>
 		<div class='bioColumn right'>
 
 			<div class='headingBox'>
 				Events Created
 			</div>
-			<br>
 
 			<div class='eventsCreatedBox'>
-			";
-
-			if ($eventsCreated == null) {
-				echo "0 events created";
-			}
-			else{
-				foreach ($eventsCreated as $event) {
-					// var_dump($event);
-					echo "
-					<div class='row accountColumn' style='border:solid; margin:10px;'>";
-
-					echoEvent($event);
-					echo "
-
-
-					</div>
-
-					";
-				}
-			}
-
-			//can't just do br, need an actual fix
+				<div id='confirmCreated'>";
+					echo3EventsCreated($_REQUEST['userID']);
 			echo "
+				</div>";
+				if(count(getAllEventsCreated($_REQUEST['userID'])) > 3){
+					echo "
+					<button type='button' onclick='intakeEventsCreatedButton($requestUserID)'; id='eventsCreatedButton'>See All</button>";
+				}
+				echo"
 			</div>
 			<br>
 			<div class='headingBox'>
@@ -115,37 +139,17 @@ echo"
 			<div class='friends'>
 			";
 
-			if ($friends == null) {
-				echo "No friends yet";
-			}
-			else{
-				foreach ($friends as $friend) {
-
-					echo "
-
-					<div class='friendBox'>
-						<div style='float:left; overflow:auto;'>
-							<img src='/pics/smiley.jpg' alt='Smiley face' width='50' height='50'>
-						</div>
-						<div class='friendName'>
-							<a href='accountPage.php?userID=$friend[userID]'>$friend[username]</a>
-						</div>
-					</div>
-
-					";
-				}
-			}
-
-
-			echo "
+			echo "<div id='confirmContentFromServer'> ";
+				echoFriends($user['userID']);
+			echo "</div>
 		</div>
 
 	</div>
 
 
 </div>
+</div>
 ";
 
 
-
- ?>
+echoFooter();

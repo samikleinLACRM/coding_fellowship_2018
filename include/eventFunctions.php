@@ -4,7 +4,7 @@ function getAllEvents(){
 	$result = dbQuery("
 		SELECT *
 		FROM events
-		ORDER BY votes DESC
+		ORDER BY points DESC
 	")->fetchAll();
 	return $result;
 }
@@ -88,11 +88,11 @@ function getAllEventsButTopThree(){
 	$result = dbQuery("
 		SELECT *
 		FROM events
-		ORDER BY votes
+		ORDER BY points
 		DESC limit 3,100000
 	")->fetchAll();
 	return $result;
-
+	//the second number is irrelevant, just need to start at 3
 }
 
 
@@ -100,106 +100,13 @@ function getTopThreeEvents(){
 	$result = dbQuery("
 		SELECT *
 		FROM events
-		ORDER BY votes DESC
+		ORDER BY points DESC
 		LIMIT 3
 	")->fetchAll();
 	return $result;
 
 }
 
-
-function echoColumnEvent($eventID){
-	$thisEvent=getOneEvent($eventID);
-	echo "
-	<div class='trendingColumn'>";
-		echoEvent($thisEvent);
-	echo "
-	</div>";
-}
-
-function echoColumnTwoEvent($eventID){
-	$thisEvent=getOneEvent($eventID);
-	echo "<div class='trendingColumn' style='margin-left:5%; margin-right:5%;'>";
-		echoEvent($thisEvent);
-	echo "
-	</div>";
-}
-
-// $direction = "up";
-function echoUpVoteButton($eventID, $upVoted){
-	$direction = 'up'; //nic fixed this. very weird string stuff, but it works now!
-	if(!isset($_SESSION['userID'])){
-		$s = null;
-	}
-	else{
-		$s = $_SESSION['userID'];
-	}
-	echo"
-	<a href='javascript://' onclick=\"intakeVote($eventID, '$direction', $s);\">
-		<img id='upVoteButton_$eventID' class='iconAligned $upVoted' src='/pics/arrow2.jpg' alt='arrow' height=40px>
-	</a>";
-
-}
-
-function echoDownVoteButton($eventID, $downVoted){ //sohuld there be a ; after the function?
-	$direction = 'down';
-	if(!isset($_SESSION['userID'])){
-		$s = null;
-	}
-	else{
-		$s = $_SESSION['userID'];
-	}
-	echo"
-	<a href='javascript://' onclick=\"intakeVote($eventID, '$direction', $s);\">
-		<img id='downVoteButton_$eventID' class='iconAligned $downVoted' src='/pics/line2.jpg' alt='line' height=40px>
-	</a>";
-}
-
-
-
-function echoEvent($event){
-	$eventID=$event['eventID'];
-	$upVoted = null;
-	$downVoted= null;
-	if(isset($_SESSION['userID'])){
-		$vote = doesUserVoteExist($eventID, $_SESSION['userID']);
-		if ($vote !=null){
-			if ($vote['0']['direction'] == "up"){
-				$upVoted="voted";
-			}
-			else{ //which means that direction must be down
-				$downVoted="voted";
-			}
-		}
-	}
-
-
-	echo"
-		<div class='voteColumn'>
-			<br>";
-			echoUpVoteButton($eventID, $upVoted);
-
-			echo "
-			<br><br>
-			<div id='eventWrapper_$eventID'>
-				$event[votes]
-			</div>
-			<br>
-			";
-			echoDownVoteButton($eventID, $downVoted);
-			echo "
-		</div>
-
-		<div class='bodyColumn'>
-			<a href='singleEventPage.php?eventID=$eventID'>
-				<h2 style='border:solid; margin:5px;'>$event[name]</h2>
-				<p>$event[dateOfEvent]</p>
-				<p>$event[location]</p>
-				<p><strong>Come Bc:</strong> $event[comeBc]</p>
-			</a>
-		</div>
-	";
-}
 
 function generalVoteinDB($eventID, $direction){
 	$sign = "+";
@@ -249,9 +156,10 @@ function downVoteInDB($eventID){
 
 
 function insertEvent($name, $location, $date, $startTime, $endTime, $comeBc, $description, $pic){
+	$today = date('Y-m-d');
 	$result = dbQuery("
-		INSERT INTO events(name, votes, location, dateOfEvent, startTime, endTime, comeBc, description, pic)
-		VALUES(:name, '0', :location, :dateOfEvent, :startTime, :endTime, :comeBc, :description, :pic)
+		INSERT INTO events(name, votes, location, dateOfEvent, startTime, endTime, comeBc, description, pic, points, lastCalculated)
+		VALUES(:name, '0', :location, :dateOfEvent, :startTime, :endTime, :comeBc, :description, :pic, '0', $today)
 	", array(
 		'name'=>$name,
 		'location'=>$location,
@@ -366,6 +274,17 @@ function deleteUserVote($eventID, $userID){
 		AND userID = :userID
 		", array(
 			'eventID'=>$eventID,
-			'userID'=>$userID,
+			'userID'=>$userID
 	))->fetchAll();
+}
+
+function getCategoryByID($catID){
+	$result = dbQuery("
+		SELECT *
+		FROM categories
+		WHERE catID = :catID
+	", array(
+		'catID'=>$catID
+		))->fetch();
+	return $result;
 }

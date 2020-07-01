@@ -107,14 +107,14 @@ function getSessionUserID(){
 }
 
 
-function getUsersGoing($eventID){
-
-}
-
-
-function getCreator($eventID){
-
-}
+// function getUsersGoing($eventID){
+//
+// }
+//
+//
+// function getCreator($eventID){
+//
+// }
 
 
 function getAllEventsThisUserIsGoingTo($userID){
@@ -131,7 +131,22 @@ function getAllEventsThisUserIsGoingTo($userID){
 
 }
 
-function getAllEventsThisUserCreated($userID){
+function get3EventsUserGoingTo($userID){
+	$result = dbQuery("
+		SELECT *
+		FROM events
+		INNER JOIN usersGoing2events ON events.eventID = usersGoing2events.eventID
+		WHERE usersGoing2events.userID = :userID
+		ORDER BY dateOfEvent ASC
+		LIMIT 3
+	", array(
+		'userID'=>$userID
+	))->fetchAll();
+	return $result;
+
+}
+
+function getAllEventsCreated($userID){
 	$result = dbQuery("
 		SELECT *
 		FROM events
@@ -142,21 +157,21 @@ function getAllEventsThisUserCreated($userID){
 		'userID'=>$userID
 	))->fetchAll();
 	return $result;
-
 }
 
-function getAllThisUsersFriends($userID){
+function get3EventsCreated($userID){
 	$result = dbQuery("
-	SELECT *
-	FROM users
-	INNER JOIN friends ON users.userID = friends.userID2
-	WHERE friends.userID1 = :userID
+		SELECT *
+		FROM events
+		INNER JOIN usersCreated2events ON events.eventID = usersCreated2events.eventID
+		WHERE usersCreated2events.userID = :userID
+		ORDER BY dateOfEvent ASC
+		LIMIT 3
 	", array(
 		'userID'=>$userID
 	))->fetchAll();
 	return $result;
 }
-
 
 
 //this is not working at all

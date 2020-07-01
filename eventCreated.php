@@ -3,12 +3,15 @@ include('config/init.php');
 
 echoHeader("Event Created", "Event Created");
 
+$event = getOneEvent($_REQUEST['eventID']);
+
 echo"
 <div class='textStyle form'>
-	Event sucessfully created! Go to trending events to see it:
+	Event sucessfully created! Go to this link to see your event:
 	<br><br>
-	or... should put a link to it's single event page. but then need to somehow pass info to this page.
-	<a href='trendingEvents.php'>Trending Events</a>
+	<div style='background-color:red; margin-left:100px; margin-right:100px;'>
+		<strong><a href='singleEventPage.php?eventID=$_REQUEST[eventID]'>$event[name]</a></strong>
+	</div>
 </div>";
 
  ?>

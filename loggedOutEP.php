@@ -6,7 +6,7 @@ echoHeader("Log Out", "Log Out");
 if(!isset($_SESSION['userID'])){
 	echo "
 	<div class='textStyle form'>
-		There is no one signed in, therefore there is no one to sign out!
+		You are not signed in, therefore there is no one to sign out!
 	</div>
 	";
 }
@@ -16,6 +16,8 @@ else {
 	echo "
 	<div class='textStyle form'>
 		You have been sucessfully logged out!
+		<br>	<br>
+			<a href='logInEP.php'>Log In</a>
 	</div>
 	";
 }
